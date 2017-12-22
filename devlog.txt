@@ -41,3 +41,11 @@ tales of wisdom gained...
    \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
     \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
+taylorW -- 2017-12-21 13:08:12
+worked on component map and database schema
+
+samanthaN -- 2017-12-21 13:08:54
+worked on sitemap
+
+adamA -- 2017-12-21 13:09:10
+worked on database and description
