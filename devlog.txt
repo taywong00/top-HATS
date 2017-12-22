@@ -49,3 +49,17 @@ worked on sitemap
 
 adamA -- 2017-12-21 13:09:10
 worked on database and description
+
+taylorW -- 2017-12-22 7:49:02
+worked on component map and database schema
+
+top_HATS -- 2017-12-22 13:17:01
+SUMMARY OF FEEDBACK:
+  - add a privacy setting for transactions
+  - db for transactions?
+  - db for all current stocks held, how many did you buy?
+  - update sitemap (using draw.io)
+  - add e*trade and other apis in component map
+  - reorg db
+CHANGES TO DD: ??
+  - to be made
