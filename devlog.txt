@@ -66,3 +66,6 @@ CHANGES TO DD: ??
 adamA -- 2018-01-02 13:06:01
 Created test code for calling AV API
 
+adamA -- 2018-01-02 13:14:59
+Function for exchange rates
+
