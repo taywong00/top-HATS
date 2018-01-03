@@ -6,7 +6,7 @@
 
 from flask import Flask, render_template, request
 from flask import redirect, flash, url_for
-import API_funcs
+import API_funcs #API calls
 #from util import
 
 app = Flask (__name__)
