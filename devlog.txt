@@ -66,6 +66,9 @@ CHANGES TO DD: ??
 adamA -- 2018-01-02 13:06:01
 Created test code for calling AV API, allows us to get full info on a stock including price, name etc.
 
+samanthaN -- 2018-01-02 12:44:17
+Wrote app.py and added routes outline.
+
 adamA -- 2018-01-02 13:14:59
 Function for exchange rates is being worked on, is similar to previous function
 

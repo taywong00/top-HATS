@@ -1,0 +1,74 @@
+Team top-HATS
+
+Adam Abbas
+Holden Higgins
+Samantha Ngo
+Taylor Wong
+pd 7
+---------------------
+STOK
+
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+OBSTACLES OVERCOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc...
+
+UNRESOLVED ISSUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+blah blah pesky bug...
+
+COOL STUFF LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow! oo!...
+
+MID-DEVELOPMENT DESIGN CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+LESSONS LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tales of wisdom gained...
+
+||||||||||||||||||||||||||||||||||||||||||
+
+
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+taylorW -- 2017-12-21 13:08:12
+worked on component map and database schema
+
+samanthaN -- 2017-12-21 13:08:54
+worked on sitemap
+
+adamA -- 2017-12-21 13:09:10
+worked on database and description
+
+taylorW -- 2017-12-22 7:49:02
+worked on component map and database schema
+
+top_HATS -- 2017-12-22 13:17:01
+SUMMARY OF FEEDBACK:
+  - add a privacy setting for transactions
+  - db for transactions?
+  - db for all current stocks held, how many did you buy?
+  - update sitemap (using draw.io)
+  - add e*trade and other apis in component map
+  - reorg db
+CHANGES TO DD: ??
+  - to be made
+adamA -- 2018-01-02 13:06:01
+Created test code for calling AV API
+
+adamA -- 2018-01-02 13:076:59
+Function for exchange rates
+
+adamA -- 2018-01-02 13:14:59
+Function for exchange rates
+

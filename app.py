@@ -20,6 +20,12 @@ def homepage():
 def login():
     return render_template("login.html");
 
+# LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
+@app.route("/create_account")
+def create_account():
+    return render_template("register.html");
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
