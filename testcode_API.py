@@ -23,5 +23,4 @@ def get_exch_rate(from_cur, to_cur):
 
 #get_data(stock_name, key)
 
-get_exch_rate("BTC", "USD")
-    
+get_exch_rate("BTC", "USD") 

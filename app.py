@@ -1,12 +1,12 @@
 # Team top_HATS
 # Holden Higgins, Adam Abbas, Taylor Wong, Samantha Ngo
 # SoftDev1 pd7
-# P0# -- 
+# P0# --
 # 2018-01-02
 
 from flask import Flask, render_template, request
 from flask import redirect, flash, url_for
-from util import
+#from util import
 
 app = Flask (__name__)
 
@@ -19,7 +19,7 @@ def homepage():
 @app.route("/login")
 def login():
     return render_template("login.html");
-   
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

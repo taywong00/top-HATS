@@ -64,13 +64,13 @@ SUMMARY OF FEEDBACK:
 CHANGES TO DD: ??
   - to be made
 adamA -- 2018-01-02 13:06:01
-Created test code for calling AV API
+Created test code for calling AV API, allows us to get full info on a stock including price, name etc.
 
 adamA -- 2018-01-02 13:14:59
-Function for exchange rates
+Function for exchange rates is being worked on, is similar to previous function
 
 taylorW -- 2018-01-02 12:58:16
 created new folders, example files, began base template and css
 
 adamA -- 2018-01-03 12:47:28
-Function for exchange rates completed n working
+Function for exchange rates completed n working, can take two currencies and returns a dictionary with information about them and their exchange rate
