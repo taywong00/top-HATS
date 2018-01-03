@@ -30,4 +30,4 @@ def get_news(kind_of):
 
 #get_data(stock_name, key)
 #get_exch_rate("BTC", "USD")
-get_news("finance")
+get_news("finance") 

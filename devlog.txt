@@ -74,3 +74,6 @@ created new folders, example files, began base template and css
 
 adamA -- 2018-01-03 12:47:28
 Function for exchange rates completed n working, can take two currencies and returns a dictionary with information about them and their exchange rate
+
+adamA == 2018-01-03 1:10:13
+Obtained a News API key, which will allow us to search the internet for headlines/articles about stock. The function that will be used to get all the information has been written, and searches up the top articles based on a query
