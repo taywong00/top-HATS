@@ -69,3 +69,5 @@ Created test code for calling AV API
 adamA -- 2018-01-02 13:14:59
 Function for exchange rates
 
+adamA -- 2018-01-03 12:47:28
+Function for exchange rates completed n working
