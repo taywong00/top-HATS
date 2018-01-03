@@ -69,5 +69,8 @@ Created test code for calling AV API
 adamA -- 2018-01-02 13:14:59
 Function for exchange rates
 
+taylorW -- 2018-01-02 12:58:16
+created new folders, example files, began base template and css
+
 adamA -- 2018-01-03 12:47:28
 Function for exchange rates completed n working
