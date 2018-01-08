@@ -30,6 +30,13 @@ def getStockPrice(stock):
     # price = <retrieval code> (stock)
     # ---------
     return price
+	
+def getBalance(accountName):
+	# database code here
+	# balance = <retrieve balance>
+	return balance
 
-def buy(balance, stock, amount):
-    statement = "Bought ", amount, " shares of ", stock, " 
+def buy(accountName, stock, amount):
+    statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
+    currentBalance = 
+	
