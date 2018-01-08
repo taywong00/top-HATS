@@ -42,7 +42,7 @@ def create_account():
     elif request.form.get('signup'):
         return auth.signup()
     else:
-        return render_template("register.html")
+        return render_template("signup.html")
 
 @app.route("/feed")
 def feed():
