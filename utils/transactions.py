@@ -31,10 +31,19 @@ def getStockPrice(stock):
     # ---------
     return price
 	
-def getBalance(accountName):
-	# database code here
-	# balance = <retrieve balance>
-	return balance
+
+
+
+def getbalance(username):
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="""SELECT money
+    FROM users
+    WHERE name="""+username+";"
+    balance= c.execute(command)
+    return balance
+
 
 def buy(accountName, stock, amount):
     statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
