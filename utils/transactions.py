@@ -38,5 +38,7 @@ def getBalance(accountName):
 
 def buy(accountName, stock, amount):
     statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
-    currentBalance = 
+    currentBalance = getBalance(accountName)
+    # Do math
+    return statement
 	
