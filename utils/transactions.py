@@ -2,7 +2,8 @@
 # Holden, Adam, Taylor, Samantha - pd7
 # Methods used in transactions
 
-import sqlite3   # database functions 
+import sqlite3, json   # database functions
+import API_funcs
 
 f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
@@ -25,11 +26,17 @@ def make_tables():
 # Use: to get most recent price of a stock
 def getStockPrice(stock):
     price = -1
+
+    d = API_funcs.get_data(stock, "")
+    print d["Time Series (1min)"][]
+    #print d[0]
     # ---------
     # API retrieval code here
     # price = <retrieval code> (stock)
     # ---------
     return price
 
+getStockPrice("GOOG");
+
 def buy(balance, stock, amount):
-    statement = "Bought ", amount, " shares of ", stock, " 
+    statement = "Bought ", amount, " shares of ", stock

@@ -83,3 +83,6 @@ Obtained a News API key, which will allow us to search the internet for headline
 
 holdenH -- 2018-01-03 1:19:19
 Added the basic data construction function and initialized a prototype database
+
+adamA -- 2018-01-08 1:17:23
+Working on the function to specifically get the price of a stock. Will use the closing price at that minute (updated every minute). Am currently having trouble reading the json, as the parameters are very specific and it might be a problem figuring out the name of the parameter
