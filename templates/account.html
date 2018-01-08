@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Account | STOK
+{% endblock %}
+
+{% block content %}
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>My Account</h1>
+        <p class="lead">
+
+          {{user_photo}}
+          <h4>Name:</h4> {{name}}
+          <h4>Balance:</h4> {{balance}}
+          <h4>Email:</h4> {{email}}
+          <h4>Date Joined:</h4> {{date_joined}}
+
+        </p>
+
+      </div>
+
+
+
+      <!-- ENTER EACH PAGES CONTENT-->
+
+    </main><!-- /.container -->
+
+    {% endblock %}

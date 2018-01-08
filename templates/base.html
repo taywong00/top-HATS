@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../static/favicon.ico">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
     <title>{% block title %} {% endblock %}</title>
 
@@ -14,6 +14,12 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/starter-template.css" rel="stylesheet">
+    <link href="../static/css/styles.css" rel="stylesheet">
+    <!--link href="../static/css/form.css" rel="stylesheet"-->
+
+    <!-- Fonts and Icons -->
+    <link href="../static/css/open-iconic-bootstrap.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -27,19 +33,33 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/news">News Feed</a>
+            <a class="nav-link" href="/feed">News Feed</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/news">My Stats & Stocks</a>
+            <a class="nav-link" href="/stats">My Stats & Stocks</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/news">Leaderboard</a>
+            <a class="nav-link" href="/leaderboard">Leaderboard</a>
           </li>
         </ul>
+
+        <ul class="navbar-nav pull-left">
+          <li class="nav-item">
+            <a class="nav-link" href="/how_to" style="width:120px;">How to Play</a>
+          </li>
+        </ul>
+
+        <a href="/account" class="btn btn-outline-secondary pull-left" aria-label="My Account">
+          <span class="oi oi-person" title="My Account" aria-hidden="true"></span> My Account
+        </a>
+
+
+        <!--
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+      -->
       </div>
     </nav>
 
@@ -63,14 +83,20 @@
 
     {% endblock %}
 
+    <center>
+      <a href="/" class="btn btn-outline-secondary pull-left" aria-label="Home">
+        <span class="oi oi-home" title="Home" aria-hidden="true"></span>
+      </a>
+    </center>
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../../../assets/js/vendor/popper.min.js"></script>
     <script src="../../../../dist/js/bootstrap.min.js"></script>
+    -->
   </body>
 </html>

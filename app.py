@@ -44,6 +44,14 @@ def create_account():
     else:
         return render_template("signup.html")
 
+@app.route("/how_to", methods=['GET', 'POST'])
+def how_to():
+    return render_template("how_to.html")
+
+@app.route("/account", methods=['GET', 'POST'])
+def account():
+    return render_template("account.html")
+
 @app.route("/feed")
 def feed():
     return render_template("feed.html")
