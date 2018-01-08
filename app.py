@@ -5,7 +5,8 @@
 # 2018-01-02
 
 from flask import Flask, render_template, request, session
-from flask import redirect, flash, url_for, auth
+from flask import redirect, flash, url_for
+import os
 import API_funcs #API calls
 #from util import
 
