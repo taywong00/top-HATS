@@ -78,7 +78,7 @@ created new folders, example files, began base template and css
 adamA -- 2018-01-03 12:47:28
 Function for exchange rates completed n working, can take two currencies and returns a dictionary with information about them and their exchange rate
 
-adamA == 2018-01-03 1:10:13
+adamA -- 2018-01-03 1:10:13
 Obtained a News API key, which will allow us to search the internet for headlines/articles about stock. The function that will be used to get all the information has been written, and searches up the top articles based on a query
 
 holdenH -- 2018-01-03 1:19:19
@@ -86,3 +86,9 @@ Added the basic data construction function and initialized a prototype database
 
 adamA -- 2018-01-08 1:17:23
 Working on the function to specifically get the price of a stock. Will use the closing price at that minute (updated every minute). Am currently having trouble reading the json, as the parameters are very specific and it might be a problem figuring out the name of the parameter
+
+taylorW -- 2018-01-08 18:26:34
+modified app.py for html names/new pages, created new html pages, updated base.html template for all pages, modified css/bootstrap, added new ixon capabilities, tried to add favicon, modified jinja for incoming/outgoing info
+
+taylorW -- 2018-01-08 21:28:03
+continued to modify html pages and bootstrap/css, added logout page/route to app.py and templates

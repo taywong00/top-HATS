@@ -2,7 +2,7 @@
 # Holden, Adam, Taylor, Samantha - pd7
 # Methods used in transactions
 
-import sqlite3, json   # database functions
+import sqlite3, json, datetime   # database functions
 import API_funcs
 f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
@@ -27,8 +27,11 @@ def getStockPrice(stock):
     price = -1
     key = "I47O8J6SBM5S3302"
     d = API_funcs.get_data(stock, key)
-    json.dumps(d)
-    #print d[0]
+    dt = datetime.datetime.now().date()
+    #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
+    print dt
+    #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
+    print json.dumps(d["Time Series (Daily)"][str(dt)]["4. close"], indent = 4, sort_keys = True)
     # ---------
     # API retrieval code here
     # price = <retrieval code> (stock)
@@ -37,5 +40,19 @@ def getStockPrice(stock):
 
 getStockPrice("GOOG");
 
-def buy(balance, stock, amount):
-    statement = "Bought ", amount, " shares of ", stock
+def getbalance(username):
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="""SELECT money
+    FROM users
+    WHERE name="""+username+";"
+    balance= c.execute(command)
+    return balance
+
+
+def buy(accountName, stock, amount):
+    statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
+    currentBalance = getBalance(accountName)
+    # Do math
+    return statement

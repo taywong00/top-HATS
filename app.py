@@ -4,9 +4,9 @@
 # P0# --
 # 2018-01-02
 
+import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
-import os
 import API_funcs #API calls
 #from util import
 
@@ -42,7 +42,15 @@ def create_account():
     elif request.form.get('signup'):
         return auth.signup()
     else:
-        return render_template("register.html")
+        return render_template("signup.html")
+
+@app.route("/how_to", methods=['GET', 'POST'])
+def how_to():
+    return render_template("how_to.html")
+
+@app.route("/account", methods=['GET', 'POST'])
+def account():
+    return render_template("account.html")
 
 @app.route("/feed")
 def feed():
@@ -63,6 +71,21 @@ def transaction():
 @app.route("/confirmation")
 def confirmation():
     return render_template("confirmation.html")
+
+@app.route("/logout",methods=['POST','GET'])
+def logout():
+    if 'username' not in session:
+        redirect("/")
+
+    #code from my last project LOL - pm
+    #accounts = db_functions.accounts_dict()
+    #stories = db_functions.stories_dict()
+
+    #remove user info from session
+    if 'username' in session:
+        session.pop('username')
+    return render_template('home.html', message = 'Logout was successful.', good = True)
+
 
 if __name__ == "__main__":
     app.debug = True
