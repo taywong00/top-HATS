@@ -4,7 +4,6 @@
 
 import sqlite3, json   # database functions
 import API_funcs
-
 f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
@@ -26,9 +25,9 @@ def make_tables():
 # Use: to get most recent price of a stock
 def getStockPrice(stock):
     price = -1
-
-    d = API_funcs.get_data(stock, "")
-    print d["Time Series (1min)"][]
+    key = "I47O8J6SBM5S3302"
+    d = API_funcs.get_data(stock, key)
+    json.dumps(d)
     #print d[0]
     # ---------
     # API retrieval code here
