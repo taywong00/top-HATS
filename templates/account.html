@@ -11,17 +11,49 @@ My Account | STOK
       <div class="starter-template">
         <h1>My Account</h1>
         <p class="lead">
-
           {{user_photo}}
-          <h4>Name:</h4> {{name}}
-          <h4>Balance:</h4> {{balance}}
-          <h4>Email:</h4> {{email}}
-          <h4>Date Joined:</h4> {{date_joined}}
+
+          <!-- picture of octocat in the meantime-->
+          <img src="../static/images/octocat.png" alt="Octocat" height="200" width="400">
+
+          <!-- insert placeholders for now for demos -->
+          <center>
+            <table>
+              <tr>
+                <th><center> Name: </center></th>
+                <td width="10px"><center> {{name}} Octocat </center></td>
+              </tr>
+
+              <tr>
+                <th><center> Email: </center></th>
+                <td><center> {{email}} hello@github.com </center></td>
+              </tr>
+
+              <tr>
+                <th><center> Difficulty: </center></th>
+                <td><center> {{difficulty}} > a bajillion </center></td>
+              </tr>
+
+              <tr>
+                <th><center> Balance: </center></th>
+                <td><center>{{balance}} Ying and yang </center></td>
+              </tr>
+
+              <tr>
+                <th><center> Date Joined: </center></th>
+                <td><center> {{date_joined}} January 2018 </center></td>
+              </tr>
+            </table>
+          </center>
 
         </p>
 
-      </div>
+        <br>
+        <br>
 
+        <a href="/logout" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Log Out</a>
+
+      </div>
 
 
       <!-- ENTER EACH PAGES CONTENT-->

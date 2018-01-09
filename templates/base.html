@@ -63,31 +63,42 @@
       </div>
     </nav>
 
-    <!--center>
-      {% with messages = get_flashed_messages() %}
-        {% for message in messages %}
-        <div class="alert alert-danger">
-          <center>
-            <strong>
-              Oops!
-            </strong>
-              {{ message }}
-          </center>
-        </div>
+    <!-- Alerts -->
+    <center>
+      {% if good == True %}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
 
-        {% endfor %}
-      {% endwith %}
-  	</center-->
+      {% if good == False %}
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+  	</center>
 
     {% block content %}
 
     {% endblock %}
 
-    <center>
-      <a href="/" class="btn btn-outline-secondary pull-left" aria-label="Home">
-        <span class="oi oi-home" title="Home" aria-hidden="true"></span>
-      </a>
-    </center>
+    <footer class="footer">
+      <center>
+        <a href="/" class="btn btn-outline-secondary pull-left" aria-label="Home">
+          <span class="oi oi-home" title="Home" aria-hidden="true"></span>
+        </a>
+      </center>
+    </footer>
+
+    <br>
+    
+    <footer class="mastfoot">
+      <div class="inner">
+        <center>
+        <p><small>Powered by <a href="https://github.com/taywong00/top-HATS">top_HATS</a>.</small></p>
+      </center>
+      </div>
+    </footer>
 
 
     <!-- Bootstrap core JavaScript

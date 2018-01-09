@@ -72,6 +72,21 @@ def transaction():
 def confirmation():
     return render_template("confirmation.html")
 
+@app.route("/logout",methods=['POST','GET'])
+def logout():
+    if 'username' not in session:
+        redirect("/")
+
+    #code from my last project LOL - pm
+    #accounts = db_functions.accounts_dict()
+    #stories = db_functions.stories_dict()
+
+    #remove user info from session
+    if 'username' in session:
+        session.pop('username')
+    return render_template('home.html', message = 'Logout was successful.', good = True)
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
