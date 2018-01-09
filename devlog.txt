@@ -83,3 +83,9 @@ Obtained a News API key, which will allow us to search the internet for headline
 
 holdenH -- 2018-01-03 1:19:19
 Added the basic data construction function and initialized a prototype database
+
+taylorW -- 2018-01-08 18:26:34
+modified app.py for html names/new pages, created new html pages, updated base.html template for all pages, modified css/bootstrap, added new ixon capabilities, tried to add favicon, modified jinja for incoming/outgoing info
+
+taylorW -- 2018-01-08 21:28:03
+continued to modify html pages and bootstrap/css, added logout page/route to app.py and templates
