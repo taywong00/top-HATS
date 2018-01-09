@@ -92,3 +92,6 @@ modified app.py for html names/new pages, created new html pages, updated base.h
 
 taylorW -- 2018-01-08 21:28:03
 continued to modify html pages and bootstrap/css, added logout page/route to app.py and templates
+
+taylorW -- 2018-01-08 22:02:47
+added leadership and statsnstocks for demo purposes, everything relatively functional, got rid of confirmation/logout pages-- will instead redirect to stats/stocks and home respectively with confirmation alerts

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Welcome to STOK!
+Leaderboard | STOK
 {% endblock %}
 
 {% block content %}
@@ -9,26 +9,68 @@ Welcome to STOK!
     <main role="main" class="container">
 
       <div class="starter-template">
-        <h1>How to Play:</h1>
-        <p>
-          STOK is a stock market simulation game based on real-time stock prices. In order to play the
-simulation, a user must be <a href="/login">logged in</a> or must <a href="/create_account">create an account</a>.
+        <h1>Top 10 Players</h1>
+
+
           <br>
-          <br>
-To start a game, they begin by choosing their difficulty which adjusts
-their starting balance accordingly. Based on how much money they have, they will be able to look up and
-purchase stocks to add to their portfolio or sell stocks in their portfolio. Only a user’s last three transactions will
-be saved. The top ten users with the highest balances per level will be displayed on a leaderboard visible to all
-users and updated after every transaction.
-          <br>
-          <br>
-Once a game is started, it must be continued unless a user chooses to
-end the game. Then, their account is reset and they are able to start a new game with a new difficulty.
-Once the simulation is implemented, STOK hopes to grow to be more of a social media platform, where
-one can visit their friends’ pages, and check what stocks they’re working with as well as how they’re doing on
-the market. On your feed, you may like or dislike friends’ activity (buying/selling) indicating approval of their
-purchase.
-        </p>
+          <center>
+            <table>
+
+
+            <!--
+            {% set counter = 1 %}
+            {% for leader in leaders_list %}
+              <tr>
+                <th>#{{counter}}</th>
+                <td>{{leader}}</td>
+              </tr>
+              {% set counter = counter + 1 %}
+            {% endfor %}
+            -->
+
+              <tr>
+                <th>#1</th>
+                <td>TBM</td>
+              </tr>
+              <tr>
+                <th>#2</th>
+                <td>Octocat</td>
+              </tr>
+              <tr>
+                <th>#3</th>
+                <td>Frankie Valli</td>
+              </tr>
+              <tr>
+                <th>#4</th>
+                <td>Morty</td>
+              </tr>
+              <tr>
+                <th>#5</th>
+                <td>Principal Contreras</td>
+              </tr>
+              <tr>
+                <th>#6</th>
+                <td>Harold</td>
+              </tr>
+              <tr>
+                <th>#7</th>
+                <td>Adam</td>
+              </tr>
+              <tr>
+                <th>#8</th>
+                <td>Holden</td>
+              </tr>
+              <tr>
+                <th>#9</th>
+                <td>Samantha</td>
+              </tr>
+              <tr>
+                <th>#10</th>
+                <td>Taylor</td>
+              </tr>
+            </table>
+          </center>
+
 
       </div>
 

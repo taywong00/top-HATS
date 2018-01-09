@@ -70,7 +70,7 @@ def transaction():
 
 @app.route("/confirmation")
 def confirmation():
-    return render_template("confirmation.html")
+    return render_template("stats.html", message="Congratulations! Your transaction was successful! You're one step closer to becoming rich!", good=True)
 
 @app.route("/logout",methods=['POST','GET'])
 def logout():
