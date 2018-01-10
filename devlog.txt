@@ -98,3 +98,6 @@ added leadership and statsnstocks for demo purposes, everything relatively funct
 
 adamA -- 2018-01-08 23:41:13
 working function to obtain the price! needed to use the datetime library to get the current date, since the API's JSon has dates as the index (kind of annoying...). Notes for tomorrow: Test to see how the "close" value changes throughout the day for that current day (is it the same as a live value?)
+
+holdenH -- 2018-01-09 23:05:27
+Preliminary functions to manipulate user data, figuring out most efficient way to manipulate lists within databases(and whether it would make more sense to simply store strings in an easily splittable format)
