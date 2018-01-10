@@ -8,7 +8,6 @@ f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 def make_tables():
-    f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command= "CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
@@ -50,9 +49,26 @@ def getbalance(username):
     balance= c.execute(command)
     return balance
 
+def adjust_money(to_changes, user, amt):	
+	db = sqlite3.connect(f)
+	c = db.cursor()	
+	cmd = "SELECT money FROM users WHERE name=" + user 
+	c.execute(cmd)
+	og_mons = c.fetchone() 
+	if(og_mons + amt):
+		return - 1
+	else:
+		og_mons += amt
+		cmd = "UPDATE users SET money=" + og_mons + " WHERE name=" + user
+		c.execute(cmd)
+	db.commit()
+	db.close()
+
 
 def buy(accountName, stock, amount):
     statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
     currentBalance = getBalance(accountName)
     # Do math
     return statement
+
+
