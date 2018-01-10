@@ -103,4 +103,7 @@ holdenH -- 2018-01-09 23:05:27
 Preliminary functions to manipulate user data, figuring out most efficient way to manipulate lists within databases(and whether it would make more sense to simply store strings in an easily splittable format)
 
 adamA -- 2018-01-10 13:01:25
-Created an adjust_money function, that takes a user and a sum of money (can be positive or negative. It then access that users entry in the database and adds the amount to their pool of money. If the transaction is not possible, returns -1 otherwise it will return the new amount of money
+Created an adjust_money function, that takes a user and a sum of money (can be positive or negative. It then access that users entry in the database and adds the amount to their pool of money. If the transaction is not possible, returns -1 otherwise it will return the new amount of money NOT CONFIRMED WORKING PLS TEST
+
+adamA -- 2018-01-10 13:12:14
+Wrote buy/sell wrapper functions, that calculate the price of a transaction and send it to adjust_money

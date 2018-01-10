@@ -49,6 +49,17 @@ def getbalance(username):
     balance= c.execute(command)
     return balance
 
+def buy(stock_name, num_of):
+	one_stock = getStockPrice(stock_name)
+	price = one_stock * num_of
+	price *= -1
+	adjust_money(session.get('username'), price)
+
+def sell(stock_name, num_of):
+	one_stock = getStockPrice(stock_name)
+	price = one_stock * num_of
+	adjust_money(session.get('username'), price)
+
 def adjust_money(user, amt):	
 	db = sqlite3.connect(f)
 	c = db.cursor()	
