@@ -49,20 +49,21 @@ def getbalance(username):
     balance= c.execute(command)
     return balance
 
-def adjust_money(to_changes, user, amt):	
+def adjust_money(user, amt):	
 	db = sqlite3.connect(f)
 	c = db.cursor()	
 	cmd = "SELECT money FROM users WHERE name=" + user 
 	c.execute(cmd)
 	og_mons = c.fetchone() 
 	if(og_mons + amt):
-		return - 1
+		return -1
 	else:
 		og_mons += amt
 		cmd = "UPDATE users SET money=" + og_mons + " WHERE name=" + user
 		c.execute(cmd)
-	db.commit()
-	db.close()
+		db.commit()
+		db.close()
+		return og_mons
 
 
 def buy(accountName, stock, amount):
