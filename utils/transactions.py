@@ -26,16 +26,20 @@ def getStockPrice(stock):
     # ---------
     return price
 
-getStockPrice("GOOG");
+#getStockPrice("GOOG");
 
-def getbalance(username):
+def get_balance(user):
+    user="'"+user+"'"
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="""SELECT money
     FROM users
-    WHERE name="""+username+";"
-    balance= c.execute(command)
+    WHERE name="""+user+";"
+    c.execute(command)
+    balance=c.fetchone()[0]
+    db.commit()
+    db.close
     return balance
 
 def buy(stock_name, num_of):
@@ -50,21 +54,22 @@ def sell(stock_name, num_of):
     adjust_money(session.get('username'), price)
 
 def adjust_money(user, amt):
+    og_mons=get_balance(user)
+    user="'"+user+"'"
     db = sqlite3.connect(f)
     c = db.cursor()
-    cmd = "SELECT money FROM users WHERE name=" + user
-    c.execute(cmd)
-    og_mons = c.fetchone()
-    if(og_mons + amt):
+    if((og_mons + amt)<0):
         return -1
     else:
-        og_mons += amt
-        cmd = "UPDATE users SET money=" + og_mons + " WHERE name=" + user
+        og_mons+= amt
+        cmd = "UPDATE users SET money=" + str(og_mons) + " WHERE name=" + user
         c.execute(cmd)
         db.commit()
         db.close()
         return og_mons
 
+adjust_money("abc",-1)
+#print get_balance("abc")
 
 def buy(accountName, stock, amount):
     statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "

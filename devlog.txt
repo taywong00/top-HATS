@@ -110,3 +110,6 @@ Wrote buy/sell wrapper functions, that calculate the price of a transaction and 
 
 holdenH -- 2018-01-10 22:39:12
 Rejiggered database schema to make it easier to manipulate, fixed bug in create_user so we can now input users with randomly assigned IDs
+
+holdenH -- 2018-01-10 23:47:53
+Fixed get_balance and adjust_money in transactions.py to function with database(testing done). Also replaced repetition of code from get_balance within adjust_money with single call of get_balance.

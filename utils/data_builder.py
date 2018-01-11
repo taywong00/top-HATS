@@ -23,13 +23,10 @@ def display_tables():
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    c.execute("SELECT name FROM users")
+    c.execute("SELECT * FROM users")
     rows=c.fetchall()
-    print rows
-
     for row in rows:
         print(row)
-        print("hi")
 
 display_tables()
 #make_tables()
