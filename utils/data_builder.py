@@ -10,13 +10,26 @@ def make_tables():
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    command= "CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
-    #friends is stored in form of a list of IDs
-    #holdings is stored as a list as follows: [[<SYMBL>, <AMNT>]]
-    #transactions is stored in the form [<SYMBL>, (amnt price, time)]
+    command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
+    #friends is stored in form of a csv list of IDs
+    #holdings is stored as a list as follows: <SYMBL>,<AMNT>\n...
+    #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     c.execute(command)
     db.commit()
     db.close
 
 
-make_tables()
+def display_tables():
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    c.execute("SELECT name FROM users")
+    rows=c.fetchall()
+    print rows
+
+    for row in rows:
+        print(row)
+        print("hi")
+
+display_tables()
+#make_tables()

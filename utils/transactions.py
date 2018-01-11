@@ -7,17 +7,6 @@ import API_funcs
 f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
-def make_tables():
-    db = sqlite3.connect(f) #open if f exists, otherwise create
-    c = db.cursor()    #facilitate db ops
-    command= "CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
-    #friends is stored in form of a list of IDs
-    #holdings is stored as a list as follows: [[<SYMBL>, <AMNT>]]
-    #transactions is stored in the form [<SYMBL>, (amnt price, time)]
-    c.execute(command)
-    db.commit()
-    db.close
-
 # Helper Functions ----------------------------------------------------------
 # GIVEN the stock name RETURN the current price of stock
 # Via: calling the api and retrieving the data
@@ -50,31 +39,31 @@ def getbalance(username):
     return balance
 
 def buy(stock_name, num_of):
-	one_stock = getStockPrice(stock_name)
-	price = one_stock * num_of
-	price *= -1
-	adjust_money(session.get('username'), price)
+    one_stock = getStockPrice(stock_name)
+    price = one_stock * num_of
+    price *= -1
+    adjust_money(session.get('username'), price)
 
 def sell(stock_name, num_of):
-	one_stock = getStockPrice(stock_name)
-	price = one_stock * num_of
-	adjust_money(session.get('username'), price)
+    one_stock = getStockPrice(stock_name)
+    price = one_stock * num_of
+    adjust_money(session.get('username'), price)
 
-def adjust_money(user, amt):	
-	db = sqlite3.connect(f)
-	c = db.cursor()	
-	cmd = "SELECT money FROM users WHERE name=" + user 
-	c.execute(cmd)
-	og_mons = c.fetchone() 
-	if(og_mons + amt):
-		return -1
-	else:
-		og_mons += amt
-		cmd = "UPDATE users SET money=" + og_mons + " WHERE name=" + user
-		c.execute(cmd)
-		db.commit()
-		db.close()
-		return og_mons
+def adjust_money(user, amt):
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    cmd = "SELECT money FROM users WHERE name=" + user
+    c.execute(cmd)
+    og_mons = c.fetchone()
+    if(og_mons + amt):
+        return -1
+    else:
+        og_mons += amt
+        cmd = "UPDATE users SET money=" + og_mons + " WHERE name=" + user
+        c.execute(cmd)
+        db.commit()
+        db.close()
+        return og_mons
 
 
 def buy(accountName, stock, amount):
@@ -82,5 +71,3 @@ def buy(accountName, stock, amount):
     currentBalance = getBalance(accountName)
     # Do math
     return statement
-
-

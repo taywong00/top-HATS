@@ -107,3 +107,6 @@ Created an adjust_money function, that takes a user and a sum of money (can be p
 
 adamA -- 2018-01-10 13:12:14
 Wrote buy/sell wrapper functions, that calculate the price of a transaction and send it to adjust_money
+
+holdenH -- 2018-01-10 22:39:12
+Rejiggered database schema to make it easier to manipulate, fixed bug in create_user so we can now input users with randomly assigned IDs

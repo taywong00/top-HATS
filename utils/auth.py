@@ -1,10 +1,14 @@
-import sqlite3, Math
+import sqlite3, random
 
-def createUser(name, hashed_pword):
+def create_user(name, hashed_pword):
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    command= "INSERT INTO users VALUES("+Math.randint(1000000)+","+hashed_pword+","+name+"100000"+", [],[],[]"
+    command= "INSERT INTO users VALUES("+str(random.randint(0,1000000000))+",'"+hashed_pword+"','"+name+"',100000,'','','')"
+    c.execute(command)
+    print name
+    db.commit()
+    db.close
 
 def add_friend(user_id, friend_id):
     f = "../data/traders.db"
@@ -12,6 +16,8 @@ def add_friend(user_id, friend_id):
     c = db.cursor()    #facilitate db ops
     #pull friend list
     #append list and replace
+    db.commit()
+    db.close
 
 def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
     f = "../data/traders.db"
@@ -26,3 +32,5 @@ def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
 
 
     #"CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
+
+create_user("abc","123")
