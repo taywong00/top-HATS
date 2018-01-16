@@ -113,3 +113,6 @@ Rejiggered database schema to make it easier to manipulate, fixed bug in create_
 
 holdenH -- 2018-01-10 23:47:53
 Fixed get_balance and adjust_money in transactions.py to function with database(testing done). Also replaced repetition of code from get_balance within adjust_money with single call of get_balance.
+
+adamA -- 2018-01-16 12:59:12
+Added frontend part of the make account form, passing it Samantha to do the backend
