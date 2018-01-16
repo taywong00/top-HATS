@@ -28,8 +28,6 @@ def getStockPrice(stock):
 
 #getStockPrice("GOOG");
 
-def
-
 def get_balance(user):
     user="'"+user+"'"
     f = "../data/traders.db"
