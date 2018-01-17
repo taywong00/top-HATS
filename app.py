@@ -13,7 +13,6 @@ import API_funcs #API calls
 app = Flask (__name__)
 app.secret_key = os.urandom(32)
 
-
 # HOMEPAGE: brief description and two buttons--"Login" or "Create an account"
 @app.route("/")
 def homepage():
@@ -37,7 +36,7 @@ def login():
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
     if session.get('username'):
-        return redirect('homepage')
+        return redirect('home')
     # user entered signup form
     elif request.form.get('signup'):
         return auth.signup()
