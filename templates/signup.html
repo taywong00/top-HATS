@@ -11,14 +11,14 @@ Sign Up | STOK
       <div class="starter-template">
         <h1>Sign Up</h1>
         <p class="lead">
-          <form>
-            Username: <input type="text" /> <br /><br />
-            Password: <input type="password" /> <br /> <br />
+          <form method="post" name="signup">
+            Username: <input type="text" name="username" required> <br /><br />
+            Password: <input type="password" name="password" required> <br /> <br />
             Difficulty Level: &nbsp &nbsp
-            <input type ="radio" /> Easy &nbsp
-            <input type="radio" /> Medium &nbsp
-            <input type="radio" /> Hard &nbsp <br><br>
-	    <input type="submit" value="Create Account" onclick="/login"> 
+            <input type="radio" name="easy"> Easy &nbsp
+            <input type="radio" name="medium"> Medium &nbsp
+            <input type="radio" name="hard"> Hard &nbsp <br><br>
+	    <input type="submit" value="Create Account"> 
           </form>
 
         </p>
