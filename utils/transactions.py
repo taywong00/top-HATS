@@ -70,5 +70,40 @@ def adjust_money(user, amt):
         db.close()
         return og_mons
 
-adjust_money("abc",-1)
+print adjust_money("abc",-100000000000)
 #print get_balance("abc")
+
+
+def buy(accountName, stock, amount):
+    statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
+    currentBalance = getBalance(accountName)
+    # Do math
+    return statement
+
+
+def add_transaction(stock, amount, price):
+    #get time
+    trade=stock+str(amount)+str(price)+str(time)+"\n"
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command=""
+    ###the things that matter
+    #add trade to end of trade history
+    c.execute(command)
+    db.commit()
+    db.close()
+
+
+def update_portfolio():
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command=""
+    ###the things that matter
+    #get last line of trade history
+    #adjust portfolio accordingly
+    #big csv function that has to adjust and delete anywhere within portfolio
+    c.execute(command)
+    db.commit()
+    db.close()
