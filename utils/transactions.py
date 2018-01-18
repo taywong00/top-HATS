@@ -81,19 +81,30 @@ def buy(accountName, stock, amount):
     return statement
 
 
-def add_transaction(stock, amount, price):
+def add_transaction(stock, amount, price, user_id):
     #get time
-    trade=stock+str(amount)+str(price)+str(time)+"\n"
+    trade=stock+','+str(amount)+','+str(price)+','+str(price*amount)+','+str(time)+"\n"
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    command=""
-    ###the things that matter
-    #add trade to end of trade history
+    command="""UPDATE users
+    SET transactions= transactions || '"""+trade+"""'
+    WHERE id='"""+user_id+"'"
     c.execute(command)
     db.commit()
     db.close()
 
+
+def check_portfolio(stock, amount):
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    if not stock:
+        return "yeet"
+    if stock and not amount:
+        return "2 poor"
+    else:
+        return "litty gvng"
 
 def update_portfolio():
     f = "../data/traders.db"
