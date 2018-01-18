@@ -1,4 +1,5 @@
-# top-HATS
+# Team top-HATS
+## Members: Holden Higgins, Adam Abbas, Taylor Wong, Samantha Ngo
 SoftDev Final Project:
 
 ### STOK

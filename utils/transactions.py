@@ -26,6 +26,8 @@ def getStockPrice(stock):
     # ---------
     return price
 
+
+
 #getStockPrice("GOOG");
 
 def get_balance(user):

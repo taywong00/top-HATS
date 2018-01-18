@@ -35,13 +35,30 @@ def login():
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
+    # If the user is already logged in:
     if session.get('username'):
         return redirect('home')
-    # user entered signup form
-    elif request.form.get('signup'):
-        return auth.signup()
+    # If the user clicks Create Account
     else:
-        return render_template("signup.html")
+        '''
+        print "Username:", request.form.get("username")
+        print "password:", request.form.get("password")
+        print "Easy:", request.form.get("easy")
+        print "medium:", request.form.get("medium")
+        print "hard:", request.form.get("hard")
+        '''
+        username = request.form.get("username")
+        password = request.form.get("password")
+        if request.form.get("hard") == 'on':
+            level = "hard"
+        elif request.form.get("medium") == 'on':
+            level = 'medium'
+        else:
+            level = 'easy'
+
+        return redirect('/login')
+    #else:
+     #   return render_template("signup.html")
 
 @app.route("/how_to", methods=['GET', 'POST'])
 def how_to():
@@ -53,7 +70,9 @@ def account():
 
 @app.route("/feed")
 def feed():
-    return render_template("feed.html")
+    articles = API_funcs.get_headlines("business")
+    print articles
+    return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2])
 
 @app.route("/stats")
 def stats():
