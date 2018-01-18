@@ -31,12 +31,19 @@ def get_news(kind_of):
 def get_headlines(topic):
     d = get_news(topic)
     #print d
+    print json.dumps(d["articles"][0], indent = 4, sort_keys = True)
     print json.dumps(d["articles"][0]["title"], indent = 4, sort_keys = True)
     one = d["articles"][0]["title"]
     two = d["articles"][1]["title"]
     three = d["articles"][2]["title"]
     return [one, two, three]
 
+def get_URLS(topic):
+    d = get_news(topic)
+    one = d["articles"][0]["url"]
+    two = d["articles"][1]["url"]
+    three = d["articles"][2]["url"]
+    return [one, two, three]
 #get_data(stock_name, key)
 #get_exch_rate("BTC", "USD")#
 #get_news("finance")

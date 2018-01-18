@@ -71,8 +71,9 @@ def account():
 @app.route("/feed")
 def feed():
     articles = API_funcs.get_headlines("business")
+    urls = API_funcs.get_URLS("business")
     print articles
-    return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2])
+    return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
 
 @app.route("/stats")
 def stats():

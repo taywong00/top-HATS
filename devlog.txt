@@ -116,3 +116,12 @@ Fixed get_balance and adjust_money in transactions.py to function with database(
 
 adamA -- 2018-01-16 12:59:12
 Added frontend part of the make account form, passing it Samantha to do the backend
+
+adamA -- 2018-01-17 12:55:10
+Made python functions to retrieve headlines, added jinja code to display a headline. Currently works for a single headline, working on making it show the top 3.
+
+adamA -- 2018-01-18 12:50:54
+Page now shows three headlines, by retrieving them from a list that the function returns. Now to add links!
+
+adamA -- 2018-01-18 12:57:15
+The three headlines are now linked to the article so that you can read more!!
