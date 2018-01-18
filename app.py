@@ -55,7 +55,7 @@ def create_account():
             level = 'medium'
         else:
             level = 'easy'
-            
+
         return redirect('/login')
     #else:
      #   return render_template("signup.html")
@@ -72,7 +72,7 @@ def account():
 def feed():
     articles = API_funcs.get_headlines("business")
     print articles
-    return render_template("feed.html", headline=articles[0])
+    return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2])
 
 @app.route("/stats")
 def stats():
