@@ -125,3 +125,6 @@ Page now shows three headlines, by retrieving them from a list that the function
 
 adamA -- 2018-01-18 12:57:15
 The three headlines are now linked to the article so that you can read more!!
+
+adamA -- 2018-01-18 13:02:19
+Updated plan. There will now be a search stock page, where you can look up and get information on any stock. From there, you can buy the stock or sell it assuming you have enough. Selling will also be an option from your portfolio.
