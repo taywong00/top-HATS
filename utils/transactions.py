@@ -53,7 +53,10 @@ def get_leaderboard():
     ORDER BY
     money"""
     c.execute(command)
-    return c.fetchone()
+    users = c.fetchone()
+    db.commit()
+    db.close
+    return users
 
 print get_leaderboard()
 
