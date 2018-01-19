@@ -121,7 +121,7 @@ def check_portfolio(stock, amount):
     else:
         return "litty gvng"
 
-def update_portfolio(user_id):
+def update_portfolio(stock, amount, price, user_id):
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -129,8 +129,24 @@ def update_portfolio(user_id):
     c.execute(command)
     holdings=c.fetchall()[0]
     holdings=holdings.split("\n")
+    has_stock=False
+    for i in range(holdings.len):
+        holdings[i]=holdings[i].split(",")
+        if amount>0 and holdings[i][0]==stock:
+            has_stock=True
+            holdings[i][1]+=amount
+            holdings[i][2]=price
+            holdings[i][3]=holdings[i][1]*price
+            holdings[i][4]=date.datetime()
+    if not has_stock:
+        new_stock=[stock,amount,price,amount*price,date.datetime()]
+        holdings+=new_stock
+    new_holdings=""
     for stock in holdings:
-        stock=stock.split(",")
+        for val in stock:
+            new_holdings+=val+","
+        new_holdings+="\n"
+
     #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
     ###the things that matter
     #get last line of trade history
