@@ -131,3 +131,6 @@ Updated plan. There will now be a search stock page, where you can look up and g
 
 holdenH -- 2018-01-18 12:55:12
 Updated transactions. Created functions for adding transactions to users history and modifying portfolio accordingly. Also created function to check portfolio to validate sales. Currently only adding transactions to transaction history works.
+
+adamA -- 2018-01-19 13:00:10
+Added get_leaderboard function, this will allow us to easily display the leaderboard page

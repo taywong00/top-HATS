@@ -44,6 +44,19 @@ def get_balance(user):
     db.close
     return balance
 
+def get_leaderboard():
+    f = "../data/traders.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    command = """SELECT name
+    FROM users
+    ORDER BY
+    money"""
+    c.execute(command)
+    return c.fetchone()
+
+print get_leaderboard()
+
 def buy(stock_name, num_of):
     one_stock = getStockPrice(stock_name)
     price = one_stock * num_of
@@ -72,7 +85,7 @@ def adjust_money(user, amt):
         db.close()
         return og_mons
 
-print adjust_money("abc",-100000000000)
+#print adjust_money("abc",-100000000000)
 #print get_balance("abc")
 
 
