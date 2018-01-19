@@ -97,7 +97,7 @@ def buy(accountName, stock, amount):
 
 
 def add_transaction(stock, amount, price, user_id):
-    #get time
+    time=date.datetime()
     trade=stock+','+str(amount)+','+str(price)+','+str(price*amount)+','+str(time)+"\n"
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -121,11 +121,17 @@ def check_portfolio(stock, amount):
     else:
         return "litty gvng"
 
-def update_portfolio():
+def update_portfolio(user_id):
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    command=""
+    command="SELECT holdings FROM users WHERE id='"+user_id+"'"
+    c.execute(command)
+    holdings=c.fetchall()[0]
+    holdings=holdings.split("\n")
+    for stock in holdings:
+        stock=stock.split(",")
+    #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
     ###the things that matter
     #get last line of trade history
     #adjust portfolio accordingly
