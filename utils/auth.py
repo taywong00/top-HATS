@@ -35,4 +35,5 @@ def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
 
     #"CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
 #add_friend('996401703','000')
-#create_user("abc","123")
+#create_user("def","456")
+#create_user("hij","789")

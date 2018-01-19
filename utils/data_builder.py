@@ -16,7 +16,7 @@ def make_tables():
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     c.execute(command)
     db.commit()
-    db.close
+    db.close()
 
 
 def display_tables():
