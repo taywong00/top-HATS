@@ -8,8 +8,7 @@ import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
 import API_funcs #API calls
-import auth
-from utils import transactions
+from utils import transactions, auth
 import json
 #from util import
 
@@ -29,10 +28,10 @@ def home():
 def login():
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
-        return redirect('base')
+        return redirect('/feed')
     # user entered login form
     else:
-        return render_template('login.html')
+        return auth.login()
 
 @app.route("/authorize", methods=['GET', 'POST'])
 def authorize():
@@ -109,6 +108,7 @@ def feed():
 		print articles
 		return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
 	else:
+		flash("Please log in to access your feed.")
 		return redirect(url_for('login'))
 
 # Status: Incomplete

@@ -1,10 +1,10 @@
-import sqlite3, random   #enable control of an sqlite database
+import sqlite3
+import random   #enable control of a sqlite database
 import csv       #facilitates CSV I/O
 import os #Used for os.remove()
 
-
 f = "../data/traders.db"
-#os.remove(f) #Used During Testing to remove file at the beginning
+os.remove(f) #Used During Testing to remove file at the beginning
 
 def make_tables():
     f = "../data/traders.db"
@@ -16,7 +16,6 @@ def make_tables():
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     c.execute(command)
     db.commit()
-    db.close()
 
 def display_tables():
 	f = "../data/traders.db"
@@ -35,7 +34,8 @@ def display_tables():
 
 def getUsers():
 	users = {}
-	db = sqlite3.connect("../data/traders.db") #open if f exists, otherwise create
+	f = "../data/traders.db"
+	db = sqlite3.connect(f) #open if f exists, otherwise create
 	c = db.cursor()    #facilitate db ops
 	command = "SELECT password, name FROM users"
     #command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
@@ -47,7 +47,6 @@ def getUsers():
 	for line in x:
 		# print "Line: ", line
 		users[line[1]] = line[0]
-	db.close()
 	return users
 	
 def addUser(username, password, level):
@@ -68,7 +67,6 @@ def addUser(username, password, level):
 		print command
 		c.execute(command)
 		db.commit()
-		db.close()
 		return True
 
 '''
@@ -92,7 +90,6 @@ def add_friend(user_id, friend_id):
     c.execute(command)
     #append list and replace
     db.commit()
-    db.close
 
 def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
     f = "../data/traders.db"
