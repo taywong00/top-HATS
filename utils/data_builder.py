@@ -26,7 +26,12 @@ def display_tables():
     c.execute("SELECT * FROM users")
     rows=c.fetchall()
     for row in rows:
-        print(row)
+        for item in row:
+            if item:
+                print item
+            else:
+                print "null"
+        print '\n'
 
 display_tables()
 #make_tables()
