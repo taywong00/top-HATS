@@ -50,16 +50,12 @@ def create_account():
         return redirect('home')
     # If the user clicks Create Account
 	print "INFORMATION: ", request.form.get("create_account")
-        '''
-        print "Username:", request.form.get("username")
-        print "password:", request.form.get("password")
-        print "Easy:", request.form.get("easy")
-        print "medium:", request.form.get("medium")
-        print "hard:", request.form.get("hard")
-        '''
-	username = request.form.get("username")
-	password = request.form.get("password")
-    auth.create_user(username, password)
+#        print "Username:", request.form.get("username")
+#        print "password:", request.form.get("password")
+#        print "medium:", request.form.get("medium")
+#        print "hard:", request.form.get("hard")
+
+    auth.create_user(request.form.get("username"), request.form.get("password"))
 	#if request.form.get("hard") == 'on':
 		#level = "hard"
 	#elif request.form.get("medium") == 'on':
