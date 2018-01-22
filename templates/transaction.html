@@ -6,23 +6,39 @@ Make a Transaction | STOK
 
 {% block content %}
 
+    <script src="/static/jquery-3.1.1.min.js"></script>
     <main role="main" class="container">
-
       <div class="starter-template">
         <h1>Make a Transaction</h1>
-        <p class="lead">
-          trasaction stuffs
-
+        <form id="search_stock">
+          Search a Stock: <input type="text" name="stock" />
+          <button id="stock_search">Search!</button>
+        </form>
+        <p id="searched_stock">
         </p>
-
-
-        <a href="/confirmation" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Complete Transaction</a>
+    <!--    <a href="/confirmation" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Complete Transaction</a> -->
       </div>
-
-
-
-      <!-- ENTER EACH PAGES CONTENT-->
 
     </main><!-- /.container -->
 
     {% endblock %}
+<script>
+    var search_stock = function( e ) {
+      console.log("TRIGGERED");
+      var form = document.getElementById("search_stock");
+      var name = form.elements[i].value
+      $.ajax({
+      url: '/get_stock_price',
+      type: 'POST',
+      data: {'stock' : name},
+      success: function(response) {
+          response = JSON.parse(response);
+          console.log(response);
+          output = document.getElementById("searched_stock");
+          output.innerHTML = response["price"];
+        } //end success callback
+      });//end ajax call
+      console.log('goodbye');
+    }; //end transmit function
+    document.getElementById("stock_search").addEventListener('click', search_stock );
+</script>

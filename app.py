@@ -121,6 +121,14 @@ def leaderboard():
 def transaction():
     return render_template("transaction.html")
 
+@app.route("/get_stock_price", methods=['POST'])
+def get_stock_price():
+    stock_name = request.form["stock"]
+    stock_price = transactions.getStockPrice(stock_name)
+    print "NAME: " + stock_name
+    print "PRICE: " + stock_price
+    return json.dumps({'status':'OK', 'name':stock_name, 'price': stock_price})
+
 # Status: Incomplete
 @app.route("/confirmation")
 def confirmation():
