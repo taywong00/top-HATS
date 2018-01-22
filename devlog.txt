@@ -151,4 +151,7 @@ adamA -- 2018-01-22 11:45:20
 Implementing AJAX for transactions! Upon searching a stock, the stock's name and price will appear right under the search bar. From there we'll work on making an actual transaction!! Not working as of rn, but the code's there? TBC!
 
 adamA -- 2018-01-22 12:58:44
-AJAX works! The page updates with the stock name and price. However, the page then refreshes and goes back to the way it was :( The console says "CSS3121: The media query -ms-viewport has been deprecated." and sometimes the terminal will say "IOError: [Errno 104] Connection reset by peer" 
+AJAX works! The page updates with the stock name and price. However, the page then refreshes and goes back to the way it was :( The console says "CSS3121: The media query -ms-viewport has been deprecated." and sometimes the terminal will say "IOError: [Errno 104] Connection reset by peer"
+
+adamA -- 2018-01-22 13:07:10
+So the issue was, since I encapsulated my entry in a <form> tag, the code would submit my input as a form after the ajax ran. form entries reload the page, which we don't want!
