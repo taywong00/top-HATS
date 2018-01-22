@@ -1,5 +1,17 @@
 import sqlite3, random
 
+def get_users():
+    f = "data/traders.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    command = "SELECT name, password FROM users"
+    sq_result = c.execute(command)
+    users = {}
+    for entry in sq_result:
+        users[entry[0]] = entry[1]
+    db.close
+    return users
+
 def create_user(name, hashed_pword):
     f = "data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -8,6 +20,8 @@ def create_user(name, hashed_pword):
     c.execute(command)
     db.commit()
     db.close
+
+
 
 def add_friend(user_id, friend_id):
     f = "../data/traders.db"

@@ -17,6 +17,8 @@ app.secret_key = os.urandom(32)
 # HOMEPAGE: brief description and two buttons--"Login" or "Create an account"
 @app.route("/")
 def home():
+    if session.get('username'):
+        print session.get("username")
     return render_template("home.html")
 
 # Status: Incomplete
@@ -27,12 +29,22 @@ def login():
     if session.get('username'):
         return redirect('base')
     # user entered login form
-    elif request.form.get('login'):
-        print "login"
-        return auth.login()
-    # user didn't enter form
     else:
         return render_template('login.html')
+
+@app.route("/authorize", methods=['GET', 'POST'])
+def authorize():
+    all_users = auth.get_users()
+    if request.form["username"] in all_users:
+        if request.form["password"] == all_users[request.form["username"]]:
+            session['username'] = request.form['username'];
+            return redirect('/');
+        else:
+            print "PASSWRONG"
+            #flash incorrect password
+    else:
+        print "USER DNE"
+        #flash that user does not exist
 
 @app.route("/signup_page")
 def signup_page():
@@ -46,7 +58,8 @@ def signup_page():
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
     # If the user is already logged in:
-    if session.get('username'):                            # If the user is logged in, they should not be able to access this page in the first place.
+    if session.get('username'):
+        # If the user is logged in, they should not be able to access this page in the first place.
         return redirect('home')
     # If the user clicks Create Account
 	print "INFORMATION: ", request.form.get("create_account")

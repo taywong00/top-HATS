@@ -11,10 +11,9 @@ Log In | STOK
       <div class="starter-template">
         <h1>Log In</h1>
         <p class="lead"> <br /><br />
-        <form action='/create_account' method='POST'>
-
-          Username: <input type="text" value="username"> <br /><br />
-	        Password: <input type="password" value="pass"/> <br /> <br />
+        <form action='/authorize' method='POST'>
+          Username: <input type="text" name="username"> <br /><br />
+	        Password: <input type="password" name="password"> <br /> <br />
   	    <input type="submit" value="Login">
       </form>
 
