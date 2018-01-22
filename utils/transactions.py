@@ -2,7 +2,7 @@
 # Holden, Adam, Taylor, Samantha - pd7
 # Methods used in transactions
 
-import sqlite3, json, datetime   # database functions
+import sqlite3, json, datetime, math   # database functions
 import API_funcs
 f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
@@ -30,19 +30,6 @@ def getStockPrice(stock):
 
 #getStockPrice("GOOG");
 
-def get_balance(user):
-    user="'"+user+"'"
-    f = "../data/traders.db"
-    db = sqlite3.connect(f) #open if f exists, otherwise create
-    c = db.cursor()    #facilitate db ops
-    command="""SELECT money
-    FROM users
-    WHERE name="""+user+";"
-    c.execute(command)
-    balance=c.fetchone()[0]
-    db.commit()
-    db.close
-    return balance
 
 def get_leaderboard():
     f = "../data/traders.db"
@@ -58,31 +45,62 @@ def get_leaderboard():
     db.close
     return users
 
-print get_leaderboard()
+#print get_leaderboard()
 
-def buy(stock_name, num_of):
+def buy(user_id, stock_name, num_of):
     one_stock = getStockPrice(stock_name)
+    num_of=math.abs(num_of)
     price = one_stock * num_of
-    price *= -1
-    adjust_money(session.get('username'), price)
-    return "Bought."
+    if(get_balance(user_id) >= price):
+        price *= -1
+        add_transaction(user_id, stock_name, num_of, price)
+        update_portfolio(user_id, stock_name, num_of, price)
+        adjust_money(user_id, price)
+        return "Bought."
+    else:
+        return "Purchase error. Insufficient funds."
 
-def sell(stock_name, num_of):
+#testers
+buy(123,'GOOG',10)
+
+def sell(user_id, stock_name, num_of):
     one_stock = getStockPrice(stock_name)
+    num_of=math.abs(num_of)
     price = one_stock * num_of
-    adjust_money(session.get('username'), price)
-    return "Sold."
+    num_of*=-1
+    if(check_portfolio(user_id, stock_name, num_of)):
+        add_transaction(user_id, stock_name, num_of, price)
+        update_portfolio(user_id, stock_name, num_of, price)
+        adjust_money(user_id, price)
+        return "Sold."
+    else:
+        return "Sale error. Transaction cancelled"
 
-def adjust_money(user, amt):
+
+
+def get_balance(user_id):
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="""SELECT money
+    FROM users
+    WHERE id="""+user_id+";"
+    c.execute(command)
+    balance=c.fetchone()[0]
+    db.commit()
+    db.close
+    return balance
+
+
+def adjust_money(user_id, amt):
     og_mons=get_balance(user) # Original amount of money
-    user="'"+user+"'"
     db = sqlite3.connect(f)
     c = db.cursor()
     if((og_mons + amt)<0):
         return -1
     else:
         og_mons+= amt
-        cmd = "UPDATE users SET money=" + str(og_mons) + " WHERE name=" + user
+        cmd = "UPDATE users SET money=" + str(og_mons) + " WHERE id=" + user_id
         c.execute(cmd)
         db.commit()
         db.close()
@@ -92,14 +110,33 @@ def adjust_money(user, amt):
 #print get_balance("abc")
 
 
-def buy(accountName, stock, amount):
-    statement = "Bought ", amount, " shares of ", stock, ". Your new balance is "
-    currentBalance = getBalance(accountName)
-    # Do math
-    return statement
+
+def check_portfolio(user_id, stock, amount):
+    f = "../data/traders.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="SELECT holdings FROM users WHERE id='"+user_id+"'"
+    c.execute(command)
+    holdings=c.fetchall()[0]
+    holdings=holdings.split("\n")
+    has_stock=False
+    for stk in holdings:
+        if stk[0]==stock:
+            has_stock=stk
+    if not has_stock:
+        return False #does not own
+    elif not has_stock[1]<(amount*-1):
+        return False #does not have enough
+    else:
+        return True
+    db.commit()
+    db.close()
 
 
-def add_transaction(stock, amount, price, user_id):
+#adds transaction to transactions (history)
+#for sale price is positive and amount is negative
+#for buy price is negative and amount is positive
+def add_transaction(user_id, stock, amount, price):
     time=date.datetime()
     trade=stock+','+str(amount)+','+str(price)+','+str(price*amount)+','+str(time)+"\n"
     f = "../data/traders.db"
@@ -112,19 +149,20 @@ def add_transaction(stock, amount, price, user_id):
     db.commit()
     db.close()
 
+#helper function to convert lists to csv string
+def stringify(holdings):
+    new_holdings=""
+    for stock in holdings:
+        for val in stock:
+            new_holdings+=val+","
+        new_holdings+="\n"
+    return new_holdings
 
-def check_portfolio(stock, amount):
-    f = "../data/traders.db"
-    db = sqlite3.connect(f) #open if f exists, otherwise create
-    c = db.cursor()    #facilitate db ops
-    if not stock:
-        return "yeet"
-    if stock and not amount:
-        return "2 poor"
-    else:
-        return "litty gvng"
 
-def update_portfolio(stock, amount, price, user_id):
+#updates holdings to reflect purchase or sale
+#for sale price and amount are negative
+#for buy price and amount are positive
+def update_portfolio(user_id, stock, amount, price):
     f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -144,17 +182,13 @@ def update_portfolio(stock, amount, price, user_id):
     if not has_stock:
         new_stock=[stock,amount,price,amount*price,date.datetime()]
         holdings+=new_stock
-    new_holdings=""
-    for stock in holdings:
-        for val in stock:
-            new_holdings+=val+","
-        new_holdings+="\n"
-
+    new_holdings=stringify(holdings)
+    command="UPDATE users SET holdings='"+new_holdings+"' WHERE is='"+user_id+"'"
+    c.execute(command)
+    db.commit()
+    db.close()
     #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
     ###the things that matter
     #get last line of trade history
     #adjust portfolio accordingly
     #big csv function that has to adjust and delete anywhere within portfolio
-    c.execute(command)
-    db.commit()
-    db.close()
