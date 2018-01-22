@@ -135,5 +135,8 @@ Updated transactions. Created functions for adding transactions to users history
 adamA -- 2018-01-19 13:00:10
 Added get_leaderboard function, this will allow us to easily display the leaderboard page
 
-holdenH -- 2017-01-19 13:15:16
+holdenH -- 2018-01-19 13:15:16
 Updated update_portfolio funtion, need to create dummy portfolio to test on.
+
+holdenH -- 2018-01-21 21:17:21
+Finished creating update_portfolio, buy, sell, add_transaction, and check_portfolio. Tried to test but API seems to encounter errors related to the stock market being closed on weekends. possibly a serious bug here, we will need to find a workaround
