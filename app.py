@@ -92,7 +92,9 @@ def how_to():
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
-        return render_template("account.html", name = session.get('username'))
+        user = session.get("username")
+        #moneyz = transactions.get_balance(user)
+        return render_template("account.html", name = user)
     flash("Please log in to see your account")
     return redirect("/")
 
