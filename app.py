@@ -8,6 +8,7 @@ import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
 import API_funcs #API calls
+import auth
 #from util import
 
 app = Flask (__name__)
@@ -39,14 +40,14 @@ def signup_page():
 		return "Please log out before creating a new account."
 	else:
 		return render_template('signup.html')
-		
+
 # Status: Incomplete
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
     # If the user is already logged in:
-    #if session.get('username'):                            # If the user is logged in, they should not be able to access this page in the first place.
-     #   return redirect('home')
+    if session.get('username'):                            # If the user is logged in, they should not be able to access this page in the first place.
+        return redirect('home')
     # If the user clicks Create Account
 	print "INFORMATION: ", request.form.get("create_account")
         '''
@@ -58,14 +59,14 @@ def create_account():
         '''
 	username = request.form.get("username")
 	password = request.form.get("password")
-	if request.form.get("hard") == 'on':
-		level = "hard"
-	elif request.form.get("medium") == 'on':
-		level = 'medium'
-	else:
-		level = 'easy'
-
-	return redirect('/login')
+    auth.create_user(username, password)
+	#if request.form.get("hard") == 'on':
+		#level = "hard"
+	#elif request.form.get("medium") == 'on':
+	#	level = 'medium'
+	#else:
+		#level = 'easy'
+    return redirect('/')
 #else:
  #   return render_template("signup.html")
 
