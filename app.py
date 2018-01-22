@@ -38,13 +38,16 @@ def authorize():
     if request.form["username"] in all_users:
         if request.form["password"] == all_users[request.form["username"]]:
             session['username'] = request.form['username'];
+            flash("Login successful!")
             return redirect('/');
         else:
             print "PASSWRONG"
-            #flash incorrect password
+            flash("Incorrect password!")
+            return redirect(url_for("login"))
     else:
         print "USER DNE"
-        #flash that user does not exist
+        flash("User does not exist!")
+        return redirect(url_for("login"))
 
 @app.route("/signup_page")
 def signup_page():
@@ -88,7 +91,10 @@ def how_to():
 # Status: Incomplete
 @app.route("/account", methods=['GET', 'POST'])
 def account():
-    return render_template("account.html")
+    if session.get('username'):
+        return render_template("account.html", name = session.get('username'))
+    flash("Please log in to see your account")
+    return redirect("/")
 
 # Status: Incomplete
 @app.route("/feed")
