@@ -17,6 +17,8 @@ app.secret_key = os.urandom(32)
 # HOMEPAGE: brief description and two buttons--"Login" or "Create an account"
 @app.route("/")
 def home():
+    if session.get('username'):
+        print session.get("username")
     return render_template("home.html")
 
 # Status: Incomplete
@@ -27,12 +29,25 @@ def login():
     if session.get('username'):
         return redirect('base')
     # user entered login form
-    elif request.form.get('login'):
-        print "login"
-        return auth.login()
-    # user didn't enter form
     else:
         return render_template('login.html')
+
+@app.route("/authorize", methods=['GET', 'POST'])
+def authorize():
+    all_users = auth.get_users()
+    if request.form["username"] in all_users:
+        if request.form["password"] == all_users[request.form["username"]]:
+            session['username'] = request.form['username'];
+            flash("Login successful!")
+            return redirect('/');
+        else:
+            print "PASSWRONG"
+            flash("Incorrect password!")
+            return redirect(url_for("login"))
+    else:
+        print "USER DNE"
+        flash("User does not exist!")
+        return redirect(url_for("login"))
 
 @app.route("/signup_page")
 def signup_page():
@@ -46,20 +61,17 @@ def signup_page():
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
     # If the user is already logged in:
-    if session.get('username'):                            # If the user is logged in, they should not be able to access this page in the first place.
+    if session.get('username'):
+        # If the user is logged in, they should not be able to access this page in the first place.
         return redirect('home')
     # If the user clicks Create Account
 	print "INFORMATION: ", request.form.get("create_account")
-        '''
-        print "Username:", request.form.get("username")
-        print "password:", request.form.get("password")
-        print "Easy:", request.form.get("easy")
-        print "medium:", request.form.get("medium")
-        print "hard:", request.form.get("hard")
-        '''
-	username = request.form.get("username")
-	password = request.form.get("password")
-    auth.create_user(username, password)
+#        print "Username:", request.form.get("username")
+#        print "password:", request.form.get("password")
+#        print "medium:", request.form.get("medium")
+#        print "hard:", request.form.get("hard")
+
+    auth.create_user(request.form.get("username"), request.form.get("password"))
 	#if request.form.get("hard") == 'on':
 		#level = "hard"
 	#elif request.form.get("medium") == 'on':
@@ -79,7 +91,12 @@ def how_to():
 # Status: Incomplete
 @app.route("/account", methods=['GET', 'POST'])
 def account():
-    return render_template("account.html")
+    if session.get('username'):
+        user = session.get("username")
+        #moneyz = transactions.get_balance(user)
+        return render_template("account.html", name = user)
+    flash("Please log in to see your account")
+    return redirect("/")
 
 # Status: Incomplete
 @app.route("/feed")
