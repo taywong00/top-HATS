@@ -9,6 +9,8 @@ from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
 import API_funcs #API calls
 import auth
+from utils import transactions
+import json
 #from util import
 
 app = Flask (__name__)
@@ -125,9 +127,11 @@ def transaction():
 def get_stock_price():
     stock_name = request.form["stock"]
     stock_price = transactions.getStockPrice(stock_name)
-    print "NAME: " + stock_name
-    print "PRICE: " + stock_price
-    return json.dumps({'status':'OK', 'name':stock_name, 'price': stock_price})
+    #print "NAME: " + stock_name
+    #print "PRICE: " + str(stock_price)
+    to_ret = json.dumps({'status':'OK', 'name':stock_name, 'price': stock_price})
+    #print to_ret
+    return to_ret
 
 # Status: Incomplete
 @app.route("/confirmation")

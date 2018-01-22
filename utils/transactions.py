@@ -19,7 +19,7 @@ def getStockPrice(stock):
     #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
     print dt
     #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
-    print json.dumps(d["Time Series (Daily)"][str(dt)]["4. close"], indent = 4, sort_keys = True)
+    price = d["Time Series (Daily)"][str(dt)]["4. close"]
     # ---------
     # API retrieval code here
     # price = <retrieval code> (stock)
