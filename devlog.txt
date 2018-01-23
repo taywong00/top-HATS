@@ -185,3 +185,6 @@ Login system working and should not expect any errors; STOK homepage still shows
 
 samanthaN -- 2018-02-23 16:20:01
 Rerouted "My Stats & Stocks" button to go to "My Account" Page-- we will now be displaying stats and stocks on the my account/profile page bc there aren't a lot of profile aspects to display.
+
+samanthaN -- 2018-02-23 17:04:22
+We now have a working get_leaderboard() function-- working on linking it to leaderboard"
