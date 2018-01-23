@@ -1,4 +1,5 @@
 import data_builder # Caution: When this is imported, the test functions in this .py file are run as well.
+from flask import flash, redirect, url_for, session
 
 def login(username, password):
     users = data_builder.getUsers()
@@ -12,4 +13,4 @@ def login(username, password):
             return redirect(url_for('signup_page'))
     else:
         flash("Bad username")
-        return redirect(url_for('authentication'))
+        return redirect(url_for('login'))

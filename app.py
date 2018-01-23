@@ -26,13 +26,21 @@ def home():
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print "REQUEST: ", request.form.get("login")
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
         return redirect('/feed')
     # user entered login form
+    elif request.form.get("login") == "Login":
+        username = request.form.get("username")
+        print "USERNAME: ", username
+        password = request.form.get("password")
+        print "PASSWORD: ", password
+        return auth.login(username, password)
     else:
-        return auth.login()
+        return render_template("login.html")
 
+'''
 @app.route("/authorize", methods=['GET', 'POST'])
 def authorize():
     all_users = auth.get_users()
@@ -49,6 +57,7 @@ def authorize():
         print "USER DNE"
         flash("User does not exist!")
         return redirect(url_for("login"))
+'''
 
 @app.route("/signup_page")
 def signup_page():
@@ -56,6 +65,7 @@ def signup_page():
         return "Please log out before creating a new account."
     else:
         return render_template('signup.html')
+
 
 # Status: Incomplete
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
@@ -96,8 +106,9 @@ def account():
         user = session.get("username")
         #moneyz = transactions.get_balance(user)
         return render_template("account.html", name = user)
-    flash("Please log in to see your account")
-    return redirect("/")
+    else:
+        flash("Please log in to see your account")
+        return redirect("/")
 
 # Status: Incomplete
 @app.route("/feed")
