@@ -10,10 +10,10 @@ def login(username, password):
             return redirect(url_for('feed'))
         else:
             flash("Bad password")
-            return redirect(url_for('signup_page'))
+            return redirect("/login")
     else:
         flash("Bad username")
-        return redirect(url_for('login'))
+        return redirect('/login')
 
 def create_account(username, password, level):
     users = data_builder.getUsers()

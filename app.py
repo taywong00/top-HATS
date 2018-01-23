@@ -20,9 +20,11 @@ app.secret_key = os.urandom(32)
 def home():
     if session.get('username'):
         print session.get("username")
-    return render_template("home.html")
+        return redirect("/feed")
+    else:
+        return render_template("home.html")
 
-# Status: Incomplete
+# Status: DONE
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -40,25 +42,6 @@ def login():
     else:
         return render_template("login.html")
 
-'''
-@app.route("/authorize", methods=['GET', 'POST'])
-def authorize():
-    all_users = auth.get_users()
-    if request.form["username"] in all_users:
-        if request.form["password"] == all_users[request.form["username"]]:
-            session['username'] = request.form['username'];
-            flash("Login successful!")
-            return redirect('/');
-        else:
-            print "PASSWRONG"
-            flash("Incorrect password!")
-            return redirect(url_for("login"))
-    else:
-        print "USER DNE"
-        flash("User does not exist!")
-        return redirect(url_for("login"))
-'''
-
 @app.route("/signup_page")
 def signup_page():
     if session.get("username"):
@@ -66,7 +49,7 @@ def signup_page():
     else:
         return render_template('signup.html')
 
-# Status: Incomplete
+# Status: DONE
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
@@ -92,20 +75,6 @@ def create_account():
     else:
         return render_template("signup.html")
 
-    
-'''
-    auth.data_builder.create_user(request.form.get("username"), request.form.get("password"), "easy")#should probably update this to reflect choice of difficulty
-    #if request.form.get("hard") == 'on':
-    #level = "hard"
-    #elif request.form.get("medium") == 'on':
-    #level = 'medium'
-    #else:
-    #level = 'easy'
-    return redirect('/')
-#else:
- #   return render_template("signup.html")
-'''
-
 # Status: DONE
 @app.route("/how_to", methods=['GET', 'POST'])
 def how_to():
@@ -123,7 +92,7 @@ def account():
         flash("Please log in to see your account")
         return redirect("/")
 
-# Status: Incomplete
+# Status: DONE - except better design needed
 @app.route("/feed")
 def feed():
     if session.get("username"):
@@ -182,22 +151,16 @@ def get_stock_price():
 # Status: Incomplete
 @app.route("/confirmation")
 def confirmation():
-    return render_template("stats.html", message="Congratulations! Your transaction was successful! You're one step closer to becoming rich!", good=True)
+    return render_template("stats.html", message="Congratulations! Your transaction was successful! You may be one step closer to becoming rich!", good=True)
 
 # Status: Incomplete
 @app.route("/logout",methods=['POST','GET'])
 def logout():
-    if 'username' not in session:
-        redirect("/")
-
-    #code from my last project LOL - pm
-    #accounts = db_functions.accounts_dict()
-    #stories = db_functions.stories_dict()
-
-    #remove user info from session
     if 'username' in session:
         session.pop('username')
-    return render_template('home.html', message = 'Logout was successful.', good = True)
+        return render_template('home.html', message = 'Logout was successful.', good = True)
+    else:
+        return redirect("/")
 
 
 if __name__ == "__main__":
