@@ -161,3 +161,6 @@ Patched db functions and re-added traders.db pursuant to Samantha's changes. Re-
 
 holdenH -- 2018-01-22 20:06:21
 Edited path to database in data_builder and transactions so it works from app.py. Also updated create account in app.py so it will actually create account(added difficulty var as placeholder because there were not enough vals being passed to the function). As of now pressing login on the homepage calls a function which expects two vars on the homepage but gives none so it returns an error. Unsure how front end wishes to handle.
+
+adamA -- 2018-01-22 20:25:13
+Changed the search stock page, results are now displayed on a readonly form element so as to be passed to app.py. Minor changes to buy function. Should now successfully perform a buy!
