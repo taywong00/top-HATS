@@ -151,4 +151,7 @@ adamA -- 2018-01-22 11:45:20
 Implementing AJAX for transactions! Upon searching a stock, the stock's name and price will appear right under the search bar. From there we'll work on making an actual transaction!! Not working as of rn, but the code's there? TBC!
 
 adamA -- 2018-01-22 12:58:44
-AJAX works! The page updates with the stock name and price. However, the page then refreshes and goes back to the way it was :( The console says "CSS3121: The media query -ms-viewport has been deprecated." and sometimes the terminal will say "IOError: [Errno 104] Connection reset by peer" 
+AJAX works! The page updates with the stock name and price. However, the page then refreshes and goes back to the way it was :( The console says "CSS3121: The media query -ms-viewport has been deprecated." and sometimes the terminal will say "IOError: [Errno 104] Connection reset by peer"
+
+holdenH -- 2018-01-22 19:34:29
+Patched db functions and re-added traders.db pursuant to Samantha's changes. Re-added id system to make transactions functional again with a check to make sure ids are not duplicated. Also added better handling of new (empty) transaction histories and holdings. Will look into deleting null holdings (all sold) if there is time, but not key feature. Created dummy users and gave one a transaction history and holdings. Also added db.close() to commands where it was previously missing.

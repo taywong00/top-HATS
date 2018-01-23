@@ -117,8 +117,12 @@ def check_portfolio(user_id, stock, amount):
     c = db.cursor()    #facilitate db ops
     command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"
     c.execute(command)
-    holdings=c.fetchall()[0][0]
-    if holdings:
+    holdings=c.fetchall()
+    db.commit()
+    db.close()
+
+    if len(holdings)>0:
+        holdings=holdings[0][0]
         holdings=holdings.split("\n")
         has_stock=False
         for stk in holdings:
@@ -133,8 +137,7 @@ def check_portfolio(user_id, stock, amount):
             return True
     else:
         return False
-    db.commit()
-    db.close()
+
 
 #print check_portfolio(933041681,'KX',1)
 
@@ -156,8 +159,6 @@ def add_transaction(user_id, stock, amount, price):
     db.commit()
     db.close()
 
-#add_transaction(933041681, 'KX', 10, -100,)
-#add_transaction(933041681, 'IB', 10, -57,)
 
 #helper function to convert lists to csv string
 def stringify(holdings):
@@ -182,20 +183,30 @@ def update_portfolio(user_id, stock, amount, price):
     c = db.cursor()    #facilitate db ops
     command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"
     c.execute(command)
-    holdings=c.fetchall()[0][0]
-    holdings=holdings.split("\n")
-    has_stock=False
-    for i in range(len(holdings)):
-        holdings[i]=holdings[i].split(",")
-        if holdings[i][0]==stock:
-            has_stock=True
-            holdings[i][1]=int(holdings[i][1])+amount
-            holdings[i][2]=price
-            holdings[i][3]=int(holdings[i][1])*price
-            holdings[i][4]=time
-    if not has_stock:
-        new_stock=[[stock,amount,price,amount*price,time]]
-        holdings+=new_stock
+    holdings=c.fetchall()
+    #if holdings is full
+    if len(holdings)>0:
+        holdings=holdings[0][0]
+        holdings=holdings.split("\n")
+        has_stock=False
+        #search for stock in holdings
+        for i in range(len(holdings)):
+            holdings[i]=holdings[i].split(",")
+            if holdings[i][0]==stock:
+                has_stock=True
+                holdings[i][1]=int(holdings[i][1])+amount
+                holdings[i][2]=price
+                holdings[i][3]=int(holdings[i][1])*price
+                holdings[i][4]=time
+                break
+        #if stock is not found in holdings
+        if not has_stock:
+            new_stock=[[stock,amount,price,amount*price,time]]
+            holdings+=new_stock
+    #if holdings is empty
+    else:
+       new_stock=[[stock,amount,price,amount*price,time]]
+       holdings+=new_stock
     new_holdings=stringify(holdings)
     print new_holdings
     command="UPDATE users SET holdings='"+new_holdings+"' WHERE id='"+str(user_id)+"'"
@@ -204,12 +215,17 @@ def update_portfolio(user_id, stock, amount, price):
     db.close()
     #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
 
-#update_portfolio(933041681, 'KX', 10, -100,)
-#update_portfolio(933041681, 'IB', 10, -57,)
 '''
-if check_portfolio(933041681,'IB', 7):
-    add_transaction(933041681, 'IB', -7, 10,)
-    update_portfolio(933041681, 'IB', -7, 10,)
+if check_portfolio(65868,'IB', 7):
+    add_transaction(65868, 'IB', -7, 10,)
+    update_portfolio(65868, 'IB', -7, 10,)
 else:
     print "too few"
+#'''
+
 '''
+add_transaction(65868, 'KX', 10, 100,)
+add_transaction(65868, 'IB', 10, 57,)
+update_portfolio(65868, 'KX', 10, 100,)
+update_portfolio(65868, 'IB', 10, 57,)
+#'''
