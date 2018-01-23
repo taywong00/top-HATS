@@ -37,7 +37,17 @@ def login():
         print "USERNAME: ", username
         password = request.form.get("password")
         print "PASSWORD: ", password
-        return auth.login(username, password)
+
+        # checks credentials for login
+        users = data_builder.getUsers()
+        if username in users:
+            if password == users[username]:
+                session['username'] = username
+                return redirect(url_for('feed'))
+            else:
+                return render_template("login.html", message = "Oops! Wrong password.", good = False)
+        else:
+            return render_template("login.html", message = "Oops! That username doesn't exist.", good = False)
     else:
         return render_template("login.html")
 
@@ -66,7 +76,7 @@ def create_account():
         password2 = request.form.get("password2")
         print "P2: ", password2
         if password1 != password2:
-            return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = True)
+            return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = False)
         else:
             password = password1
         level = request.form.get("level")
@@ -88,7 +98,7 @@ def account():
     if session.get('username'):
         user = session.get("username")
         # Get User Balance
-        # balance = 
+        # balance =
         # #moneyz = transactions.get_balance(user)
         return render_template("account.html", name = user)
     else:

@@ -56,7 +56,7 @@ def getUsers():
 def create_user(username, password, level):
     if username in getUsers():
         print "Username already taken."
-        return render_template('signup.html', message = 'Username already taken. Please choose a different one.', good = True)
+        return render_template('signup.html', message = 'Username already taken. Please choose a different one.', good = False)
     else:
         balance = -1
         if level == "Easy":
