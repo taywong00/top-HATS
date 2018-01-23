@@ -28,24 +28,9 @@ def getStockPrice(stock):
 
 #getStockPrice("GOOG");
 
-'''
-def get_leaderboard():
-    #f = "../data/traders.db"
-    db = sqlite3.connect(f)
-    c = db.cursor()
-    command = """SELECT name
-    FROM users
-    ORDER BY
-    money"""
-    c.execute(command)
-    users = c.fetchone()
-    db.commit()
-    db.close
-    return users
-'''
 def get_leaderboard():
     leaderboard = {}
-    #f = "../data/traders.db"
+    f = "data/traders.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     command = """SELECT name, money
@@ -54,22 +39,25 @@ def get_leaderboard():
     money DESC;"""
     x = c.execute(command)
     counter = 0
+    '''
     for line in x:
-        print "   0: ", line[0]
-        print "   1: ", line[1]
-    
+        print "     0: ", line[0]
+        print "     1: ", line[1]
+    x = c.execute(command)   
+    '''
     for line in x:
-        print "0: ", line[0]
-        print "1: ", line[1]
         if counter < 10:
+            # Used to see top ten users and *their balances
+            # print "0: ", line[0]
+            # print "1: ", line[1]
             leaderboard[counter] = line[0]
             counter += 1  
         else:
             break
     return leaderboard
 
-print "LEADERBOARD: "
-print get_leaderboard()
+# print "LEADERBOARD: "
+# print get_leaderboard()
 
 def buy(user_id, stock_name, num_of, price):
     num_of=abs(num_of)
