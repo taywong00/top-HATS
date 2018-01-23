@@ -4,7 +4,7 @@
 
 import sqlite3, json, datetime   # database functions
 import API_funcs
-f = "../data/traders.db"
+f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 # Helper Functions ----------------------------------------------------------
@@ -32,7 +32,7 @@ def getStockPrice(stock):
 
 
 def get_leaderboard():
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     command = """SELECT name
@@ -79,7 +79,7 @@ def sell(user_id, stock_name, num_of):
 
 
 def get_balance(user_id):
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="""SELECT money
@@ -112,7 +112,7 @@ def adjust_money(user_id, amt):
 
 
 def check_portfolio(user_id, stock, amount):
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"
@@ -149,7 +149,7 @@ def add_transaction(user_id, stock, amount, price):
     price=abs(price)
     time=datetime.datetime.now()
     trade=stock+','+str(amount)+','+str(price)+','+str(price*amount)+','+str(time)+"\n"
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="""UPDATE users
@@ -178,7 +178,7 @@ def stringify(holdings):
 def update_portfolio(user_id, stock, amount, price):
     price=abs(price)
     time=datetime.datetime.now()
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"

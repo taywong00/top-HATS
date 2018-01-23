@@ -52,10 +52,10 @@ def authorize():
 
 @app.route("/signup_page")
 def signup_page():
-	if session.get("username"):
-		return "Please log out before creating a new account."
-	else:
-		return render_template('signup.html')
+    if session.get("username"):
+        return "Please log out before creating a new account."
+    else:
+        return render_template('signup.html')
 
 # Status: Incomplete
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
@@ -66,19 +66,19 @@ def create_account():
         # If the user is logged in, they should not be able to access this page in the first place.
         return redirect('home')
     # If the user clicks Create Account
-	print "INFORMATION: ", request.form.get("create_account")
+    print "INFORMATION: ", request.form.get("create_account")
 #        print "Username:", request.form.get("username")
 #        print "password:", request.form.get("password")
 #        print "medium:", request.form.get("medium")
 #        print "hard:", request.form.get("hard")
 
-    auth.create_user(request.form.get("username"), request.form.get("password"))
-	#if request.form.get("hard") == 'on':
-		#level = "hard"
-	#elif request.form.get("medium") == 'on':
-	#	level = 'medium'
-	#else:
-		#level = 'easy'
+    auth.data_builder.create_user(request.form.get("username"), request.form.get("password"), "easy")#should probably update this to reflect choice of difficulty
+    #if request.form.get("hard") == 'on':
+    #level = "hard"
+    #elif request.form.get("medium") == 'on':
+    #level = 'medium'
+    #else:
+    #level = 'easy'
     return redirect('/')
 #else:
  #   return render_template("signup.html")
@@ -102,14 +102,14 @@ def account():
 # Status: Incomplete
 @app.route("/feed")
 def feed():
-	if session.get("username"):
-		articles = API_funcs.get_headlines("business")
-		urls = API_funcs.get_URLS("business")
-		print articles
-		return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
-	else:
-		flash("Please log in to access your feed.")
-		return redirect(url_for('login'))
+    if session.get("username"):
+        articles = API_funcs.get_headlines("business")
+        urls = API_funcs.get_URLS("business")
+        print articles
+        return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
+    else:
+        flash("Please log in to access your feed.")
+        return redirect(url_for('login'))
 
 # Status: Incomplete
 @app.route("/stats")

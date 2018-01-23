@@ -155,3 +155,6 @@ AJAX works! The page updates with the stock name and price. However, the page th
 
 holdenH -- 2018-01-22 19:34:29
 Patched db functions and re-added traders.db pursuant to Samantha's changes. Re-added id system to make transactions functional again with a check to make sure ids are not duplicated. Also added better handling of new (empty) transaction histories and holdings. Will look into deleting null holdings (all sold) if there is time, but not key feature. Created dummy users and gave one a transaction history and holdings. Also added db.close() to commands where it was previously missing.
+
+holdenH -- 2018-01-22 20:06:21
+Edited path to database in data_builder and transactions so it works from app.py. Also updated create account in app.py so it will actually create account(added difficulty var as placeholder because there were not enough vals being passed to the function). As of now pressing login on the homepage calls a function which expects two vars on the homepage but gives none so it returns an error. Unsure how front end wishes to handle.

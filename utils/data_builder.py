@@ -3,11 +3,11 @@ import random   #enable control of a sqlite database
 import csv       #facilitates CSV I/O
 import os #Used for os.remove()
 
-f = "../data/traders.db"
+f = "data/traders.db"
 #####os.remove(f) #Used During Testing to remove file at the beginning
 
 def make_tables():
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
@@ -19,7 +19,7 @@ def make_tables():
     db.close()
 
 def display_tables():
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     c.execute("SELECT * FROM users")
@@ -37,7 +37,7 @@ def display_tables():
 
 def getUsers():
     users = {}
-    f = "../data/traders.db"
+    #f = "..data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command = "SELECT password, name FROM users"
@@ -52,7 +52,7 @@ def getUsers():
         users[line[1]] = line[0]
     return users
 
-def addUser(username, password, level):
+def create_user(username, password, level):
     if username in getUsers():
         print "Username already taken."
         return "Username already taken."
@@ -64,7 +64,7 @@ def addUser(username, password, level):
             balance = 1000
         elif level == "hard":
             balance = 100
-        db = sqlite3.connect("../data/traders.db") #open if f exists, otherwise create
+        db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
         c = db.cursor()    #facilitate db ops
         _id=random.randint(0,1000000)
         while check_id(_id):
@@ -77,7 +77,7 @@ def addUser(username, password, level):
         return True
 
 def check_id(num):
-    db = sqlite3.connect("../data/traders.db") #open if f exists, otherwise create
+    db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="SELECT * FROM users WHERE id="+str(num)
     c.execute(command)
@@ -102,7 +102,7 @@ def create_user(name, hashed_pword):
 '''
 
 def add_friend(user_id, friend_id):
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     command="""UPDATE users
@@ -113,7 +113,7 @@ def add_friend(user_id, friend_id):
     db.commit()
 
 def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
-    f = "../data/traders.db"
+    #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
     #get password from user
@@ -142,5 +142,5 @@ addUser("Orange", "Juice", "medium")
 addUser("Scrambled", "Eggs", "hard")
 addUser("ice", "cream", "hard")
 #"""
-display_tables()
+#display_tables()
 #print getUsers()
