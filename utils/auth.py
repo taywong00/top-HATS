@@ -9,7 +9,8 @@ def login(username, password):
             session['username'] = username
             return redirect(url_for('feed'))
         else:
-            return redirect("login.html", msg = "Oops! Wrong password.", good = False)
+            flash("Bad password")
+            return redirect("login.html")
     else:
         flash("Bad username")
         return redirect('/login')
