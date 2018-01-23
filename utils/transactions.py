@@ -17,7 +17,7 @@ def getStockPrice(stock):
     d = API_funcs.get_data(stock, key)
     dt = datetime.datetime.now().date()
     #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
-    print dt
+    print d
     #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
     # ---------
@@ -47,18 +47,17 @@ def get_leaderboard():
 
 #print get_leaderboard()
 
-def buy(user_id, stock_name, num_of):
-    one_stock = getStockPrice(stock_name)
+def buy(user_id, stock_name, num_of, price):
     num_of=abs(num_of)
-    price = one_stock * num_of
+    price = price * num_of
     if(get_balance(user_id) >= price):
         price *= -1
         add_transaction(user_id, stock_name, num_of, one_stock)
         update_portfolio(user_id, stock_name, num_of, one_stock)
         adjust_money(user_id, price)
-        return "Bought."
+        return price
     else:
-        return "Purchase error. Insufficient funds."
+        return -1
 
 #testers
 #buy(123,'GOOG',10)
