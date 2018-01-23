@@ -41,6 +41,7 @@ def login():
     else:
         return render_template("login.html")
 
+# Status: DONE
 @app.route("/signup_page")
 def signup_page():
     if session.get("username"):
@@ -106,23 +107,24 @@ def feed():
         flash("Please log in to access your feed.")
         return redirect(url_for('login'))
 
-# Status: Incomplete
+# Status: Reroutes to MY ACCOUNT/PROFILE
 @app.route("/stats")
 def stats():
     return redirect("/account")
 
-# Status: Incomplete
+# Status: DONE
 @app.route("/leaderboard")
 def leaderboard():
     leaderboard = transactions.get_leaderboard()
     print "LEADER: ", leaderboard
     return render_template("leaderboard.html", leaders_list = leaderboard)
 
-# Status: Incomplete
+# Status: Unknown
 @app.route("/transaction")
 def transaction():
     return render_template("transaction.html")
 
+# Status: Unknown
 @app.route("/transact", methods=['POST'])
 def transact():
     name = request.form["searched_stock_name"]
@@ -142,6 +144,7 @@ def transact():
         flash("Insufficient funds.")
     return redirect((url_for("home")))
 
+# Status: Unknown
 @app.route("/get_stock_price", methods=['POST'])
 def get_stock_price():
     stock_name = request.form["stock"]
@@ -165,7 +168,6 @@ def logout():
         return render_template('home.html', message = 'Logout was successful.', good = True)
     else:
         return redirect("/")
-
 
 if __name__ == "__main__":
     app.debug = True
