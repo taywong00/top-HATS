@@ -81,6 +81,9 @@ Function for exchange rates completed n working, can take two currencies and ret
 adamA -- 2018-01-03 1:10:13
 Obtained a News API key, which will allow us to search the internet for headlines/articles about stock. The function that will be used to get all the information has been written, and searches up the top articles based on a query
 
+samanthaN -- 2018-01-03 1:14:11
+Connected routes to templates via render_template only. Started on login route.
+
 holdenH -- 2018-01-03 1:19:19
 Added the basic data construction function and initialized a prototype database
 
@@ -102,6 +105,9 @@ working function to obtain the price! needed to use the datetime library to get 
 holdenH -- 2018-01-09 23:05:27
 Preliminary functions to manipulate user data, figuring out most efficient way to manipulate lists within databases(and whether it would make more sense to simply store strings in an easily splittable format)
 
+samanthaN -- 2018-01-09 20:55:41
+Working out issues with login system.
+
 adamA -- 2018-01-10 13:01:25
 Created an adjust_money function, that takes a user and a sum of money (can be positive or negative. It then access that users entry in the database and adds the amount to their pool of money. If the transaction is not possible, returns -1 otherwise it will return the new amount of money NOT CONFIRMED WORKING PLS TEST
 
@@ -113,6 +119,9 @@ Rejiggered database schema to make it easier to manipulate, fixed bug in create_
 
 holdenH -- 2018-01-10 23:47:53
 Fixed get_balance and adjust_money in transactions.py to function with database(testing done). Also replaced repetition of code from get_balance within adjust_money with single call of get_balance.
+
+samanthaN -- 2018-01-12 19:01:46
+Rewriting login system and setting up forms.
 
 adamA -- 2018-01-16 12:59:12
 Added frontend part of the make account form, passing it Samantha to do the backend
@@ -132,11 +141,17 @@ Updated plan. There will now be a search stock page, where you can look up and g
 holdenH -- 2018-01-19 12:55:12
 Updated transactions. Created functions for adding transactions to users history and modifying portfolio accordingly. Also created function to check portfolio to validate sales. Currently only adding transactions to transaction history works.
 
+samanthaN -- 2018-01-19 23:11:57
+Finished forms.
+
 adamA -- 2018-01-19 13:00:10
 Added get_leaderboard function, this will allow us to easily display the leaderboard page
 
 holdenH -- 2018-01-19 13:15:16
 Updated update_portfolio funtion, need to create dummy portfolio to test on.
+
+samanthaN -- 2018-01-21:55:09
+Added getUsers() function for checking 'user in usernames'.
 
 holdenH -- 2018-01-21 21:17:21
 Finished creating update_portfolio, buy, sell, add_transaction, and check_portfolio. Tried to test but API seems to encounter errors related to the stock market being closed on weekends. possibly a serious bug here, we will need to find a workaround
@@ -164,3 +179,6 @@ Edited path to database in data_builder and transactions so it works from app.py
 
 adamA -- 2018-01-22 20:25:13
 Changed the search stock page, results are now displayed on a readonly form element so as to be passed to app.py. Minor changes to buy function. Should now successfully perform a buy!
+
+samanthaN -- 2018-02-23 00:02:33
+Login system working and should not expect any errors; STOK homepage still shows "Sign up" and "Login" buttons even though a user is signed in. Beginning work on profiles. 
