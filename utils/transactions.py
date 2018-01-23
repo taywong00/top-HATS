@@ -4,7 +4,7 @@
 
 import sqlite3, json, datetime   # database functions
 import API_funcs
-f = "data/traders.db"
+f = "../data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 # Helper Functions ----------------------------------------------------------
@@ -28,6 +28,7 @@ def getStockPrice(stock):
 
 #getStockPrice("GOOG");
 
+'''
 def get_leaderboard():
     #f = "../data/traders.db"
     db = sqlite3.connect(f)
@@ -41,8 +42,34 @@ def get_leaderboard():
     db.commit()
     db.close
     return users
+'''
+def get_leaderboard():
+    leaderboard = {}
+    #f = "../data/traders.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    command = """SELECT name, money
+    FROM users
+    ORDER BY
+    money DESC;"""
+    x = c.execute(command)
+    counter = 0
+    for line in x:
+        print "   0: ", line[0]
+        print "   1: ", line[1]
+    
+    for line in x:
+        print "0: ", line[0]
+        print "1: ", line[1]
+        if counter < 10:
+            leaderboard[counter] = line[0]
+            counter += 1  
+        else:
+            break
+    return leaderboard
 
-#print get_leaderboard()
+print "LEADERBOARD: "
+print get_leaderboard()
 
 def buy(user_id, stock_name, num_of, price):
     num_of=abs(num_of)

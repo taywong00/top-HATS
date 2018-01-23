@@ -160,7 +160,7 @@ adamA -- 2018-01-21 22:36:15
 Worked on login system for an extended period of time. Login now works, passwords just need to be hashed. Sign up also works. Message flashing! Success, as well as incorrect user/passwords will show up on the homepage or login page. The account page is slowly moving towards entirely customized. Time to incorporate transactions! Also our project doesn't work on weekends so we're gonna have to fix that.
 
 holdenH -- 2018-01-22 1:24:31
-Tested update portfolio, add_transaction, and check_portfolio locally. Fixed several bugs with int/string conversion and list management. Functions now work as intended with breif explainations commented at beginning. Have tested all parts of buy/sell functions which I can without using the API which is currently out of order.
+Tested update portfolio, add_transaction, and check_portfolio locally. Fixed several bugs with int/string conversion and list management. Functions now work as intended with brief explainations commented at beginning. Have tested all parts of buy/sell functions which I can without using the API which is currently out of order.
 
 adamA -- 2018-01-22 11:45:20
 Implementing AJAX for transactions! Upon searching a stock, the stock's name and price will appear right under the search bar. From there we'll work on making an actual transaction!! Not working as of rn, but the code's there? TBC!
@@ -182,3 +182,6 @@ Changed the search stock page, results are now displayed on a readonly form elem
 
 samanthaN -- 2018-02-23 00:02:33
 Login system working and should not expect any errors; STOK homepage still shows "Sign up" and "Login" buttons even though a user is signed in. Beginning work on profiles. 
+
+samanthaN -- 2018-02-23 16:20:01
+Rerouted "My Stats & Stocks" button to go to "My Account" Page-- we will now be displaying stats and stocks on the my account/profile page bc there aren't a lot of profile aspects to display.

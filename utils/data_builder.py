@@ -90,7 +90,6 @@ def check_id(num):
     else:
         return True
 
-
 '''
 def create_user(name, hashed_pword):
     f = "../data/traders.db"

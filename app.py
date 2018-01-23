@@ -7,8 +7,7 @@
 import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
-import API_funcs #API calls
-from utils import transactions, auth, data_builder
+from utils import transactions, auth, data_builder, API_funcs
 import json
 #from util import
 
@@ -115,7 +114,7 @@ def stats():
 # Status: Incomplete
 @app.route("/leaderboard")
 def leaderboard():
-    return render_template("leaderboard.html")
+    return transactions.get_leaderboard()
 
 # Status: Incomplete
 @app.route("/transaction")
