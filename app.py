@@ -87,8 +87,6 @@ def how_to():
 def account():
     if session.get('username'):
         user = session.get("username")
-        # Get User Level
-        # level =
         # Get User Balance
         # balance = 
         # #moneyz = transactions.get_balance(user)
@@ -112,7 +110,7 @@ def feed():
 # Status: Incomplete
 @app.route("/stats")
 def stats():
-    return render_template("stats.html")
+    return redirect("/account")
 
 # Status: Incomplete
 @app.route("/leaderboard")
