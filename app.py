@@ -66,22 +66,30 @@ def signup_page():
     else:
         return render_template('signup.html')
 
-
 # Status: Incomplete
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
+    print "REQUEST CREATE: ", request.form.get("create_account")
     # If the user is already logged in:
     if session.get('username'):
-        # If the user is logged in, they should not be able to access this page in the first place.
-        return redirect('home')
+        return redirect('/feed')
     # If the user clicks Create Account
-    print "INFORMATION: ", request.form.get("create_account")
-#        print "Username:", request.form.get("username")
-#        print "password:", request.form.get("password")
-#        print "medium:", request.form.get("medium")
-#        print "hard:", request.form.get("hard")
+    elif request.form.get("create_account") == "Create Account":
+        username = request.form.get("username").strip()
+        print "U: ", username
+        password = request.form.get("password1")
+        print "P1: ", password
+        password = request.form.get("password2")
+        print "P2: ", password
+        level = request.form.get("level")
+        print "L: ", level
+        return render_template("signup.html")
+    else:
+        return render_template("signup.html")
 
+    
+'''
     auth.data_builder.create_user(request.form.get("username"), request.form.get("password"), "easy")#should probably update this to reflect choice of difficulty
     #if request.form.get("hard") == 'on':
     #level = "hard"
@@ -92,6 +100,7 @@ def create_account():
     return redirect('/')
 #else:
  #   return render_template("signup.html")
+'''
 
 # Status: DONE
 @app.route("/how_to", methods=['GET', 'POST'])

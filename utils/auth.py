@@ -14,3 +14,11 @@ def login(username, password):
     else:
         flash("Bad username")
         return redirect(url_for('login'))
+
+def create_account(username, password, level):
+    users = data_builder.getUsers()
+    if username in users:
+        flash("Username already taken.")
+        return redirect("/create_account")
+    else:
+        return render_template("signup.html")
