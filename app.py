@@ -81,15 +81,20 @@ def how_to():
     return render_template("how_to.html")
 # -------------
 
+# ATTENTION: HOLDEN
 # Status: Incomplete
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
         user = session.get("username")
-        #moneyz = transactions.get_balance(user)
+        # Get User Level
+        # level =
+        # Get User Balance
+        # balance = 
+        # #moneyz = transactions.get_balance(user)
         return render_template("account.html", name = user)
     else:
-        flash("Please log in to see your account")
+        flash("Please log in to see your account.")
         return redirect("/")
 
 # Status: DONE - except better design needed
