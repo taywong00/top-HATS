@@ -137,6 +137,25 @@ def leaderboard():
 def transaction():
     return render_template("transaction.html")
 
+@app.route("/transact", methods=['POST'])
+def transact():
+    name = request.form["searched_stock_name"]
+    price = request.form["searched_stock_price"]
+    num_stock = request.form["num_stock"]
+    name = name.split(" ")
+    price = price.split(" ")
+    name = name[1]
+    price = price[1]
+    print name
+    print price
+    print num_stock
+    worked = transactions.buy(session.get("username"), name, num_stock, price)
+    if(worked > 0):
+        flash("Bought stock!")
+    else:
+        flash("Insufficient funds.")
+    return redirect((url_for("home")))
+
 @app.route("/get_stock_price", methods=['POST'])
 def get_stock_price():
     stock_name = request.form["stock"]

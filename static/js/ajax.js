@@ -10,10 +10,27 @@ var search_stock = function( e ) {
       console.log("wait...")
       response = JSON.parse(response);
       console.log(response["price"]);
-      output = document.getElementById("searched_stock");
-      var inner = "Stock " + response["name"] + ": " + response["price"];
-      output.innerHTML = inner
-    } //end success callback
+      stockName = document.getElementById("searched_stock_name");
+      var nameVal = "Stock: " + response["name"];
+      stockName.value = nameVal;
+      stockPrice = document.getElementById("searched_stock_price");
+      var priceVal = "Price: " + response["price"];
+      stockPrice.value = priceVal;
+      var button = document.getElementById("buy");
+      button.style.display = "inline";
+      var field = document.getElementById("num_stock");
+      field.style.display = "inline";
+  }, //end success callback
+  error: function (response){
+    var errorMess = document.getElementById("searched_stock_name");
+    var clear = document.getElementById("searched_stock_price");
+    var button = document.getElementById("buy");
+    var field = document.getElementByID("num_stock");
+    errorMess.innerHTML = "Invalid Ticker!";
+    clear.innerHTMl = "";
+    button.style.display = "none";
+    field.style.display = "inline";
+  }
   });//end ajax call
 }; //end transmit function
 
