@@ -7,8 +7,15 @@ Sign Up | STOK
 {% block content %}
 
     <main role="main" class="container">
-
+	      
       <div class="starter-template">
+	 {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+              {% endwith %}
         <h1>Sign Up</h1>
         <p class="lead">
           <form action='/create_account' method="post">

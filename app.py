@@ -8,7 +8,7 @@ import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
 import API_funcs #API calls
-from utils import transactions, auth
+from utils import transactions, auth, data_builder
 import json
 #from util import
 
@@ -32,7 +32,7 @@ def login():
         return redirect('/feed')
     # user entered login form
     elif request.form.get("login") == "Login":
-        username = request.form.get("username")
+        username = request.form.get("username").strip()
         print "USERNAME: ", username
         password = request.form.get("password")
         print "PASSWORD: ", password
@@ -78,13 +78,17 @@ def create_account():
     elif request.form.get("create_account") == "Create Account":
         username = request.form.get("username").strip()
         print "U: ", username
-        password = request.form.get("password1")
-        print "P1: ", password
-        password = request.form.get("password2")
-        print "P2: ", password
+        password1 = request.form.get("password1")
+        print "P1: ", password1
+        password2 = request.form.get("password2")
+        print "P2: ", password2
+        if password1 != password2:
+            return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = True)
+        else:
+            password = password1
         level = request.form.get("level")
         print "L: ", level
-        return render_template("signup.html")
+        return data_builder.create_user(username, password, level)
     else:
         return render_template("signup.html")
 

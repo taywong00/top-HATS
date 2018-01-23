@@ -2,6 +2,7 @@ import sqlite3
 import random   #enable control of a sqlite database
 import csv       #facilitates CSV I/O
 import os #Used for os.remove()
+from flask import url_for, redirect, flash, render_template
 
 f = "data/traders.db"
 #####os.remove(f) #Used During Testing to remove file at the beginning
@@ -55,14 +56,14 @@ def getUsers():
 def create_user(username, password, level):
     if username in getUsers():
         print "Username already taken."
-        return "Username already taken."
+        return render_template('signup.html', message = 'Username already taken. Please choose a different one.', good = True)
     else:
         balance = -1
-        if level == "easy":
+        if level == "Easy":
             balance = 10000
-        elif level == "medium":
+        elif level == "Medium":
             balance = 1000
-        elif level == "hard":
+        elif level == "Hard":
             balance = 100
         db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
         c = db.cursor()    #facilitate db ops
@@ -74,7 +75,7 @@ def create_user(username, password, level):
         c.execute(command)
         db.commit()
         db.close()
-        return True
+        return render_template('home.html', message = 'Account successfully created!', good = True)
 
 def check_id(num):
     db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
