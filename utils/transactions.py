@@ -38,7 +38,7 @@ def get_leaderboard():
     ORDER BY
     money DESC;"""
     x = c.execute(command)
-    counter = 0
+    counter = 1
     '''
     for line in x:
         print "     0: ", line[0]
@@ -46,11 +46,12 @@ def get_leaderboard():
     x = c.execute(command)   
     '''
     for line in x:
-        if counter < 10:
+        if counter <= 10:
             # Used to see top ten users and *their balances
             # print "0: ", line[0]
             # print "1: ", line[1]
             leaderboard[counter] = line[0]
+            # leaderboard[line[0]] = counter
             counter += 1  
         else:
             break

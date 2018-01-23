@@ -116,7 +116,7 @@ def stats():
 def leaderboard():
     leaderboard = transactions.get_leaderboard()
     print "LEADER: ", leaderboard
-    return "Marscapone Cheese"
+    return render_template("leaderboard.html", leaders_list = leaderboard)
 
 # Status: Incomplete
 @app.route("/transaction")

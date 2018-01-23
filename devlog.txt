@@ -188,3 +188,6 @@ Rerouted "My Stats & Stocks" button to go to "My Account" Page-- we will now be 
 
 samanthaN -- 2018-02-23 17:04:22
 We now have a working get_leaderboard() function-- working on linking it to leaderboard"
+
+samanthaN -- 2018-02-23 17:19:34
+Leaderboard is working
