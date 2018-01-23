@@ -26,10 +26,7 @@ def getStockPrice(stock):
     # ---------
     return price
 
-
-
 #getStockPrice("GOOG");
-
 
 def get_leaderboard():
     #f = "../data/traders.db"
@@ -75,8 +72,6 @@ def sell(user_id, stock_name, num_of):
     else:
         return "Sale error. Transaction cancelled"
 
-
-
 def get_balance(user_id):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -89,7 +84,6 @@ def get_balance(user_id):
     db.commit()
     db.close
     return balance
-
 
 def adjust_money(user_id, amt):
     og_mons=get_balance(user) # Original amount of money
@@ -107,8 +101,6 @@ def adjust_money(user_id, amt):
 
 #print adjust_money("abc",-100000000000)
 #print get_balance("abc")
-
-
 
 def check_portfolio(user_id, stock, amount):
     #f = "../data/traders.db"
@@ -137,7 +129,6 @@ def check_portfolio(user_id, stock, amount):
     else:
         return False
 
-
 #print check_portfolio(933041681,'KX',1)
 
 #adds transaction to transactions (history)
@@ -158,7 +149,6 @@ def add_transaction(user_id, stock, amount, price):
     db.commit()
     db.close()
 
-
 #helper function to convert lists to csv string
 def stringify(holdings):
     new_holdings=""
@@ -168,7 +158,6 @@ def stringify(holdings):
                 new_holdings+=str(val)+","
         new_holdings+="\n"
     return new_holdings
-
 
 #updates holdings to reflect purchase or sale
 #for sale amount is negative
