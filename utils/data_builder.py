@@ -128,11 +128,25 @@ def get_pic_num(user_id):
 
 #print get_holdings(801266)
 
+def get_transactions(user_id):
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="SELECT transactions FROM users WHERE id='"+str(user_id)+"'"
+    c.execute(command)
+    transactions=c.fetchall()
+    db.close()
+    #if holdings is not null
+    if len(transactions)>0:
+        transactions=transactions[0][0]
+        transactions=transactions.split("\n")
+        for i in range(len(transactions)):
+            transactions[i]=transactions[i].split(",")
+        transactions=transactions
+    else:
+        transactions=[['',0,0,0,0]]
+    return holdings
 
-#"CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
-#add_friend('996401703','000')
-#create_user("def","456")
-#create_user("hij","789")
+
 
 """
 try:

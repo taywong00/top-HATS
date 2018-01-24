@@ -277,17 +277,31 @@ def update_portfolio(user_id, stock, amount, price):
     db.close()
     #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
 
-'''
-if check_portfolio(65868,'IB', 7):
-    add_transaction(65868, 'IB', -7, 10,)
-    update_portfolio(65868, 'IB', -7, 10,)
-else:
-    print "too few"
-#'''
+def stock_val(user_id):
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"
+    c.execute(command)
+    holdings=c.fetchall()
+    total_val=0
+    #if holdings is full
+    if len(holdings)>0:
+        holdings=holdings[0][0]
+        holdings=holdings.split("\n")
+        for i in range(len(holdings)):
+            holdings[i]=holdings[i].split(",")
+            price=getStockPrice(holdings[i][0])
+            value=price*holdings[i][1]
+            holdings[i][3]=value
+            total_val+=value
+        new_holdings=stringify(holdings)
+        command="UPDATE users SET holdings='"+new_holdings+"' WHERE id='"+str(user_id)+"'"
+        c.execute(command)
+    db.commit()
+    db.close()
+    return total_val
 
-'''
-add_transaction(65868, 'KX', 10, 100,)
-add_transaction(65868, 'IB', 10, 57,)
-update_portfolio(65868, 'KX', 10, 100,)
-update_portfolio(65868, 'IB', 10, 57,)
-#'''
+def total_val(user_id):
+   return stock_val(user_id)+float(get_balance(user_id))
+
+
