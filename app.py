@@ -96,12 +96,16 @@ def how_to():
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
+        stocks = holdens_function!
+        for stock in stocks:
+            stock.append(getStockPrice(stock[i]))
+
         user = session.get("username")
         # Get User Balance
         # balance =
         # #moneyz = transactions.get_balance(user)
         balance = transactions.get_balance(transactions.get_id(user));
-        return render_template("account.html", name = user, balance = balance)
+        return render_template("account.html", name = user, balance = balance, stocks = stocks)
     else:
         flash("Please log in to see your account.")
         return redirect("/")

@@ -34,6 +34,41 @@ My Account | STOK
                 <td><center> {{date_joined}} January 2018 </center></td>
               </tr>-->
             </table>
+            <table>
+              <tr>
+                <th>
+                  STOCK TICKER
+                </th>
+                <th>
+                  AMOUNT OF STOCK
+                </th>
+                <th>
+                  VALUE
+                </th>
+                <th>
+                  DATE PURCHASED
+                </th>
+                <th>
+                  CURRENT PRICE
+                </th>
+              </tr>
+              {% for stock_entry in stocks}
+                <tr>
+                  {% for entry in stock_entry %}
+                    <td>
+                      {{entry}}
+                    </td>
+                  {% endfor % }
+                </tr>
+              {% endfor %}
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </table>
           </center>
 
         </p>
@@ -51,7 +86,7 @@ My Account | STOK
     </div>
 
       <a href="/logout" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Log Out</a>
-      
+
       <!-- ENTER EACH PAGES CONTENT-->
 
     </main><!-- /.container -->

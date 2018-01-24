@@ -14,8 +14,8 @@ Make a Transaction | STOK
         <button id="stock_search">Search!</button>
         <br /><br />
         <form action="/transact" method="POST">
-          <input type="text" name="searched_stock_name" readonly="readonly" id="searched_stock_name">
-          <input type="text" name="searched_stock_price" readonly="readonly" id="searched_stock_price"> <br />
+          <input type="text" name="searched_stock_name" readonly="readonly" id="searched_stock_name" style="display: none;">
+          <input type="text" name="searched_stock_price" readonly="readonly" id="searched_stock_price" style="display: none;"> <br />
           <input style="display:none; width=20px;" type="text" id="num_stock" name="num_stock" value="0" />
           <button type="submit" style="display:none" id="buy" name="buy"> Buy!</button>
         </form>
