@@ -90,8 +90,7 @@ def how_to():
     return render_template("how_to.html")
 # -------------
 
-# ATTENTION: HOLDEN
-# Status: Incomplete
+# Status: Complete
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
@@ -114,7 +113,7 @@ def sell():
     user = session.get("username")
     #print user
     stock_ind = int(request.form["ind"])
-    num_stock = int(request.form["num"])
+    num_stock = float(request.form["num"])
     #print num_stock
     eyedee = transactions.get_id(user)
     stocks = data_builder.get_holdings(eyedee)
