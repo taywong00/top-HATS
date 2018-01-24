@@ -47,18 +47,22 @@ def get_leaderboard():
     '''
     for line in x:
         if counter <= 10:
+            info = [0,1]
             # Used to see top ten users and *their balances
             # print "0: ", line[0]
             # print "1: ", line[1]
-            leaderboard[counter] = line[0]
+            info[0] = line[0]
+            info[1] = line[1]
+            print info
+            leaderboard[counter] = info
             # leaderboard[line[0]] = counter
             counter += 1
         else:
             break
     return leaderboard
 
-# print "LEADERBOARD: "
-# print get_leaderboard()
+print "LEADERBOARD: "
+print get_leaderboard()
 
 def get_id(username):
     if username:

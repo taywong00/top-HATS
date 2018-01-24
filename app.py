@@ -98,7 +98,7 @@ def account():
     if session.get('username'):
         user = session.get("username")
         # Get User Balance
-        # balance =
+        # balance = 
         # #moneyz = transactions.get_balance(user)
         balance = transactions.get_balance(transactions.get_id(user));
         return render_template("account.html", name = user, balance = balance)
@@ -117,11 +117,6 @@ def feed():
     else:
         flash("Please log in to access your feed.")
         return redirect(url_for('login'))
-
-# Status: Reroutes to MY ACCOUNT/PROFILE
-@app.route("/stats")
-def stats():
-    return redirect("/account")
 
 # Status: DONE
 @app.route("/leaderboard")
