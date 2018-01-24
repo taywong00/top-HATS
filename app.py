@@ -34,7 +34,6 @@ def login():
         return redirect('/feed')
     # user entered login form
     elif request.form.get("login") == "Login":
-        print "hello world"
         username = request.form.get("username").strip()
         #print "USERNAME: ", username
         password = request.form.get("password")
