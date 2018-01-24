@@ -258,7 +258,8 @@ def update_portfolio(user_id, stock, amount, price):
             if holdings[i][0]==stock:
                 has_stock=True
                 holdings[i][1]=float(holdings[i][1])+amount
-                holdings[i][2]=price
+                if amount<0:
+                    holdings[i][2]=price
                 holdings[i][3]=float(holdings[i][1])*price
                 holdings[i][4]=time
         #if stock is not found in holdings
@@ -303,5 +304,3 @@ def stock_val(user_id):
 
 def total_val(user_id):
    return stock_val(user_id)+float(get_balance(user_id))
-
-
