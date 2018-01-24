@@ -4,6 +4,7 @@
 
 import sqlite3, json, datetime # database functions
 from datetime import timedelta
+import pytz
 import API_funcs
 f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
@@ -18,7 +19,8 @@ key = "I47O8J6SBM5S3302"
 def getStockPrice(stock):
     price = -1
     d = API_funcs.get_data(stock, key)
-    now = datetime.datetime.now()
+    tz=pytz.timezone('America/New_York')
+    now = datetime.datetime.now(tz)
     #print now
     print now.hour
     if now.hour < 10:
