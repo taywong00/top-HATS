@@ -22,7 +22,7 @@ def getStockPrice(stock):
     now = datetime.datetime.now(tz)
     #print now
     #print now.hour
-    if now.hour < 10:
+    if now.hour < 9:
         now = now - timedelta(days=1)
         #print now
     dt = now.date()

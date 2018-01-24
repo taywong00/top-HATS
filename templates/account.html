@@ -47,6 +47,14 @@ My Account | STOK
                 <th><center> Balance: </center></th>
                 <td><center>${{balance}} </center></td>
               </tr>
+	       <tr>
+                <th><center> Value of Your Stocks: </center></th>
+                <td><center>${{stockVal}} </center></td>
+               </tr>
+	       <tr>
+                <th><center> Total Value of Account: </center></th>
+                <td><center>${{totalVal}} </center></td>
+              </tr>
 
               <!--  <tr>
                    <th><center> Date Joined: </center></th>
@@ -88,7 +96,7 @@ My Account | STOK
             {% for stock_entry in stocks %}
             <tr>
               {% for entry in stock_entry %}
-                <td>
+                 <td>
                   {{entry}}
                 </td>
               {% endfor %}
