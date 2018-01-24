@@ -67,8 +67,8 @@ def get_leaderboard():
             break
     return leaderboard
 
-print "LEADERBOARD: "
-print get_leaderboard()
+#print "LEADERBOARD: "
+#print get_leaderboard()
 
 def get_id(username):
     if username:
@@ -240,7 +240,6 @@ def update_portfolio(user_id, stock, amount, price):
                 holdings[i][2]=price
                 holdings[i][3]=float(holdings[i][1])*price
                 holdings[i][4]=time
-                break
         #if stock is not found in holdings
         if not has_stock:
             new_stock=[[stock,amount,price,amount*price,time]]
