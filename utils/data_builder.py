@@ -53,24 +53,17 @@ def getUsers():
         users[line[1]] = line[0]
     return users
 
-def create_user(username, password, level):
+def create_user(username, password):
     if username in getUsers():
         print "Username already taken."
         return render_template('signup.html', message = 'Username already taken. Please choose a different one.', good = False)
     else:
-        balance = -1
-        if level == "Easy":
-            balance = 10000
-        elif level == "Medium":
-            balance = 1000
-        elif level == "Hard":
-            balance = 100
         db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
         c = db.cursor()    #facilitate db ops
         _id=random.randint(0,1000000)
         while check_id(_id):
             _id=random.randint(0,1000000)
-        command = "INSERT INTO users VALUES("+str(_id)+", '" + password + "', '" + username + "', " + str(balance) + ", '','','');"
+        command = "INSERT INTO users VALUES("+str(_id)+", '" + password + "', '" + username + "', 100000, '','','');"
         print command
         c.execute(command)
         db.commit()

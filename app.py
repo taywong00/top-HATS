@@ -79,9 +79,7 @@ def create_account():
             return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = False)
         else:
             password = password1
-        level = request.form.get("level")
-        print "L: ", level
-        return data_builder.create_user(username, password, level)
+        return data_builder.create_user(username, password)
     else:
         return render_template("signup.html")
 

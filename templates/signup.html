@@ -7,7 +7,7 @@ Sign Up | STOK
 {% block content %}
 
     <main role="main" class="container">
-	      
+
       <div class="starter-template">
 	 {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -22,13 +22,9 @@ Sign Up | STOK
             Username: <input type="text" name="username" required> <br /><br />
             Password: <input type="password" name="password1" required> <br /> <br />
             Confirm password: <input type="password" name="password2" required> <br /> <br />
-            Difficulty Level: &nbsp &nbsp
-            <input type="radio" name="level" value="Easy" required> Easy [$10,000] &nbsp
-            <input type="radio" name="level" value="medium"> Medium [$1,000]&nbsp
-            <input type="radio" name="level" value="hard"> Hard [$100]&nbsp <br>
 	    *Your difficulty level determines how much money you start with. <br><br>
 
-	    <input type="submit" value="Create Account" name="create_account"> 
+	    <input type="submit" value="Create Account" name="create_account">
           </form>
 
         </p>
