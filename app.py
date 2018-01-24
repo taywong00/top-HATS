@@ -34,6 +34,7 @@ def login():
         return redirect('/feed')
     # user entered login form
     elif request.form.get("login") == "Login":
+        print "hello world"
         username = request.form.get("username").strip()
         #print "USERNAME: ", username
         password = request.form.get("password")
@@ -44,12 +45,13 @@ def login():
         if username in users:
             if auth.check_password(username, password):
                 session['username'] = username
-                return redirect(url_for('feed'))
+                return render_template("how_to.html")
             else:
                 return render_template("home.html", message = "Oops! Wrong password.", good = False)
         else:
             return render_template("home.html", message = "Oops! That username doesn't exist.", good = False)
     else:
+        print request.form.get("login")
         return render_template("home.html")
 
 # Status: DONE

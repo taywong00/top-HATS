@@ -117,6 +117,15 @@ def get_holdings(user_id):
         holdings=[['',0,0,0,0]]
     return holdings
 
+def get_pic_num(user_id):
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="SELECT picture FROM users WHERE id='"+str(user_id)+"'"
+    c.execute(command)
+    pic=c.fetchall()[0][0]
+    db.close()
+    return int(pic)
+
 #print get_holdings(801266)
 
 
