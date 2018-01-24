@@ -100,7 +100,8 @@ def account():
         # Get User Balance
         # balance =
         # #moneyz = transactions.get_balance(user)
-        return render_template("account.html", name = user)
+        balance = transactions.get_balance(transactions.get_id(user));
+        return render_template("account.html", name = user, balance = balance)
     else:
         flash("Please log in to see your account.")
         return redirect("/")

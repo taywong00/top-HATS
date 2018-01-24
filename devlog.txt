@@ -194,3 +194,6 @@ Leaderboard is working
 
 holdenH -- 2018-01-23 20:41:12
 Buy now works(had to overcome a multitude of typing issues as well as converting uname to uid so functions will work). Still seeing issues with displaying balance and portfolio.
+
+adamA -- 2018-01-23 20:50:10
+Account page now shows balance
