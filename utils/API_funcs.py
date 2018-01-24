@@ -2,10 +2,12 @@ import urllib2, json
 
 File = open("av_key.txt", "r")
 key = File.read()
+print "KEY:" + key
 File.close()
 
 File = open("news_key.txt", "r")
 nkey = File.read()
+print "NKEY:" + nkey
 File.close()
 
 def get_data(stock_name):
