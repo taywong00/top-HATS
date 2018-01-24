@@ -9,7 +9,7 @@ import API_funcs
 f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
-
+tz=pytz.timezone('America/New_York')
 key = "I47O8J6SBM5S3302"
 
 # Helper Functions ----------------------------------------------------------
@@ -19,7 +19,6 @@ key = "I47O8J6SBM5S3302"
 def getStockPrice(stock):
     price = -1
     d = API_funcs.get_data(stock, key)
-    tz=pytz.timezone('America/New_York')
     now = datetime.datetime.now(tz)
     #print now
     #print now.hour
@@ -32,7 +31,7 @@ def getStockPrice(stock):
 
 def getHigh(stock):
     d = API_funcs.get_data(stock, key)
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(tz)
     #print now
     if now.hour < 9:
         now = now - timedelta(days=1)
@@ -43,7 +42,7 @@ def getHigh(stock):
 
 def getLow(stock):
     d = API_funcs.get_data(stock, key)
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(tz)
     #print now
     if now.hour < 9:
         now = now - timedelta(days=1)
@@ -210,7 +209,7 @@ def check_portfolio(user_id, stock, amount):
 #PRICE IS ALWAYS POSITIVE
 def add_transaction(user_id, stock, amount, price):
     price=abs(price)
-    time=datetime.datetime.now()
+    time=datetime.datetime.now(tz)
     trade=stock+','+str(amount)+','+str(price)+','+str(price*amount)+','+str(time)+"\n"
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -239,7 +238,7 @@ def stringify(holdings):
 #PRICE IS ALWAYS POSITIVE
 def update_portfolio(user_id, stock, amount, price):
     price=abs(price)
-    time=datetime.datetime.now()
+    time=datetime.datetime.now(tz)
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
