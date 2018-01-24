@@ -23,7 +23,7 @@ def getStockPrice(stock):
     #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
     #print d
     #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
-    price = d["Time Series (Daily)"][str(dt)]["4. close"]
+    price = d["Time Series (Daily)"]["2018-01-23"]["4. close"]
     # ---------
     # API retrieval code here
     # price = <retrieval code> (stock)
@@ -57,7 +57,7 @@ def get_leaderboard():
             # print "1: ", line[1]
             info[0] = line[0]
             info[1] = line[1]
-            print info
+            #print info
             leaderboard[counter] = info
             # leaderboard[line[0]] = counter
             counter += 1
@@ -119,6 +119,7 @@ def sell(username, stock_name, num_of, price):
         print "Sale error. Transaction cancelled"
         return -1
 
+
 def get_balance(user_id):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -159,7 +160,6 @@ def check_portfolio(user_id, stock, amount):
     holdings=c.fetchall()
     db.commit()
     db.close()
-
     if len(holdings)>0:
         holdings=holdings[0][0]
         holdings=holdings.split("\n")
@@ -169,12 +169,15 @@ def check_portfolio(user_id, stock, amount):
             if stk[0]==stock:
                 has_stock=stk
         if not has_stock:
+            print "missing"
             return False #does not own
-        elif not float(has_stock[1])>abs(amount):
+        elif not float(has_stock[1])>=abs(amount):
+            print "poor"
             return False #does not have enough
         else:
             return True
     else:
+        print "nada"
         return False
 
 #print check_portfolio(933041681,'KX',1)
