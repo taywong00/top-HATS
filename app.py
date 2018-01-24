@@ -101,7 +101,7 @@ def account():
         print stocks
         for stock in stocks:
             print stock
-            #stock.append(transactions.getStockPrice(stock[0]))
+            stock.append(transactions.getStockPrice(stock[0]))
             print stock
         # Get User Balance
         # balance =
