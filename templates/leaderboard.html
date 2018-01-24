@@ -17,9 +17,9 @@ Leaderboard | STOK
             {% set counter = 1 %}
             {% for leader in leaders_list %}
               <tr>
-                <th>#{{leader}}</th>
-                <td><center>{{leaders_list[leader][0]}} &nbsp&nbsp&nbsp&nbsp </center></td>
-                <td><center><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance:</b> ${{leaders_list[leader][1]}} &nbsp&nbsp&nbsp&nbsp </center></td>
+                <th width="10px">#{{leader}}</th>
+                <td width="10px"><center>{{leaders_list[leader][0]}} &nbsp&nbsp&nbsp&nbsp </center></td>
+                <td width="10px"><center><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance:</b> ${{leaders_list[leader][1]}} &nbsp&nbsp&nbsp&nbsp </center></td>
               </tr>
                 {% set counter = counter + 1 %}
             {% endfor %}
