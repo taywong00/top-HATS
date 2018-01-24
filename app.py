@@ -3,18 +3,15 @@
 # SoftDev1 pd7
 # P#02 -- This Is the End
 
-import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
 from utils import transactions, data_builder, API_funcs
-import auth
-import json
-#from util import
+import auth, json, os
 
 app = Flask (__name__)
 app.secret_key = "RpdMo7f9KTwLwkKlP2UrNiSG96Hby7NV"
 
-# HOMEPAGE: brief description and two buttons--"Login" or "Create an account"
+# Homepage
 @app.route("/")
 def home():
     if session.get('username'):
@@ -24,7 +21,7 @@ def home():
         return render_template("home.html")
 
 # Status: DONE
-# LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
+# Login Page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     #print "REQUEST: ", request.form.get("login")
@@ -37,7 +34,6 @@ def login():
         #print "USERNAME: ", username
         password = request.form.get("password")
         #print "PASSWORD: ", password
-
         # checks credentials for login
         users = data_builder.getUsers()
         if username in users:
@@ -85,12 +81,13 @@ def create_account():
         return render_template("signup.html")
 
 # Status: DONE
+# Routes to instructions page
 @app.route("/how_to", methods=['GET', 'POST'])
 def how_to():
     return render_template("how_to.html")
-# -------------
 
 # Status: Complete
+# Routes to Account Page - shows username, stats, and stocks
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
@@ -107,6 +104,7 @@ def account():
     else:
         return render_template("home.html", message="Please log in to see your account.", warning= True)
 
+# Route for handling selling transactions
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     user = session.get("username")
@@ -128,6 +126,7 @@ def sell():
         return redirect(url_for("account"))
 
 # Status: DONE - except better design needed
+# Route for Newsfeed - pulls top three articles via news API
 @app.route("/feed")
 def feed():
     if session.get("username"):
@@ -139,18 +138,21 @@ def feed():
         return render_template("home.html", message="Please log in to access your feed.", warning=True)
 
 # Status: DONE
+# Routes to leaderboard - displays top ten users based on their totalValue
 @app.route("/leaderboard")
 def leaderboard():
     leaderboard = transactions.get_leaderboard()
     #print "LEADER: ", leaderboard
     return render_template("leaderboard.html", leaders_list = leaderboard)
 
-# Status: Unknown
+# Status: DONE
+# Page for choosing stocks to buy
 @app.route("/transaction")
 def transaction():
     return render_template("transaction.html")
 
-# Status: Unknown
+# Status: DONE
+# Route for handling transactions after user has chosen stock and quantity
 @app.route("/transact", methods=['POST'])
 def transact():
     name = request.form["searched_stock_name"]
@@ -171,7 +173,8 @@ def transact():
         flash("Insufficient funds.")
         return redirect(url_for("account"))
 
-# Status: Unknown
+# Status: DONE
+# Route for retrieving stock prices
 @app.route("/get_stock_price", methods=['POST'])
 def get_stock_price():
     stock_name = request.form["stock"]
@@ -184,12 +187,8 @@ def get_stock_price():
     #print to_ret
     return to_ret
 
-# Status: Incomplete
-@app.route("/confirmation")
-def confirmation():
-    return render_template("stats.html", message="Congratulations! Your transaction was successful! You may be one step closer to becoming rich!", good=True)
-
-# Status: Incomplete
+# Status: DONE
+# Route for logging out
 @app.route("/logout",methods=['POST','GET'])
 def logout():
     if 'username' in session:
