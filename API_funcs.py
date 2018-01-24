@@ -1,12 +1,15 @@
 import urllib2, json
 
-stock_name = "GOOG"
+File = open("av_key.txt", "r")
+key = File.read()
+File.close()
 
-key = "I47O8J6SBM5S3302"
-nkey = "be357bbe74684a12baca0fd3080c112f"
+File = open("news_key.txt", "r")
+nkey = File.read()
+File.close()
 
 def get_data(stock_name, key):
-    url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + stock_name + "&interval=1min&apikey=" + stock_name #"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock_name + "&interval=1min&apikey=I47O8J6SBM5S3302"
+    url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + stock_name + "&interval=1min&apikey=" + stock_name #"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock_name + "&interval=1min&apikey="
     data = urllib2.urlopen(url)
     #print data.geturl()
     #print data.info()

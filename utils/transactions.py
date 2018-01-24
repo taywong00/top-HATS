@@ -10,7 +10,7 @@ f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 tz=pytz.timezone('America/New_York')
-key = "I47O8J6SBM5S3302"
+
 
 # Helper Functions ----------------------------------------------------------
 # GIVEN the stock name RETURN the current price of stock
@@ -18,7 +18,7 @@ key = "I47O8J6SBM5S3302"
 # Use: to get most recent price of a stock
 def getStockPrice(stock):
     price = -1
-    d = API_funcs.get_data(stock, key)
+    d = API_funcs.get_data(stock)
     now = datetime.datetime.now(tz)
     #print now
     #print now.hour
@@ -30,7 +30,7 @@ def getStockPrice(stock):
     return price
 
 def getHigh(stock):
-    d = API_funcs.get_data(stock, key)
+    d = API_funcs.get_data(stock)
     now = datetime.datetime.now(tz)
     #print now
     if now.hour < 9:
@@ -41,7 +41,7 @@ def getHigh(stock):
     return high
 
 def getLow(stock):
-    d = API_funcs.get_data(stock, key)
+    d = API_funcs.get_data(stock)
     now = datetime.datetime.now(tz)
     #print now
     if now.hour < 9:
@@ -303,5 +303,3 @@ def stock_val(user_id):
 
 def total_val(user_id):
    return stock_val(user_id)+float(get_balance(user_id))
-
-

@@ -122,10 +122,12 @@ def sell():
     #print stock
     workd = transactions.sell(eyedee, stock[0], num_stock, transactions.getStockPrice(stock[0]))
     if workd > 0:
-        return render_template("account.html", message="Sale successful!", good=True)
+        flash("Sale successful!")
+        return redirect(url_for("account"))
 
     else:
-        return render_template("account.html", message="Sale error.", good=False)
+        flash("Sale error.")
+        return redirect(url_for("account"))
 
 # Status: DONE - except better design needed
 @app.route("/feed")
@@ -165,9 +167,11 @@ def transact():
     #print num_stock
     worked = transactions.buy(session.get("username"), name, num_stock, price)
     if(worked > 0):
-        return render_template("account.html", message="Bought stock!", good=True)
+        flash("Purchase successful!")
+        return redirect(url_for("account"))
     else:
-        return render_template("account.html", message="Sorry, looks like you have insufficient funds to complete this transaction.", good=False)
+        flash("Insufficient funds.")
+        return redirect(url_for("account"))
 
 # Status: Unknown
 @app.route("/get_stock_price", methods=['POST'])
