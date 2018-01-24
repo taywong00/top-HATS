@@ -289,7 +289,7 @@ def stock_val(user_id):
     if len(holdings)>0:
         holdings=holdings[0][0]
         holdings=holdings.split("\n")
-        for i in range(len(holdings)):
+        for i in range(len(holdings)[0:-1]):
             holdings[i]=holdings[i].split(",")
             price=float(getStockPrice(holdings[i][0]))
             value=price*float(holdings[i][1])
