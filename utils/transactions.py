@@ -1,6 +1,7 @@
 # Team top_HATS
-# Holden, Adam, Taylor, Samantha - pd7
-# Methods used in transactions
+# Holden Higgins, Adam Abbas, Taylor Wong, Samantha Ngo
+# SoftDev1 pd7
+# P#02 -- This Is the End
 
 import sqlite3, json, datetime # database functions
 from datetime import timedelta
@@ -10,7 +11,6 @@ f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 tz=pytz.timezone('America/New_York')
-
 
 # Helper Functions ----------------------------------------------------------
 # GIVEN the stock name RETURN the current price of stock

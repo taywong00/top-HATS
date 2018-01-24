@@ -1,8 +1,7 @@
 # Team top_HATS
 # Holden Higgins, Adam Abbas, Taylor Wong, Samantha Ngo
 # SoftDev1 pd7
-# P0# --
-# 2018-01-02
+# P#02 -- This Is the End
 
 import os
 from flask import Flask, render_template, request, session

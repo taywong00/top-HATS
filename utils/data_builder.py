@@ -1,3 +1,8 @@
+# Team top_HATS
+# Holden Higgins, Adam Abbas, Taylor Wong, Samantha Ngo
+# SoftDev1 pd7
+# P#02 -- This Is the End
+
 import sqlite3
 import random   #enable control of a sqlite database
 import csv       #facilitates CSV I/O
