@@ -26,8 +26,8 @@ var search_stock = function( e ) {
     var clear = document.getElementById("searched_stock_price");
     var button = document.getElementById("buy");
     var field = document.getElementByID("num_stock");
-    errorMess.innerHTML = "Invalid Ticker!";
-    clear.innerHTMl = "";
+    errorMess.value = "Invalid Ticker!";
+    clear.value = "";
     button.style.display = "none";
     field.style.display = "inline";
   }
