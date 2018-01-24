@@ -10,16 +10,19 @@
     <title>{% block title %} {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"-->
 
     <!-- Custom styles for this template -->
     <link href="../static/css/starter-template.css" rel="stylesheet">
-    <link href="../static/css/styles.css" rel="stylesheet">
+    <!--link href="../static/css/styles.css" rel="stylesheet"-->
+    <!--link href="../static/css/jumbotron.css" rel="stylesheet"-->
     <!--link href="../static/css/form.css" rel="stylesheet"-->
 
     <!-- Fonts and Icons -->
-    <link href="../static/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link href="../static/css/open-iconic.css" rel="stylesheet">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
 
   </head>
 
@@ -79,9 +82,15 @@
       {% endif %}
   	</center>
 
+    <main role="main" class="container">
+
     {% block content %}
 
+    <!-- ENTER EACH PAGES CONTENT-->
+
     {% endblock %}
+
+    </main> <!-- /.container -->
 
     <footer class="footer">
       <center>

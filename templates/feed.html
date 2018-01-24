@@ -6,11 +6,7 @@ News Feed | STOK
 
 {% block content %}
 
-    <main role="main" class="container">
-
-
-
-      <div class="starter-template">
+<br>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             {% for message in messages %}
@@ -18,22 +14,43 @@ News Feed | STOK
             {% endfor %}
           {% endif %}
         {% endwith %}
-        <h1>Welcome to STOK!</h1>
-        <p class="lead">
 
- 			<h1> The Latest Finance News! </h1>
-			<p> <a href={{u1}}>{{headline}}</a> </p>
-      <p> <a href={{u2}}>{{headlinet}}</a> </p>
-      <p> <a href={{u3}}>{{headlineth}}</a> </p>
-
-        </p>
-
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Welcome to STOK!</h1>
+        <p>STOK is a stock market simulation game based on real-time stock prices. Indulge in all the satisfaction of making real money without the risk of losing it and get experience making money in financial markets to prepare yourself for the real thing. Buy and sell to earn your way to the top of the leaderboard!</p>
+        <p><a class="btn btn-primary btn-lg" href="/account" role="button">Start trading now &raquo;</a></p>
+      </div>
     </div>
 
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <h1>The Latest Finance News!</h1>
+      </div>
+    </div>
 
+<br>
 
-      <!-- ENTER EACH PAGES CONTENT-->
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h3>{{headline}}</h3>
+          <br>
+          <p><a class="btn btn-secondary" href={{u1}} role="button">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h3>{{headlinet}}</h3>
+          <br>
+          <p><a class="btn btn-secondary" href={{u3}} role="button">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h3>{{headlineth}}</h3>
+          <br>
+          <p><a class="btn btn-secondary" href={{u3}} role="button">Learn more &raquo;</a></p>
+        </div>
+      </div>
+    </div> <!-- /container -->
 
-    </main><!-- /.container -->
 
     {% endblock %}
