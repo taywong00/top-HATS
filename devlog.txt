@@ -224,3 +224,6 @@ Hashed passwords now being used-- credit: Python Central
 
 holdenH -- 2018-01-23 9:10:23
 Fixed error with buying re: balance, removed duplicate functions, added accessor for holdings, fixed error prohibiting sell all, deleted bad accounts, fixed error with sell parsing, fixed error with inability to sell partial shares, fixed password hashing(no longer from Python Central, just pure top-HATS hashing), modified table to allow for avatar storage, added timezones so app can be run anywhere, turned digitalOcean droplet into server which runs app, added functions to change name and password, to get transaction history, to get value of stocks and refresh holdings values and to get total value of a users holdings+cash, fixed cookie error that generated new private keys instead of keeping the same one, fixed jinja error that made only first stock sellable, fixed caps error that recorded stocks differently based on how you typed to buy them.
+
+adamA -- 2018-01-24 10:33:12
+Fixed issue with sell rendering a template instead of properly redirecting
