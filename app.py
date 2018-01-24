@@ -107,8 +107,7 @@ def account():
         pfp = data_builder.get_pic_num(transactions.get_id(user))
         return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp)
     else:
-        flash("Please log in to see your account.")
-        return redirect("/")
+        return render_template("home.html", message="Please log in to see your account.", warning= True)
 
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
@@ -123,10 +122,10 @@ def sell():
     #print stock
     workd = transactions.sell(eyedee, stock[0], num_stock, transactions.getStockPrice(stock[0]))
     if workd > 0:
-        flash("Sale successful!")
+        return render_template("account.html", message="Sale successful!", good=True)
+
     else:
-        flash("Sale error.")
-    return redirect("/account")
+        return render_template("account.html", message="Sale error.", good=False)
 
 # Status: DONE - except better design needed
 @app.route("/feed")
@@ -137,8 +136,7 @@ def feed():
         #print articles
         return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
     else:
-        flash("Please log in to access your feed.")
-        return redirect(url_for('login'))
+        return render_template("home.html", message="Please log in to access your feed.", warning=True)
 
 # Status: DONE
 @app.route("/leaderboard")
@@ -167,10 +165,9 @@ def transact():
     #print num_stock
     worked = transactions.buy(session.get("username"), name, num_stock, price)
     if(worked > 0):
-        flash("Bought stock!")
+        return render_template("account.html", message="Bought stock!", good=True)
     else:
-        flash("Insufficient funds.")
-    return redirect((url_for("account")))
+        return render_template("account.html", message="Sorry, looks like you have insufficient funds to complete this transaction.", good=False)
 
 # Status: Unknown
 @app.route("/get_stock_price", methods=['POST'])
