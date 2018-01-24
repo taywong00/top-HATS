@@ -197,3 +197,6 @@ Buy now works(had to overcome a multitude of typing issues as well as converting
 
 adamA -- 2018-01-23 20:50:10
 Account page now shows balance
+
+adamA -- 2018-01-23 21:00:01
+Message flashing after making a transaction is good to go!
