@@ -4,7 +4,7 @@
 
 import sqlite3, json, datetime   # database functions
 import API_funcs
-f = "../data/traders.db"
+f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
 # Helper Functions ----------------------------------------------------------
@@ -17,7 +17,7 @@ def getStockPrice(stock):
     d = API_funcs.get_data(stock, key)
     dt = datetime.datetime.now().date()
     #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
-    print d
+    #print d
     #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
     # ---------
@@ -43,7 +43,7 @@ def get_leaderboard():
     for line in x:
         print "     0: ", line[0]
         print "     1: ", line[1]
-    x = c.execute(command)   
+    x = c.execute(command)
     '''
     for line in x:
         if counter <= 10:
@@ -52,7 +52,7 @@ def get_leaderboard():
             # print "1: ", line[1]
             leaderboard[counter] = line[0]
             # leaderboard[line[0]] = counter
-            counter += 1  
+            counter += 1
         else:
             break
     return leaderboard
@@ -60,33 +60,56 @@ def get_leaderboard():
 # print "LEADERBOARD: "
 # print get_leaderboard()
 
-def buy(user_id, stock_name, num_of, price):
-    num_of=abs(num_of)
-    price = price * num_of
-    if(get_balance(user_id) >= price):
-        price *= -1
-        add_transaction(user_id, stock_name, num_of, one_stock)
-        update_portfolio(user_id, stock_name, num_of, one_stock)
-        adjust_money(user_id, price)
-        return price
+def get_id(username):
+    if username:
+        db = sqlite3.connect(f) #open if f exists, otherwise create
+        c = db.cursor()    #facilitate db ops
+        command="""SELECT id
+        FROM users
+        WHERE name='"""+username+"'"
+        c.execute(command)
+        _id=c.fetchall()[0][0]
+        #print _id
+        db.close()
+        return int(_id)
+    else:
+        print "\n\n\n\n\n-------------------------------------------------------"
+        return -1
+
+def buy(username, stock_name, num_of, price):
+    #print username
+    #print "\n\n\n\n\n-------------------------------------------------------"
+    user_id= get_id(username)
+    num_of=abs(float(num_of))
+    #print "\n\n\n\n\n-------------------------------------------------------"
+    price=float(price)
+    price_total = price * num_of
+    if(get_balance(user_id) >= price_total):
+        add_transaction(user_id, stock_name, num_of, price)
+        update_portfolio(user_id, stock_name, num_of, price)
+        adjust_money(user_id, price_total)
+        return price_total
     else:
         return -1
 
 #testers
 #buy(123,'GOOG',10)
 
-def sell(user_id, stock_name, num_of):
-    one_stock = getStockPrice(stock_name)
-    num_of=abs(num_of)
-    price = one_stock * num_of
+def sell(username, stock_name, num_of, price):
+    user_id= get_id(username)
+    num_of=abs(float(num_of))
+    price=float(price)
+    price_total = price * num_of
     num_of*=-1
     if(check_portfolio(user_id, stock_name, num_of)):
-        add_transaction(user_id, stock_name, num_of, one_stock)
-        update_portfolio(user_id, stock_name, num_of, one_stock)
-        adjust_money(user_id, price)
-        return "Sold."
+        add_transaction(user_id, stock_name, num_of, price)
+        update_portfolio(user_id, stock_name, num_of, price)
+        adjust_money(user_id, price_total)
+        print "Sold."
+        return price_total
     else:
-        return "Sale error. Transaction cancelled"
+        print "Sale error. Transaction cancelled"
+        return -1
 
 def get_balance(user_id):
     #f = "../data/traders.db"
@@ -94,7 +117,8 @@ def get_balance(user_id):
     c = db.cursor()    #facilitate db ops
     command="""SELECT money
     FROM users
-    WHERE id="""+str(user_id)+";"
+    WHERE id="""+str(user_id)
+    print command
     c.execute(command)
     balance=c.fetchone()[0]
     db.commit()
@@ -102,7 +126,7 @@ def get_balance(user_id):
     return balance
 
 def adjust_money(user_id, amt):
-    og_mons=get_balance(user) # Original amount of money
+    og_mons=get_balance(user_id) # Original amount of money
     db = sqlite3.connect(f)
     c = db.cursor()
     if((og_mons + amt)<0):
@@ -138,7 +162,7 @@ def check_portfolio(user_id, stock, amount):
                 has_stock=stk
         if not has_stock:
             return False #does not own
-        elif not int(has_stock[1])>abs(amount):
+        elif not float(has_stock[1])>abs(amount):
             return False #does not have enough
         else:
             return True
@@ -198,9 +222,9 @@ def update_portfolio(user_id, stock, amount, price):
             holdings[i]=holdings[i].split(",")
             if holdings[i][0]==stock:
                 has_stock=True
-                holdings[i][1]=int(holdings[i][1])+amount
+                holdings[i][1]=float(holdings[i][1])+amount
                 holdings[i][2]=price
-                holdings[i][3]=int(holdings[i][1])*price
+                holdings[i][3]=float(holdings[i][1])*price
                 holdings[i][4]=time
                 break
         #if stock is not found in holdings
