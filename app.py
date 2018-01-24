@@ -13,7 +13,7 @@ import json
 #from util import
 
 app = Flask (__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = "RpdMo7f9KTwLwkKlP2UrNiSG96Hby7NV"
 
 # HOMEPAGE: brief description and two buttons--"Login" or "Create an account"
 @app.route("/")
