@@ -72,7 +72,6 @@ My Account | STOK
               Current Price
             </th>
           </tr>
-          {% if stock_entry in stocks %}
             {% for stock_entry in stocks %}
             <tr>
               {% for entry in stock_entry %}
@@ -91,14 +90,6 @@ My Account | STOK
                 </form>
             </tr>
             {% endfor %}
-          {% else %}
-          <tr>
-              <td>
-                No information to be displayed.
-              </td>
-              <td></td><td></td><td></td><td></td><td></td>
-          </tr>
-          {% endif %}
 
         </table>
         <a href="/transaction" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Make a Transaction</a>
