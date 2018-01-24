@@ -254,3 +254,6 @@ Fixed error with buying re: balance, removed duplicate functions, added accessor
 
 taylorW -- 2018-01-24 09:16:51
 Changed all regular flashed messages to alert flash messages
+
+adamA -- 2018-01-24 10:33:12
+Fixed issue with sell rendering a template instead of properly redirecting
