@@ -6,13 +6,10 @@ Welcome to STOK! | STOK
 
 {% block content %}
 
-    <main role="main" class="container">
-
+  <div class="container">
       <div class="starter-template">
         <h1>Welcome to STOK!</h1>
         <p class="lead">
-
-
         </p>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -22,17 +19,23 @@ Welcome to STOK! | STOK
           {% endif %}
         {% endwith %}
 
+        <div class="container">
+          <div class="row justify-content-center">
+            <form class="form-signin" action='login' method="POST">
+              <img class="mb-4" src="https://d30y9cdsu7xlg0.cloudfront.net/png/196630-200.png" alt="" width="72" height="72">
+              <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+              <label for="inputEmail" class="sr-only">Username</label>
+              <input type="text" id="inputEmail" class="form-control" placeholder="Email address" name="username" required autofocus>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 
-        <h4>Let's get started!</h4>
+              <button class="btn btn-lg btn-primary btn-block" type="submit" value="Login" name="login">Log In</button>
+            </form>
+          </div>
 
-        <a href="/login" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Log In</a>
-        <a href="/signup_page" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Sign Up</a>
       </div>
+    </div>
+  </dv>
 
-
-
-      <!-- ENTER EACH PAGES CONTENT-->
-
-    </main><!-- /.container -->
 
     {% endblock %}
