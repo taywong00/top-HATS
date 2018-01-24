@@ -193,10 +193,11 @@ def add_transaction(user_id, stock, amount, price):
 def stringify(holdings):
     new_holdings=""
     for stock in holdings:
-        for val in stock:
-            if str(val):
-                new_holdings+=str(val)+","
-        new_holdings+="\n"
+        if len(stock)>1:
+            for val in stock:
+                if len(str(val))>0:
+                    new_holdings+=str(val)+","
+            new_holdings+="\n"
     return new_holdings
 
 #updates holdings to reflect purchase or sale
