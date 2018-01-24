@@ -218,3 +218,6 @@ Can now sell a user selected amount of stock! Invalid ticker message now display
 
 adamA -- 2018-01-24 01:16:48
 Searching a stock now displays the high and low values
+
+samanthaN -- 2018-01-24 02:50:41
+Hashed passwords now being used-- credit: Python Central

@@ -1,5 +1,28 @@
 import sqlite3, random
+import uuid, hashlib
 
+# Credit: Python Central
+def hash_password(password):
+    # uuid is used to generate a random number
+    salt = uuid.uuid4().hex
+    return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
+
+# Credit: Python Central    
+def check_password(hashed_password, user_password):
+    password, salt = hashed_password.split(':')
+    return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
+
+''' Testing Functions
+new_pass = "Popcorn"
+hashed_password = hash_password(new_pass)
+print('The string to store in the db is: ' + hashed_password)
+old_pass = "Popcor"
+if check_password(hashed_password, old_pass):
+    print('You entered the right password')
+else:
+    print('I am sorry but the password does not match')
+'''
+    
 def get_users():
     f = "data/traders.db"
     db = sqlite3.connect(f)
@@ -20,8 +43,6 @@ def create_user(name, hashed_pword):
     c.execute(command)
     db.commit()
     db.close
-
-
 
 def add_friend(user_id, friend_id):
     f = "../data/traders.db"

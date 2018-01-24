@@ -7,7 +7,8 @@
 import os
 from flask import Flask, render_template, request, session
 from flask import redirect, flash, url_for
-from utils import transactions, auth, data_builder, API_funcs
+from utils import transactions, data_builder, API_funcs
+import auth
 import json
 #from util import
 
@@ -41,7 +42,7 @@ def login():
         # checks credentials for login
         users = data_builder.getUsers()
         if username in users:
-            if password == users[username]:
+            if auth.check_password(auth.hash_password(password), users[username]):
                 session['username'] = username
                 return redirect(url_for('feed'))
             else:
@@ -78,7 +79,7 @@ def create_account():
         if password1 != password2:
             return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = False)
         else:
-            password = password1
+            password = auth.hash_password(password1)
         return data_builder.create_user(username, password)
     else:
         return render_template("signup.html")
