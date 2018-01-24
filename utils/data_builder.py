@@ -13,7 +13,7 @@ def make_tables():
     c = db.cursor()    #facilitate db ops
     command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
     #friends is stored in form of a csv list of IDs
-    #holdings is stored as a list as follows: <SYMBL>,<AMNT>\n...
+    #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     c.execute(command)
     db.commit()
@@ -44,7 +44,7 @@ def getUsers():
     command = "SELECT password, name FROM users"
     #command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
     #friends is stored in form of a csv list of IDs
-    #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<TIME_OF_LAST_SALE>\n...
+    #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     x = c.execute(command)
     #print "X: ", x
@@ -123,6 +123,28 @@ def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
     else:
         return "failure"
 
+#holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
+#transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
+def get_holdings(user_id):
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()    #facilitate db ops
+    command="SELECT holdings FROM users WHERE id='"+str(user_id)+"'"
+    c.execute(command)
+    holdings=c.fetchall()
+    db.close()
+    #if holdings is not null
+    if len(holdings)>0:
+        holdings=holdings[0][0]
+        holdings=holdings.split("\n")
+        for i in range(len(holdings)):
+            holdings[i]=holdings[i].split(",")[0:-1]
+        holdings=holdings[0:-1]
+    else:
+        holdings=[['',0,0,0,0]]
+    return holdings
+
+print get_holdings(801266)
+
 
 #"CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"
 #add_friend('996401703','000')
@@ -142,5 +164,6 @@ addUser("Orange", "Juice", "medium")
 addUser("Scrambled", "Eggs", "hard")
 addUser("ice", "cream", "hard")
 #"""
+
 #display_tables()
 #print getUsers()
