@@ -203,3 +203,6 @@ Message flashing after making a transaction is good to go!
 
 adamA -- 2018-01-23 22:05:46
 Portfolio now displays on accounts page (stocks you currently own)
+
+samanthaN -- 2018-01-23 22:23:40
+Added balances to leaderboard
