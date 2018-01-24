@@ -180,14 +180,17 @@ Edited path to database in data_builder and transactions so it works from app.py
 adamA -- 2018-01-22 20:25:13
 Changed the search stock page, results are now displayed on a readonly form element so as to be passed to app.py. Minor changes to buy function. Should now successfully perform a buy!
 
-samanthaN -- 2018-02-23 00:02:33
-Login system working and should not expect any errors; STOK homepage still shows "Sign up" and "Login" buttons even though a user is signed in. Beginning work on profiles. 
+samanthaN -- 2018-01-23 00:02:33
+Login system working and should not expect any errors; STOK homepage still shows "Sign up" and "Login" buttons even though a user is signed in. Beginning work on profiles.
 
-samanthaN -- 2018-02-23 16:20:01
+samanthaN -- 2018-01-23 16:20:01
 Rerouted "My Stats & Stocks" button to go to "My Account" Page-- we will now be displaying stats and stocks on the my account/profile page bc there aren't a lot of profile aspects to display.
 
-samanthaN -- 2018-02-23 17:04:22
+samanthaN -- 2018-01-23 17:04:22
 We now have a working get_leaderboard() function-- working on linking it to leaderboard"
 
-samanthaN -- 2018-02-23 17:19:34
+samanthaN -- 2018-01-23 17:19:34
 Leaderboard is working
+
+holdenH -- 2018-01-23 20:41:12
+Buy now works(had to overcome a multitude of typing issues as well as converting uname to uid so functions will work). Still seeing issues with displaying balance and portfolio.
