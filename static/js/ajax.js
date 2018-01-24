@@ -12,11 +12,11 @@ var search_stock = function( e ) {
       console.log(response["price"]);
       stockName = document.getElementById("searched_stock_name");
       var nameVal = "Stock: " + response["name"];
-      stockName.display = "inline"
+      stockName.style.display = "inline"
       stockName.value = nameVal;
       stockPrice = document.getElementById("searched_stock_price");
       var priceVal = "Price: " + response["price"];
-      stockPrice.display = "inline"
+      stockPrice.style.display = "inline"
       stockPrice.value = priceVal;
       var button = document.getElementById("buy");
       button.style.display = "inline";
@@ -29,9 +29,9 @@ var search_stock = function( e ) {
     var button = document.getElementById("buy");
     var field = document.getElementByID("num_stock");
     errorMess.value = "Invalid Ticker!";
-    errorMess.display = "none"
+    errorMess.style.display = "none"
     clear.value = "";
-    clear.display = "none"
+    clear.style.display = "none"
     button.style.display = "none";
     field.style.display = "inline";
   }

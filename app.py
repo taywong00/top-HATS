@@ -96,11 +96,13 @@ def how_to():
 @app.route("/account", methods=['GET', 'POST'])
 def account():
     if session.get('username'):
-        stocks = holdens_function!
-        for stock in stocks:
-            stock.append(getStockPrice(stock[i]))
-
         user = session.get("username")
+        stocks = data_builder.get_holdings(transactions.get_id(user))
+        print stocks
+        for stock in stocks:
+            print stock
+            stock.append(transactions.getStockPrice(stock[0]))
+            print stock
         # Get User Balance
         # balance =
         # #moneyz = transactions.get_balance(user)
