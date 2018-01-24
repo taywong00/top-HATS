@@ -289,12 +289,13 @@ def stock_val(user_id):
     if len(holdings)>0:
         holdings=holdings[0][0]
         holdings=holdings.split("\n")
-        for i in range(len(holdings)[0:-1]):
-            holdings[i]=holdings[i].split(",")
-            price=float(getStockPrice(holdings[i][0]))
-            value=price*float(holdings[i][1])
-            holdings[i][3]=value
-            total_val+=value
+        for i in range(len(holdings)):
+            if len(holdings[i][0])>0:
+                holdings[i]=holdings[i].split(",")
+                price=float(getStockPrice(holdings[i][0]))
+                value=price*float(holdings[i][1])
+                holdings[i][3]=value
+                total_val+=value
         new_holdings=stringify(holdings)
         command="UPDATE users SET holdings='"+new_holdings+"' WHERE id='"+str(user_id)+"'"
         c.execute(command)
