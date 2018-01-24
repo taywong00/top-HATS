@@ -215,3 +215,6 @@ Fixed a bug where if the market wasn't open searching up a stock wouldn't work b
 
 adamA -- 2018-01-24 00:19:34
 Can now sell a user selected amount of stock! Invalid ticker message now displays
+
+adamA -- 2018-01-24 01:16:48
+Searching a stock now displays the high and low values
