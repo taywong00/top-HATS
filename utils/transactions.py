@@ -19,10 +19,10 @@ def getStockPrice(stock):
     price = -1
     d = API_funcs.get_data(stock, key)
     now = datetime.datetime.now()
-    print now
+    #print now
     if now.hour < 9:
         now = now - timedelta(days=1)
-        print now
+        #print now
     dt = now.date()
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
     return price
@@ -30,7 +30,7 @@ def getStockPrice(stock):
 def getHigh(stock):
     d = API_funcs.get_data(stock, key)
     now = datetime.datetime.now()
-    print now
+    #print now
     if now.hour < 9:
         now = now - timedelta(days=1)
         print now
@@ -41,10 +41,10 @@ def getHigh(stock):
 def getLow(stock):
     d = API_funcs.get_data(stock, key)
     now = datetime.datetime.now()
-    print now
+    #print now
     if now.hour < 9:
         now = now - timedelta(days=1)
-        print now
+        #print now
     dt = now.date()
     low = d["Time Series (Daily)"][str(dt)]["3. low"]
     return low
@@ -101,7 +101,7 @@ def get_id(username):
         db.close()
         return int(_id)
     else:
-        print "\n\n\n\n\n-------------------------------------------------------"
+        #print "\n\n\n\n\n-------------------------------------------------------"
         return -1
 
 def buy(username, stock_name, num_of, price):
@@ -147,7 +147,7 @@ def get_balance(user_id):
     command="""SELECT money
     FROM users
     WHERE id="""+str(user_id)
-    print command
+    #print command
     c.execute(command)
     balance=c.fetchone()[0]
     db.commit()
@@ -192,6 +192,7 @@ def check_portfolio(user_id, stock, amount):
             print "missing"
             return False #does not own
         elif not float(has_stock[1])>=abs(amount):
+            print has_stock
             print "poor"
             return False #does not have enough
         else:
@@ -199,8 +200,6 @@ def check_portfolio(user_id, stock, amount):
     else:
         print "nada"
         return False
-
-#print check_portfolio(933041681,'KX',1)
 
 #adds transaction to transactions (history)
 #for sale amount is negative
@@ -267,7 +266,7 @@ def update_portfolio(user_id, stock, amount, price):
        new_stock=[[stock,amount,price,amount*price,time]]
        holdings+=new_stock
     new_holdings=stringify(holdings)
-    print new_holdings
+    #print new_holdings
     command="UPDATE users SET holdings='"+new_holdings+"' WHERE id='"+str(user_id)+"'"
     c.execute(command)
     db.commit()

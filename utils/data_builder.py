@@ -2,16 +2,17 @@ import sqlite3
 import random   #enable control of a sqlite database
 import csv       #facilitates CSV I/O
 import os #Used for os.remove()
+import hashlib
 from flask import url_for, redirect, flash, render_template
 
 f = "data/traders.db"
-#####os.remove(f) #Used During Testing to remove file at the beginning
+####os.remove(f) #Used During Testing to remove file at the beginning
 
 def make_tables():
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
-    command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
+    command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT, picture INTEGER)"
     #friends is stored in form of a csv list of IDs
     #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
@@ -53,7 +54,7 @@ def getUsers():
         users[line[1]] = line[0]
     return users
 
-def create_user(username, password):
+def create_user(username, password,img_num):
     if username in getUsers():
         print "Username already taken."
         return render_template('signup.html', message = 'Username already taken. Please choose a different one.', good = False)
@@ -63,8 +64,9 @@ def create_user(username, password):
         _id=random.randint(0,1000000)
         while check_id(_id):
             _id=random.randint(0,1000000)
-        command = "INSERT INTO users VALUES("+str(_id)+", '" + password + "', '" + username + "', 100000, '','','');"
-        print command
+        password=hashlib.sha256(str(_id) + password).hexdigest()
+        command = "INSERT INTO users VALUES("+str(_id)+", '" + password + "', '" + username + "', 100000, '','','',"+str(img_num)+")"
+        #print command
         c.execute(command)
         db.commit()
         db.close()
@@ -83,17 +85,6 @@ def check_id(num):
     else:
         return True
 
-'''
-def create_user(name, hashed_pword):
-    f = "../data/traders.db"
-    db = sqlite3.connect(f) #open if f exists, otherwise create
-    c = db.cursor()    #facilitate db ops
-    command= "INSERT INTO users VALUES("+str(random.randint(0,1000000000))+",'"+hashed_pword+"','"+name+"',100000,'','','')"
-    c.execute(command)
-    db.commit()
-    db.close
-'''
-
 def add_friend(user_id, friend_id):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -105,16 +96,6 @@ def add_friend(user_id, friend_id):
     #append list and replace
     db.commit()
 
-def change_pass(user_id, old_pass, new_pass_1, new_pass_2):
-    #f = "../data/traders.db"
-    db = sqlite3.connect(f) #open if f exists, otherwise create
-    c = db.cursor()    #facilitate db ops
-    #get password from user
-    if old_pass==pword and new_pass_1==new_pass_2:
-        #set new pass as pword in db
-        return "success"
-    else:
-        return "failure"
 
 #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
 #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
@@ -149,13 +130,13 @@ try:
     make_tables()
 except:
     print "Table already created"
-addUser("pumpkin", "pie", "easy")
-addUser("pumpkin", "pie", "easy")
-addUser("Mickey", "Mouse", "easy")
-addUser("Frank", "Sinatra", "medium")
-addUser("Orange", "Juice", "medium")
-addUser("Scrambled", "Eggs", "hard")
-addUser("ice", "cream", "hard")
+create_user("pumpkin", "pie",1)
+create_user("pumpkin", "pie",1)
+create_user("Mickey", "Mouse",1)
+create_user("Frank", "Sinatra",1)
+create_user("Orange", "Juice",1)
+create_user("Scrambled", "Eggs",1)
+create_user("ice", "cream",1)
 #"""
 
 #display_tables()

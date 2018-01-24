@@ -19,7 +19,7 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 def home():
     if session.get('username'):
-        print session.get("username")
+        #print session.get("username")
         return redirect("/feed")
     else:
         return render_template("home.html")
@@ -28,21 +28,21 @@ def home():
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    print "REQUEST: ", request.form.get("login")
+    #print "REQUEST: ", request.form.get("login")
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
         return redirect('/feed')
     # user entered login form
     elif request.form.get("login") == "Login":
         username = request.form.get("username").strip()
-        print "USERNAME: ", username
+        #print "USERNAME: ", username
         password = request.form.get("password")
-        print "PASSWORD: ", password
+        #print "PASSWORD: ", password
 
         # checks credentials for login
         users = data_builder.getUsers()
         if username in users:
-            if auth.check_password(auth.hash_password(password), users[username]):
+            if auth.check_password(username, password):
                 session['username'] = username
                 return redirect(url_for('feed'))
             else:
@@ -71,16 +71,15 @@ def create_account():
     # If the user clicks Create Account
     elif request.form.get("create_account") == "Create Account":
         username = request.form.get("username").strip()
-        print "U: ", username
+        #print "U: ", username
         password1 = request.form.get("password1")
-        print "P1: ", password1
+        #print "P1: ", password1
         password2 = request.form.get("password2")
-        print "P2: ", password2
+        #print "P2: ", password2
         if password1 != password2:
             return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = False)
         else:
-            password = auth.hash_password(password1)
-        return data_builder.create_user(username, password)
+            return data_builder.create_user(username, password1,1)#image is hardcoded
     else:
         return render_template("signup.html")
 
@@ -97,7 +96,7 @@ def account():
     if session.get('username'):
         user = session.get("username")
         stocks = data_builder.get_holdings(transactions.get_id(user))
-        print stocks
+        #print stocks
         for stock in stocks:
             stock.append(transactions.getStockPrice(stock[0]))
         # Get User Balance
@@ -112,20 +111,20 @@ def account():
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
     user = session.get("username")
-    print user
+    #print user
     stock_ind = int(request.form["ind"])
     num_stock = int(request.form["num"])
-    print num_stock
+    #print num_stock
     eyedee = transactions.get_id(user)
     stocks = data_builder.get_holdings(eyedee)
     stock = stocks[stock_ind]
-    print stock
+    #print stock
     workd = transactions.sell(eyedee, stock[0], num_stock, transactions.getStockPrice(stock[0]))
     if workd > 0:
-        flash("Sell successful!")
+        flash("Sale successful!")
     else:
-        flash("Sell error.")
-    return redirect("/feed")
+        flash("Sale error.")
+    return redirect("/account")
 
 # Status: DONE - except better design needed
 @app.route("/feed")
@@ -133,7 +132,7 @@ def feed():
     if session.get("username"):
         articles = API_funcs.get_headlines("business")
         urls = API_funcs.get_URLS("business")
-        print articles
+        #print articles
         return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
     else:
         flash("Please log in to access your feed.")
@@ -143,7 +142,7 @@ def feed():
 @app.route("/leaderboard")
 def leaderboard():
     leaderboard = transactions.get_leaderboard()
-    print "LEADER: ", leaderboard
+    #print "LEADER: ", leaderboard
     return render_template("leaderboard.html", leaders_list = leaderboard)
 
 # Status: Unknown
@@ -161,15 +160,15 @@ def transact():
     price = price.split(" ")
     name = name[1]
     price = price[1]
-    print name
-    print price
-    print num_stock
+    #print name
+    #print price
+    #print num_stock
     worked = transactions.buy(session.get("username"), name, num_stock, price)
     if(worked > 0):
         flash("Bought stock!")
     else:
         flash("Insufficient funds.")
-    return redirect((url_for("home")))
+    return redirect((url_for("account")))
 
 # Status: Unknown
 @app.route("/get_stock_price", methods=['POST'])

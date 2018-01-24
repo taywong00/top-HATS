@@ -27,10 +27,10 @@ My Account | STOK
                 <td><center>{{balance}} </center></td>
               </tr>
 
-            <!--  <tr>
-                <th><center> Date Joined: </center></th>
-                <td><center> {{date_joined}} January 2018 </center></td>
-              </tr>-->
+              <!--  <tr>
+                   <th><center> Date Joined: </center></th>
+                   <td><center> {{date_joined}} January 2018 </center></td>
+                   </tr>-->
             </table>
             <table style="text-align:center;padding:20px; border: 3px;">
               <tr>
@@ -53,7 +53,6 @@ My Account | STOK
                   CURRENT PRICE
                 </th>
               </tr>
-              {% set ctr = 0 %}
               {% for stock_entry in stocks %}
                 <tr>
                   {% for entry in stock_entry %}
@@ -67,10 +66,9 @@ My Account | STOK
                       </td>
 
                       <td>
-                      <button type="submit" name="ind" method="GET" value= {{ctr}}> Sell!</button>
+                        <button type="submit" name="ind" method="GET" value= {{loop.index0}}> Sell!</button>
                       </td>
                     </form>
-                  {% set ctr = ctr + 1 %}
                 </tr>
               {% endfor %}
               {% with messages = get_flashed_messages() %}
