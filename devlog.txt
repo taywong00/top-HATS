@@ -200,3 +200,6 @@ Account page now shows balance
 
 adamA -- 2018-01-23 21:00:01
 Message flashing after making a transaction is good to go!
+
+adamA -- 2018-01-23 22:05:46
+Portfolio now displays on accounts page (stocks you currently own)

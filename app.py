@@ -97,11 +97,17 @@ def how_to():
 def account():
     if session.get('username'):
         user = session.get("username")
+        stocks = data_builder.get_holdings(transactions.get_id(user))
+        print stocks
+        for stock in stocks:
+            print stock
+            stock.append(transactions.getStockPrice(stock[0]))
+            print stock
         # Get User Balance
         # balance = 
         # #moneyz = transactions.get_balance(user)
         balance = transactions.get_balance(transactions.get_id(user));
-        return render_template("account.html", name = user, balance = balance)
+        return render_template("account.html", name = user, balance = balance, stocks = stocks)
     else:
         flash("Please log in to see your account.")
         return redirect("/")
