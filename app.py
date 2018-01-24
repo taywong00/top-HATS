@@ -104,7 +104,7 @@ def account():
             #stock.append(transactions.getStockPrice(stock[0]))
             print stock
         # Get User Balance
-        # balance = 
+        # balance =
         # #moneyz = transactions.get_balance(user)
         balance = transactions.get_balance(transactions.get_id(user));
         return render_template("account.html", name = user, balance = balance, stocks = stocks)
@@ -117,12 +117,13 @@ def sell():
     user = session.get("username")
     print user
     stock_ind = int(request.form["ind"])
-    print stock_ind
+    num_stock = int(request.form["num"])
+    print num_stock
     eyedee = transactions.get_id(user)
     stocks = data_builder.get_holdings(eyedee)
     stock = stocks[stock_ind]
     print stock
-    workd = transactions.sell(eyedee, stock[0], stock[1], transactions.getStockPrice(stock[0]))
+    workd = transactions.sell(eyedee, stock[0], num_stock, transactions.getStockPrice(stock[0]))
     if workd > 0:
         flash("Sell successful!")
     else:
