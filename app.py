@@ -104,7 +104,7 @@ def account():
             stock.append(transactions.getStockPrice(stock[0]))
             print stock
         # Get User Balance
-        # balance =
+        # balance = 
         # #moneyz = transactions.get_balance(user)
         balance = transactions.get_balance(transactions.get_id(user));
         return render_template("account.html", name = user, balance = balance, stocks = stocks)
@@ -140,11 +140,6 @@ def feed():
     else:
         flash("Please log in to access your feed.")
         return redirect(url_for('login'))
-
-# Status: Reroutes to MY ACCOUNT/PROFILE
-@app.route("/stats")
-def stats():
-    return redirect("/account")
 
 # Status: DONE
 @app.route("/leaderboard")
