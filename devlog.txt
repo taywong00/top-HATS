@@ -13,21 +13,35 @@ STOK
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wow we so BOSS bc...
+- We beat KEY errors and HTTP errors
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 blah blah pesky bug...
+- While making transactions, you must click "Buy" only once and then wait. Otherwise,
+another transaction may be made.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wow! oo!...
+- How to hash passwords
+- How the stock market works
+- Why people are always yelling on the trading floor
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- We initially decided to add a social media platform as an EXTRA feature, then
+decided to make it a MAIN feature, and then when we didn't have as much time as 
+thought, we took it out completely. That meant that users would not be able to 
+add friends, either.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 tales of wisdom gained...
+- Don't overextend yourself
+- Time management
+- Productive workspace
+- Don't use outside code if you don't understand its inner workings
 
 ||||||||||||||||||||||||||||||||||||||||||
 
@@ -254,6 +268,9 @@ Fixed error with buying re: balance, removed duplicate functions, added accessor
 
 taylorW -- 2018-01-24 09:16:51
 Changed all regular flashed messages to alert flash messages
+
+samanthaN -- 2018-01-24 09:51:31
+Hashed passwords functions rewritten; added stockVal and totalVal to account page-- standby for debugging
 
 adamA -- 2018-01-24 10:33:12
 Fixed issue with sell rendering a template instead of properly redirecting
