@@ -107,6 +107,7 @@ def get_id(username):
         return -1
 
 def buy(username, stock_name, num_of, price):
+    stock_name=stock_name.upper()
     #print username
     #print "\n\n\n\n\n-------------------------------------------------------"
     user_id= get_id(username)
@@ -126,6 +127,7 @@ def buy(username, stock_name, num_of, price):
 #buy(123,'GOOG',10)
 
 def sell(username, stock_name, num_of, price):
+    stock_name=stock_name.upper()
     user_id= username
     num_of=abs(float(num_of))
     price=float(price)
