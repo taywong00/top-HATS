@@ -11,8 +11,11 @@ import hashlib
 from flask import url_for, redirect, flash, render_template
 
 f = "data/traders.db"
-####os.remove(f) #Used During Testing to remove file at the beginning
+# os.remove(f) # Used during testing to remove file at the beginning
 
+# Create tables
+# PARAM: N/A
+# RETURN: Boolean for function executed to completion
 def make_tables():
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -24,7 +27,11 @@ def make_tables():
     c.execute(command)
     db.commit()
     db.close()
+    return True
 
+# Displays information from the tables in the command prompt
+# PARAM: N/A
+# RETURN: Boolean for function executed to completion
 def display_tables():
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -42,6 +49,9 @@ def display_tables():
         print ''
     return True
 
+# Gets a list of users
+# PARAM: N/A
+# RETURN: a dictionary of all users in the database
 def getUsers():
     users = {}
     #f = "..data/traders.db"
@@ -59,6 +69,9 @@ def getUsers():
         users[line[1]] = line[0]
     return users
 
+# Adds a user to the database -- creates account
+# PARAM: stock name of a company
+# RETURN: stock's information in the form of a dictionary
 def create_user(username, password,img_num):
     if username in getUsers():
         print "Username already taken."
@@ -77,6 +90,10 @@ def create_user(username, password,img_num):
         db.close()
         return render_template('home.html', message = 'Account successfully created!', good = True)
 
+# Checks id created for a new user to make user it is not already in the
+# database
+# PARAM: id number
+# RETURN: Boolean for whether or not the id is already in use
 def check_id(num):
     db = sqlite3.connect(f)#"../data/traders.db") #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -90,6 +107,9 @@ def check_id(num):
     else:
         return True
 
+# Adds a friend to a user's account in the database
+# PARAM: user's id, id of friend to be added
+# RETURN: Boolean for function executed to completion
 def add_friend(user_id, friend_id):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -101,9 +121,15 @@ def add_friend(user_id, friend_id):
     #append list and replace
     db.commit()
 
+# Reference:
+# holdings is stored as a list as follows:
+# <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
+# transactions is stored in the form:
+# <SYMBL>, <amnt>, <price per share>, <price total>, <time>
 
-#holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<LAST_TIME>\n...
-#transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
+# Gets the stocks that a user currently owns
+# PARAM: user's id
+# RETURN: holdings in the form of a list of stocks
 def get_holdings(user_id):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -122,6 +148,9 @@ def get_holdings(user_id):
         holdings=[['',0,0,0,0]]
     return holdings
 
+# Gets name of profile picture that the user chose
+# PARAM: user's id
+# RETURN: integer of picture number
 def get_pic_num(user_id):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -133,6 +162,9 @@ def get_pic_num(user_id):
 
 #print get_holdings(801266)
 
+# Gets a user's transaction history
+# PARAM: user's id
+# RETURN: transactions in the form of a list of transactions
 def get_transactions(user_id):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -150,8 +182,6 @@ def get_transactions(user_id):
     else:
         transactions=[['',0,0,0,0]]
     return holdings
-
-
 
 """
 try:
