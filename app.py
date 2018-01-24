@@ -77,10 +77,11 @@ def create_account():
         #print "P1: ", password1
         password2 = request.form.get("password2")
         #print "P2: ", password2
+        pfp = request.form.get("pfp")
         if password1 != password2:
             return render_template("signup.html", message = "Your passwords do not match. Please try again.", good = False)
         else:
-            return data_builder.create_user(username, password1,1)#image is hardcoded
+            return data_builder.create_user(username, password1,pfp)#image is hardcoded
     else:
         return render_template("signup.html")
 
@@ -102,8 +103,9 @@ def account():
         # Get User Balance
         # balance =
         # #moneyz = transactions.get_balance(user)
-        balance = transactions.get_balance(transactions.get_id(user));
-        return render_template("account.html", name = user, balance = balance, stocks = stocks)
+        balance = transactions.get_balance(transactions.get_id(user))
+        pfp = data_builder.get_pic_num(transactions.get_id(user))
+        return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp)
     else:
         flash("Please log in to see your account.")
         return redirect("/")

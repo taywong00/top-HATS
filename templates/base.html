@@ -80,6 +80,13 @@
         {{ message }}
       </div>
       {% endif %}
+
+      {% if warning == True %}
+      <div class="alert alert-warning" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
   	</center>
 
     <main role="main" class="container">

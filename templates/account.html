@@ -17,10 +17,23 @@ My Account | STOK
       <div class="starter-template">
         <h1>My Account</h1>
         <p class="lead">
-          {{user_photo}}
-
-          <!-- picture of octocat in the meantime-->
-          <img src="../static/images/octocat.png" alt="Octocat" height="200" width="400">
+          {% if pfp == 1 %}
+          <img src="../static/images/jedi.jpg" alt="Octocat" height="200" width="200">
+          {% elif pfp == 2 %}
+          <img src="../static/images/dead.jpg" alt="Octocat" height="200" width="200">
+          {% elif pfp == 3 %}
+          <img src="../static/images/normie.png" alt="Octocat" height="200" width="400">
+          {% elif pfp == 4 %}
+          <img src="../static/images/rocket.png" alt="Octocat" height="200" width="300">
+          {% elif pfp == 5 %}
+          <img src="../static/images/cold.png" alt="Octocat" height="200" width="200">
+          {% elif pfp == 6 %}
+          <img src="../static/images/super.jpg" alt="Octocat" height="200" width="200">
+          {% elif pfp == 7 %}
+          <img src="../static/images/teach.jpeg" alt="Octocat" height="200" width="250">
+          {% else %}
+          <img src="../static/images/normie.png" alt="Octocat" height="200" width="400">
+          {% endif %}
 
           <!-- insert placeholders for now for demos -->
           <center>
