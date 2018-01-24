@@ -291,7 +291,7 @@ def stock_val(user_id):
         holdings=holdings.split("\n")
         for i in range(len(holdings)):
             holdings[i]=holdings[i].split(",")
-            price=getStockPrice(holdings[i][0])
+            price=getStockPrice(holdings[i][0])[1]
             value=price*float(holdings[i][1])
             holdings[i][3]=value
             total_val+=value
