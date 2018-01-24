@@ -87,7 +87,7 @@ def buy(username, stock_name, num_of, price):
     if(get_balance(user_id) >= price_total):
         add_transaction(user_id, stock_name, num_of, price)
         update_portfolio(user_id, stock_name, num_of, price)
-        adjust_money(user_id, price_total)
+        adjust_money(user_id, price_total*-1)
         return price_total
     else:
         return -1
