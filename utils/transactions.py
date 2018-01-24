@@ -22,10 +22,10 @@ def getStockPrice(stock):
     tz=pytz.timezone('America/New_York')
     now = datetime.datetime.now(tz)
     #print now
-    print now.hour
+    #print now.hour
     if now.hour < 10:
         now = now - timedelta(days=1)
-        print now
+        #print now
     dt = now.date()
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
     return price
