@@ -100,9 +100,15 @@ def account():
         stocks = data_builder.get_holdings(transactions.get_id(user))
         print stocks
         for stock in stocks:
+<<<<<<< HEAD
             print stock
             stock.append(transactions.getStockPrice(stock[0]))
             print stock
+=======
+            #print stock
+            stock.append(transactions.getStockPrice(stock[0]))
+            #print stock
+>>>>>>> be36ceec823b330f46c9ec6b827bd1d19ea17ffc
         # Get User Balance
         # balance =
         # #moneyz = transactions.get_balance(user)
