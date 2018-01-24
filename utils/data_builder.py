@@ -44,7 +44,7 @@ def getUsers():
     command = "SELECT password, name FROM users"
     #command= "CREATE TABLE users(id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT)"
     #friends is stored in form of a csv list of IDs
-    #holdings is stored as a list as follows: <SYMBL>,<AMNT>\n...
+    #holdings is stored as a list as follows: <SYMBL>,<AMNT>,<LAST_PRICE>,<TOTAL_VAL>,<TIME_OF_LAST_SALE>\n...
     #transactions is stored in the form <SYMBL>, <amnt>, <price per share>, <price total>, <time>
     x = c.execute(command)
     #print "X: ", x
