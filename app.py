@@ -44,8 +44,7 @@ def login():
         if username in users:
             if auth.check_password(username, password):
                 session['username'] = username
-                session.modified=True
-                return render_template("how_to.html")
+                return redirect("/feed")
             else:
                 return render_template("home.html", message = "Oops! Wrong password.", good = False)
         else:

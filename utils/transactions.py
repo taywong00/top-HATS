@@ -20,7 +20,7 @@ def getStockPrice(stock):
     d = API_funcs.get_data(stock, key)
     now = datetime.datetime.now()
     #print now
-    if now.hour < 9:
+    if now.hour < 11:
         now = now - timedelta(days=1)
         #print now
     dt = now.date()
