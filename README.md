@@ -32,3 +32,5 @@ Welcome to Stok, the stock market simulator that lets you play the stock market 
 * Flask
 * Alphavantage API
 * News API
+* SQLite
+* pytz
