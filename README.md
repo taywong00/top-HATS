@@ -34,3 +34,7 @@ Welcome to Stok, the stock market simulator that lets you play the stock market 
 * News API
 * SQLite
 * pytz
+
+## OR
+
+######You can also play without having to download anything by going to http://165.227.85.220 and creating an account
