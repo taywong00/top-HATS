@@ -6,6 +6,14 @@ My Account | STOK
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
       <div class="starter-template">
         <h1>My Account</h1>
         <p class="lead">
@@ -16,15 +24,15 @@ My Account | STOK
 
           <!-- insert placeholders for now for demos -->
           <center>
-            <table>
+            <table class="table table-bordered">
               <tr>
-                <th><center> Name: </center></th>
+                <th width="10px"><center> Name: </center></th>
                 <td width="10px"><center> {{name}} </center></td>
               </tr>
 
               <tr>
                 <th><center> Balance: </center></th>
-                <td><center>{{balance}} </center></td>
+                <td><center>${{balance}} </center></td>
               </tr>
 
               <!--  <tr>
@@ -32,65 +40,67 @@ My Account | STOK
                    <td><center> {{date_joined}} January 2018 </center></td>
                    </tr>-->
             </table>
-            <table style="text-align:center;padding:20px; border: 3px;">
-              <tr>
-                <th>
-                  STOCK
-                </th>
-                <th>
-                  AMOUNT OF STOCK
-                </th>
-                <th>
-                  PURCHASED AT
-                </th>
-                <th>
-                  VALUE
-                </th>
-                <th>
-                  DATE PURCHASED
-                </th>
-                <th>
-                  CURRENT PRICE
-                </th>
-              </tr>
-              {% for stock_entry in stocks %}
-                <tr>
-                  {% for entry in stock_entry %}
-                    <td>
-                      {{entry}}
-                    </td>
-                  {% endfor %}
-                    <form action="/sell" method="POST">
-                      <td>
-                        # Stock: <input type="text" id="num" name="num" value="0">
-                      </td>
 
-                      <td>
-                        <button type="submit" name="ind" method="GET" value= {{loop.index0}}> Sell!</button>
-                      </td>
-                    </form>
-                </tr>
-              {% endfor %}
-              {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                  {% for message in messages %}
-                    <p>{{ message }}</p>
-                  {% endfor %}
-                {% endif %}
-              {% endwith %}
-            </table>
           </center>
 
         </p>
       </div>
+
       <div class="starter-template">
-        <h1>My Stats & Stocks</h1>
+        <h1>My Stocks</h1>
         <p class="lead">
 
-          <i class="em em-money_with_wings"></i> Stats <i class="em em-money_with_wings"></i>
-
         </p>
+        <table class="table table-bordered">
+          <tr>
+            <th>
+              Stock
+            </th>
+            <th>
+              Amount of Stock
+            </th>
+            <th>
+              Price Purchased at
+            </th>
+            <th>
+              Current Value
+            </th>
+            <th>
+              Date Purchased
+            </th>
+            <th>
+              Current Price
+            </th>
+          </tr>
+          {% if stock_entry in stocks %}
+            {% for stock_entry in stocks %}
+            <tr>
+              {% for entry in stock_entry %}
+                <td>
+                  {{entry}}
+                </td>
+              {% endfor %}
+                <form action="/sell" method="POST">
+                  <td>
+                    # Stock: <input type="text" id="num" name="num" value="0">
+                  </td>
 
+                  <td>
+                    <button type="submit" name="ind" method="GET" value= {{loop.index0}}> Sell!</button>
+                  </td>
+                </form>
+            </tr>
+            {% endfor %}
+          {% else %}
+          <tr>
+              <td>
+                No information to be displayed.
+              </td>
+              <td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          {% endif %}
+
+        </table>
         <a href="/transaction" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Make a Transaction</a>
 
         <br><br><br><br><br>
