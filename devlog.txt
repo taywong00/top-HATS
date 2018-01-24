@@ -195,8 +195,14 @@ Leaderboard is working
 holdenH -- 2018-01-23 20:41:12
 Buy now works(had to overcome a multitude of typing issues as well as converting uname to uid so functions will work). Still seeing issues with displaying balance and portfolio.
 
+taylorW -- 2018-01-23 20:47:05
+Changed login and sign up procedures for authentication, etc.
+
 adamA -- 2018-01-23 20:50:10
 Account page now shows balance
+
+taylorW -- 2018-01-23 20:52:26
+Oops, had to change the flashed messages if we're keeping it.
 
 adamA -- 2018-01-23 21:00:01
 Message flashing after making a transaction is good to go!
@@ -219,11 +225,35 @@ Can now sell a user selected amount of stock! Invalid ticker message now display
 adamA -- 2018-01-24 01:16:48
 Searching a stock now displays the high and low values
 
+taylorW -- 2018-01-24 01:37:33
+Keeping trying to figure out what's wrong with the bootstrap/css stuff, differentiation between safari and chrome. switch to bootstrap.min? changed news feed to look prettier, using jumbotron, and changing accounts
+
+taylorW -- 2018-01-24 02:29:30
+Tried to implement form.css, changed home to be the new login, got rid of some "mains"
+
 samanthaN -- 2018-01-24 02:50:41
 Hashed passwords now being used-- credit: Python Central
 
+taylorW -- 2018-01-24 02:54:44
+Modified app.py for login to home switch, made home and signup more specific, nicer
+
+taylorW -- 2018-01-24 06:01:35
+Changed the look of the leaderboard, and added radio buttons for profile picture option
+
+taylorW -- 2018-01-24 07:50:26
+Changed account.html for the aesthetics, also edited leaderboard again
+
+taylorW -- 2018-01-24 08:07:18
+Revert back to regular bootstrap.css and removed default for stats/stocks
+
+taylorW -- 2018-01-24 08:36:04
+Modified app.py for the new profile pictures using db and transaction functions, got images online, changed account to use jinja to show images, added warning flash
+
 holdenH -- 2018-01-23 9:10:23
 Fixed error with buying re: balance, removed duplicate functions, added accessor for holdings, fixed error prohibiting sell all, deleted bad accounts, fixed error with sell parsing, fixed error with inability to sell partial shares, fixed password hashing(no longer from Python Central, just pure top-HATS hashing), modified table to allow for avatar storage, added timezones so app can be run anywhere, turned digitalOcean droplet into server which runs app, added functions to change name and password, to get transaction history, to get value of stocks and refresh holdings values and to get total value of a users holdings+cash, fixed cookie error that generated new private keys instead of keeping the same one, fixed jinja error that made only first stock sellable, fixed caps error that recorded stocks differently based on how you typed to buy them.
+
+taylorW -- 2018-01-24 09:16:51
+Changed all regular flashed messages to alert flash messages
 
 adamA -- 2018-01-24 10:33:12
 Fixed issue with sell rendering a template instead of properly redirecting
