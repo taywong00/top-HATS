@@ -143,7 +143,7 @@ def get_holdings(user_id):
         holdings=[['',0,0,0,0]]
     return holdings
 
-print get_holdings(801266)
+#print get_holdings(801266)
 
 
 #"CREATE TABLE users(id TEXT, password TEXT, name TEXT, money FLOAT, friends BLOB, holdings BLOB, transactions BLOB)"

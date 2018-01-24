@@ -66,7 +66,7 @@ def get_id(username):
         c = db.cursor()    #facilitate db ops
         command="""SELECT id
         FROM users
-        WHERE name='"""+username+"'"
+        WHERE name='""" + username + "'"
         c.execute(command)
         _id=c.fetchall()[0][0]
         #print _id
@@ -96,7 +96,7 @@ def buy(username, stock_name, num_of, price):
 #buy(123,'GOOG',10)
 
 def sell(username, stock_name, num_of, price):
-    user_id= get_id(username)
+    user_id= username
     num_of=abs(float(num_of))
     price=float(price)
     price_total = price * num_of

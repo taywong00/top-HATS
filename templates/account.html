@@ -37,7 +37,7 @@ My Account | STOK
             <table style="text-align:center;padding:20px; border: 3px;">
               <tr>
                 <th>
-                  STOCK 
+                  STOCK
                 </th>
                 <th>
                   AMOUNT OF STOCK
@@ -55,6 +55,7 @@ My Account | STOK
                   CURRENT PRICE
                 </th>
               </tr>
+              {% set ctr = 0 %}
               {% for stock_entry in stocks %}
                 <tr>
                   {% for entry in stock_entry %}
@@ -62,6 +63,12 @@ My Account | STOK
                       {{entry}}
                     </td>
                   {% endfor %}
+                  <td>
+                    <form action="/sell" method="POST">
+                      <button type="submit" name="ind" method="GET" value= {{ctr}}> Sell!</button>
+                    </form>
+                  </td>
+                  {% set ctr = ctr + 1 %}
                 </tr>
               {% endfor %}
               {% with messages = get_flashed_messages() %}

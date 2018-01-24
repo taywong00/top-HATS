@@ -112,6 +112,23 @@ def account():
         flash("Please log in to see your account.")
         return redirect("/")
 
+@app.route("/sell", methods=['GET', 'POST'])
+def sell():
+    user = session.get("username")
+    print user
+    stock_ind = int(request.form["ind"])
+    print stock_ind
+    eyedee = transactions.get_id(user)
+    stocks = data_builder.get_holdings(eyedee)
+    stock = stocks[stock_ind]
+    print stock
+    workd = transactions.sell(eyedee, stock[0], stock[1], transactions.getStockPrice(stock[0]))
+    if workd > 0:
+        flash("Sell successful!")
+    else:
+        flash("Sell error.")
+    return redirect("/feed")
+
 # Status: DONE - except better design needed
 @app.route("/feed")
 def feed():

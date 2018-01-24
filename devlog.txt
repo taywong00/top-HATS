@@ -203,3 +203,6 @@ Message flashing after making a transaction is good to go!
 
 adamA -- 2018-01-23 22:05:46
 Portfolio now displays on accounts page (stocks you currently own)
+
+adamA -- 2018-01-23 23:07:08
+Selling functionality has been implemented with forms/buttons in each portfolio entry
