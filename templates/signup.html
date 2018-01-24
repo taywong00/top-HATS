@@ -1,38 +1,47 @@
 {% extends "base.html" %}
 
 {% block title %}
-Sign Up | STOK
+Welcome to STOK! | STOK
 {% endblock %}
 
 {% block content %}
 
-    <main role="main" class="container">
-
+  <div class="container">
       <div class="starter-template">
-	 {% with messages = get_flashed_messages() %}
+        <h1>Welcome to STOK!</h1>
+        <p class="lead">
+        </p>
+        {% with messages = get_flashed_messages() %}
           {% if messages %}
             {% for message in messages %}
               <p>{{ message }}</p>
             {% endfor %}
           {% endif %}
-              {% endwith %}
-        <h1>Sign Up</h1>
-        <p class="lead">
-          <form action='/create_account' method="post">
-            Username: <input type="text" name="username" required> <br /><br />
-            Password: <input type="password" name="password1" required> <br /> <br />
-            Confirm password: <input type="password" name="password2" required> <br /> <br />
+        {% endwith %}
 
-	    <input type="submit" value="Create Account" name="create_account">
-          </form>
+        <div class="container">
+          <div class="row justify-content-center">
+            <form class="form-signin" action='/login' method="POST">
+              <img class="mb-4" src="https://d30y9cdsu7xlg0.cloudfront.net/png/196630-200.png" alt="" width="72" height="72">
+              <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+              <label for="inputUsername" class="sr-only">Username</label>
+              <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="username" required autofocus>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password1" required>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" name="password2" required>
 
-        </p>
+              <button class="btn btn-lg btn-primary btn-block" type="submit" value="Create Account" name="create_account">Create Account</button>
+
+              <br>
+              <small> Have an Account Already? <a href="/login">Log In here.</a></small>
+            </form>
+
+          </div>
 
       </div>
+    </div>
+  </dv>
 
 
-
-      <!-- ENTER EACH PAGES CONTENT-->
-
-    </main><!-- /.container -->
     {% endblock %}

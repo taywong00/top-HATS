@@ -45,11 +45,11 @@ def login():
                 session['username'] = username
                 return redirect(url_for('feed'))
             else:
-                return render_template("login.html", message = "Oops! Wrong password.", good = False)
+                return render_template("home.html", message = "Oops! Wrong password.", good = False)
         else:
-            return render_template("login.html", message = "Oops! That username doesn't exist.", good = False)
+            return render_template("home.html", message = "Oops! That username doesn't exist.", good = False)
     else:
-        return render_template("login.html")
+        return render_template("home.html")
 
 # Status: DONE
 @app.route("/signup_page")
