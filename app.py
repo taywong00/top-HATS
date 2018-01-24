@@ -104,7 +104,7 @@ def account():
         stockVal = transactions.stock_val(transactions.get_id(user))
         totalVal = transactions.total_val(transactions.get_id(user))
         pfp = data_builder.get_pic_num(transactions.get_id(user))
-        return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp)
+        return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp, stockVal=stockVal, totalVal = totalVal)
     else:
         return render_template("home.html", message="Please log in to see your account.", warning= True)
 
