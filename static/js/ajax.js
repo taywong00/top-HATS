@@ -10,16 +10,31 @@ var search_stock = function( e ) {
       console.log("wait...")
       response = JSON.parse(response);
       console.log(response["price"]);
-      stockName = document.getElementById("searched_stock_name");
+
+      var stockName = document.getElementById("searched_stock_name");
       var nameVal = "Stock: " + response["name"];
       stockName.style.display = "inline"
       stockName.value = nameVal;
-      stockPrice = document.getElementById("searched_stock_price");
+
+      var stockPrice = document.getElementById("searched_stock_price");
       var priceVal = "Price: " + response["price"];
       stockPrice.style.display = "inline"
       stockPrice.value = priceVal;
+
+      var high = document.getElementById("high");
+      var highval = "High: " + response["high"];
+      high.style.display = "inline";
+      high.value = highval;
+
+      var low = document.getElementById("low");
+      var lowval = "Low: " + response["low"];
+      low.style.display = "inline";
+      low.value = lowval;
+
+
       var button = document.getElementById("buy");
       button.style.display = "inline";
+
       var field = document.getElementById("num_stock");
       field.style.display = "inline";
   }, //end success callback

@@ -8,13 +8,15 @@ import API_funcs
 f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
+
+key = "I47O8J6SBM5S3302"
+
 # Helper Functions ----------------------------------------------------------
 # GIVEN the stock name RETURN the current price of stock
 # Via: calling the api and retrieving the data
 # Use: to get most recent price of a stock
 def getStockPrice(stock):
     price = -1
-    key = "I47O8J6SBM5S3302"
     d = API_funcs.get_data(stock, key)
     now = datetime.datetime.now()
     print now
@@ -22,15 +24,31 @@ def getStockPrice(stock):
         now = now - timedelta(days=1)
         print now
     dt = now.date()
-    #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
-    #print d
-    #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
-    # ---------
-    # API retrieval code here
-    # price = <retrieval code> (stock)
-    # ---------
     return price
+
+def getHigh(stock):
+    d = API_funcs.get_data(stock, key)
+    now = datetime.datetime.now()
+    print now
+    if now.hour < 9:
+        now = now - timedelta(days=1)
+        print now
+    dt = now.date()
+    high = d["Time Series (Daily)"][str(dt)]["2. high"]
+    return high
+
+def getLow(stock):
+    d = API_funcs.get_data(stock, key)
+    now = datetime.datetime.now()
+    print now
+    if now.hour < 9:
+        now = now - timedelta(days=1)
+        print now
+    dt = now.date()
+    low = d["Time Series (Daily)"][str(dt)]["3. low"]
+    return low
+
 
 #getStockPrice("GOOG");
 

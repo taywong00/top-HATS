@@ -175,9 +175,11 @@ def transact():
 def get_stock_price():
     stock_name = request.form["stock"]
     stock_price = transactions.getStockPrice(stock_name)
+    high = transactions.getHigh(stock_name)
+    low = transactions.getLow(stock_name)
     #print "NAME: " + stock_name
     #print "PRICE: " + str(stock_price)
-    to_ret = json.dumps({'status':'OK', 'name':stock_name, 'price': stock_price})
+    to_ret = json.dumps({'status':'OK', 'name':stock_name, 'price': stock_price, 'high': high, 'low':low})
     #print to_ret
     return to_ret
 
