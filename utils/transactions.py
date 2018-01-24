@@ -2,7 +2,8 @@
 # Holden, Adam, Taylor, Samantha - pd7
 # Methods used in transactions
 
-import sqlite3, json, datetime   # database functions
+import sqlite3, json, datetime # database functions
+from datetime import timedelta
 import API_funcs
 f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
@@ -15,7 +16,10 @@ def getStockPrice(stock):
     price = -1
     key = "I47O8J6SBM5S3302"
     d = API_funcs.get_data(stock, key)
-    dt = datetime.datetime.now().date()
+    now = datetime.datetime.now()
+    if now.hour < 9:
+        now = now - timedelta(days=1)
+    dt = now.date()
     #dt = dt.replace(hour = 0, minute = 0, second=0, microsecond = 0)
     #print d
     #print json.dumps(d["Time Series (Daily)"], indent = 4, sort_keys = False)

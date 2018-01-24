@@ -209,3 +209,6 @@ Added balances to leaderboard
 
 adamA -- 2018-01-23 23:07:08
 Selling functionality has been implemented with forms/buttons in each portfolio entry
+
+adamA -- 2018-01-24 00:11:15
+Fixed a bug where if the market wasn't open searching up a stock wouldn't work because there technically wasn't any data for that date.

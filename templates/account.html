@@ -63,11 +63,15 @@ My Account | STOK
                       {{entry}}
                     </td>
                   {% endfor %}
-                  <td>
                     <form action="/sell" method="POST">
+                      <td>
+                        # Stock: <input type="text" id="num" name="num" value="0">
+                      </td>
+
+                      <td>
                       <button type="submit" name="ind" method="GET" value= {{ctr}}> Sell!</button>
+                      </td>
                     </form>
-                  </td>
                   {% set ctr = ctr + 1 %}
                 </tr>
               {% endfor %}
