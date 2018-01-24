@@ -6,33 +6,27 @@ Leaderboard | STOK
 
 {% block content %}
 
-    <main role="main" class="container">
-
       <div class="starter-template">
-        <h1>Top 10 Players</h1>
-
+        <h1 style="color:#007bff;">Top 10 Players</h1>
 
           <br>
+          <div class="container" style="padding-left:100px;padding-right:100px;">
           <center>
-            <table>
-            
-              {% set counter = 1 %}
+            <table class="table table-bordered">
+
+            {% set counter = 1 %}
             {% for leader in leaders_list %}
               <tr>
                 <th>#{{leader}}</th>
-                <td>{{leaders_list[leader][0]}} &nbsp&nbsp&nbsp&nbsp </td>
-		<th> &nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance: </th>
-                <td>${{leaders_list[leader][1]}} &nbsp&nbsp&nbsp&nbsp </td>
+                <td><center>{{leaders_list[leader][0]}} &nbsp&nbsp&nbsp&nbsp </center></td>
+                <td><center><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBalance:</b> ${{leaders_list[leader][1]}} &nbsp&nbsp&nbsp&nbsp </center></td>
               </tr>
                 {% set counter = counter + 1 %}
             {% endfor %}
-           
+
             </table>
           </center>
+        </div>
       </div>
-
-      <!-- ENTER EACH PAGES CONTENT-->
-
-    </main><!-- /.container -->
 
     {% endblock %}
