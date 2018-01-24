@@ -64,7 +64,7 @@ def signup_page():
 # LOGIN: name of product/logo and then "Username:", "Password:", and "Don't have an account? <CREATE hyperlink> one."
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
-    print "REQUEST CREATE: ", request.form.get("create_account")
+    #print "REQUEST CREATE: ", request.form.get("create_account")
     # If the user is already logged in:
     if session.get('username'):
         return redirect('/feed')
