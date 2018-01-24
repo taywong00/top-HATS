@@ -18,7 +18,7 @@ def get_exch_rate(from_cur, to_cur):
     url = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from_cur + "&to_currency=" + to_cur + "&apikey=" + key
     data = urllib2.urlopen(url)
     d = json.loads(data.read())
-    print d
+    #print d
     return d
 
 def get_news(kind_of):
@@ -31,8 +31,8 @@ def get_news(kind_of):
 def get_headlines(topic):
     d = get_news(topic)
     #print d
-    print json.dumps(d["articles"][0], indent = 4, sort_keys = True)
-    print json.dumps(d["articles"][0]["title"], indent = 4, sort_keys = True)
+    #print json.dumps(d["articles"][0], indent = 4, sort_keys = True)
+    #print json.dumps(d["articles"][0]["title"], indent = 4, sort_keys = True)
     one = d["articles"][0]["title"]
     two = d["articles"][1]["title"]
     three = d["articles"][2]["title"]
@@ -44,6 +44,7 @@ def get_URLS(topic):
     two = d["articles"][1]["url"]
     three = d["articles"][2]["url"]
     return [one, two, three]
+
 #get_data(stock_name, key)
 #get_exch_rate("BTC", "USD")#
 #get_news("finance")
