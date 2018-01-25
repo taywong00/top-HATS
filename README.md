@@ -1,9 +1,11 @@
 # Team top-HATS
 ## Members: 
-#### Taylor Wong - PM, HTML/CSS/Jinja, App.py work
-#### Samantha Ngo - Accounts, Leaderboard, App.py work
-#### Adam Abbas - API Work for News and Transactions
-#### Holden Higgins - Database work for Accounts and Transactions
+* Taylor Wong - PM, HTML/CSS/Jinja, App.py work
+* Samantha Ngo - Accounts, Leaderboard, App.py work
+* Adam Abbas - API Work for News and Transactions
+* Holden Higgins - Database work for Accounts and Transactions
+
+
 SoftDev Final Project:
 
 ### STOK
