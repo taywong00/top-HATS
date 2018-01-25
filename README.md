@@ -30,7 +30,7 @@ The News API provided current, relevant news updates from a varitety of sources 
 ###### Alphavantage API:
 The AlphaVantage API provided all the informations needed regarding stocks and their real-time data
 * Go to the [Alphavantage API page](https://www.alphavantage.co/support/#api-key)
-* Create your account
+* Create an account!
 * Get your API Key!!!!
 * Paste this key into av\_key.txt file.
 
