@@ -6,7 +6,7 @@
 import sqlite3, json, datetime # database functions
 from datetime import timedelta
 import pytz
-import API_funcs
+import API_funcs, data_builder
 f = "data/traders.db"
 # os.remove(f) --> Used during testing to remove file at the beginning
 
@@ -56,6 +56,43 @@ def getLow(stock):
 # Test:
 # getStockPrice("GOOG");
 
+# Returns the top ten players based on their account total value in the form of
+# a dictionary with format {INTEGER rank: LIST[TEXT username, FLOAT balance]}
+def get_leaderboard():
+    leaderboard = {}
+    f = "data/traders.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    
+    accountVals = {}
+    print "USERS: ", data_builder.getUsers()
+    for user in data_builder.getUsers():
+        #print user
+        #print "      ", total_val(get_id(user))
+        accountVals[user] = total_val(get_id(user))
+    print "ACCOUNT VALS: ", accountVals
+
+    counter = 1
+    for item in sorted(accountVals.iteritems(), key=lambda (k,v): (v,k), reverse=True):
+        # print "item ", item
+        # print "KEY: ", item[0]
+        if counter <= 10:
+            info = [0,1]
+            # Used to see top ten users and *their balances
+            # print "0: ", line[0]
+            # print "1: ", line[1]
+            info[0] = item[0]
+            roundedVal = "%.2f" % item[1]
+            info[1] = roundedVal
+            #print info
+            leaderboard[counter] = info
+            # leaderboard[line[0]] = counter
+            counter += 1
+        else:
+            break
+    return leaderboard
+
+''' ==============================================================
 # Returns the top ten players based on their account balance in the form of
 # a dictionary with format {INTEGER rank: LIST[TEXT username, FLOAT balance]}
 def get_leaderboard():
@@ -69,12 +106,11 @@ def get_leaderboard():
     money DESC;"""
     x = c.execute(command)
     counter = 1
-    '''
-    for line in x:
-        print "     0: ", line[0]
-        print "     1: ", line[1]
-    x = c.execute(command)
-    '''
+    
+    #for line in x:
+     #   print "     0: ", line[0]
+      #  print "     1: ", line[1]
+    #x = c.execute(command)
     for line in x:
         if counter <= 10:
             info = [0,1]
@@ -90,6 +126,7 @@ def get_leaderboard():
         else:
             break
     return leaderboard
+'''
 
 # Test:
 # print "LEADERBOARD: "

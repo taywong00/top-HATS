@@ -144,7 +144,7 @@ def feed():
 @app.route("/leaderboard")
 def leaderboard():
     leaderboard = transactions.get_leaderboard()
-    #print "LEADER: ", leaderboard
+    # print "LEADER: ", leaderboard
     return render_template("leaderboard.html", leaders_list = leaderboard)
 
 # Status: DONE

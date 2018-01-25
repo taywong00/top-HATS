@@ -290,3 +290,6 @@ Worked on design doc, component/site maps, db schema
 
 taylorW -- 2018-01-24 07:49:16
 Added transaction history, modified transaction/account pages
+
+samanthaN -- 2018-01-24 22:02:53
+Changed leaderboard to rank by total account value instead of account balance
