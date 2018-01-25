@@ -286,4 +286,7 @@ adamA -- 2018-01-24 10:33:12
 Fixed issue with sell rendering a template instead of properly redirecting
 
 taylorW -- 2018-01-24 02:09:23
-Updated design doc, component/site maps, db schema
+Worked on design doc, component/site maps, db schema
+
+taylorW -- 2018-01-24 07:49:16
+Added transaction history, modified transaction/account pages
