@@ -15,7 +15,7 @@ Welcome to Stok, the stock market simulator that lets you play the stock market 
 
 #### Running our Project
 
-##### First, clone this repository by typing "git clone " into your terminal and copying and pasting the HTTPS/SSH key linked above right after. Then type "cd top-HATS" in the terminal to enter the top-HATS directory. 
+#### First, clone this repository by typing "git clone " into your terminal and copying and pasting the HTTPS/SSH key linked above right after. Then type "cd top-HATS" in the terminal to enter the top-HATS directory. 
 
 #### Next, you're going to want to procure some API KEYS.
 
