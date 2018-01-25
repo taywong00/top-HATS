@@ -15,7 +15,9 @@ Welcome to Stok, the stock market simulator that lets you play the stock market 
 
 #### Running our Project
 
-##### First you're going to want to procure some API KEYS.
+##### First, clone this repository by typing "git clone " into your terminal and copying and pasting the HTTPS/SSH key linked above right after. Then type "cd top-HATS" in the terminal to enter the top-HATS directory. 
+
+#### Next, you're going to want to procure some API KEYS.
 
 ###### News API:
 The News API provided current, relevant news updates from a varitety of sources that were then used in our feed. 
