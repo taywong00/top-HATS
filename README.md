@@ -1,5 +1,5 @@
 # Team top-HATS
-## Members: 
+### Members: 
 * Taylor Wong - PM, HTML/CSS/Jinja, App.py work
 * Samantha Ngo - Accounts, Leaderboard, App.py work
 * Adam Abbas - API Work for News and Transactions
