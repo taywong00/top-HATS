@@ -29,6 +29,7 @@ def getStockPrice(stock):
     price = d["Time Series (Daily)"][str(dt)]["4. close"]
     return price
 
+# Given the stock name, returns the highest selling price for that stock today
 def getHigh(stock):
     d = API_funcs.get_data(stock)
     now = datetime.datetime.now(tz)
@@ -40,6 +41,7 @@ def getHigh(stock):
     high = d["Time Series (Daily)"][str(dt)]["2. high"]
     return high
 
+# Given the stock name, returns the lowest selling price for that stock today
 def getLow(stock):
     d = API_funcs.get_data(stock)
     now = datetime.datetime.now(tz)
@@ -51,9 +53,11 @@ def getLow(stock):
     low = d["Time Series (Daily)"][str(dt)]["3. low"]
     return low
 
+# Test:
+# getStockPrice("GOOG");
 
-#getStockPrice("GOOG");
-
+# Returns the top ten players based on their account balance in the form of
+# a dictionary with format {INTEGER rank: LIST[TEXT username, FLOAT balance]}
 def get_leaderboard():
     leaderboard = {}
     f = "data/traders.db"
@@ -87,9 +91,11 @@ def get_leaderboard():
             break
     return leaderboard
 
-#print "LEADERBOARD: "
-#print get_leaderboard()
+# Test:
+# print "LEADERBOARD: "
+# print get_leaderboard()
 
+# Given the username, returns the id number associated with the username
 def get_id(username):
     if username:
         db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -103,9 +109,13 @@ def get_id(username):
         db.close()
         return int(_id)
     else:
-        #print "\n\n\n\n\n-------------------------------------------------------"
         return -1
 
+# Given the username, the name of the stock the user wants to purchase, the
+# quantity of stock the user wants to purchase, and the current price of the stock,
+# it updates the user's balance, holdings, and transaction history to reflect
+# the changes and returns the cost of the stocks they want to purchase; if
+# not enough funds, returns -1
 def buy(username, stock_name, num_of, price):
     stock_name=stock_name.upper()
     #print username
@@ -123,9 +133,14 @@ def buy(username, stock_name, num_of, price):
     else:
         return -1
 
-#testers
+#test:
 #buy(123,'GOOG',10)
 
+# Given the username, the name of the stock the user wants to sell, the
+# quantity of stock the user wants to sell, and the current price of the stock,
+# it updates the user's balance, holdings, and transaction history to reflect
+# the changes and returns the cost of the stocks they want to purchase; if
+# error, returns -1
 def sell(username, stock_name, num_of, price):
     stock_name=stock_name.upper()
     user_id= username
@@ -143,7 +158,7 @@ def sell(username, stock_name, num_of, price):
         print "Sale error. Transaction cancelled"
         return -1
 
-
+# Given the user's id number, returns the user's current balance
 def get_balance(user_id):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -158,6 +173,9 @@ def get_balance(user_id):
     db.close
     return balance
 
+# Given the user's id number and the desired change to the balance, it
+# updates the balance accordingly so long as the balance does not go
+# below zero-- if so, returns -1 and doesn't change the balance.
 def adjust_money(user_id, amt):
     og_mons=get_balance(user_id) # Original amount of money
     db = sqlite3.connect(f)
@@ -175,6 +193,8 @@ def adjust_money(user_id, amt):
 #print adjust_money("abc",-100000000000)
 #print get_balance("abc")
 
+# Given the user's id number, desired stock, and amount, checks the portfolio
+# to see if user has that stock in that quantity
 def check_portfolio(user_id, stock, amount):
     #f = "../data/traders.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -278,6 +298,7 @@ def update_portfolio(user_id, stock, amount, price):
     db.close()
     #id INTEGER, password TEXT, name TEXT, money REAL, friends TEXT, holdings TEXT, transactions TEXT
 
+# Given the user's id number, returns the total value of the user's holdings 
 def stock_val(user_id):
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()    #facilitate db ops
@@ -303,5 +324,6 @@ def stock_val(user_id):
     db.close()
     return total_val
 
+# Given the user's id number, returns the total value of user's account
 def total_val(user_id):
    return stock_val(user_id)+float(get_balance(user_id))
