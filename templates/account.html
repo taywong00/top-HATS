@@ -70,7 +70,7 @@ My Account | STOK
       <div class="starter-template">
         <h1>My Stocks</h1>
         <p class="lead">
-
+          Here is a detailing of all your current holdings.
         </p>
         <table class="table table-bordered">
           <tr>
@@ -81,16 +81,16 @@ My Account | STOK
               Amount of Stock
             </th>
             <th>
-              Price Purchased at
+              Price Purchased at (USD)
             </th>
             <th>
-              Current Value
+              Current Value (USD)
             </th>
             <th>
               Date Purchased
             </th>
             <th>
-              Current Price
+              Current Price (USD)
             </th>
           </tr>
             {% for stock_entry in stocks %}
@@ -102,7 +102,7 @@ My Account | STOK
               {% endfor %}
                 <form action="/sell" method="POST">
                   <td>
-                    # Stock: <input type="text" id="num" name="num" value="0">
+                    Amount of Stock to Sell: <input type="text" id="num" name="num" value="0">
                   </td>
 
                   <td>
@@ -113,11 +113,51 @@ My Account | STOK
             {% endfor %}
 
         </table>
-        <a href="/transaction" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Make a Transaction</a>
+        <a href="/transaction" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Make a Transaction</a>
 
-        <br><br><br><br><br>
+    </div>
 
-        <a href="/logout" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Log Out</a>
+    <div class="starter-template">
+      <h1>Transaction History</h1>
+      <p class="lead">
+        Here is a detailing of all your past transactions.
+      </p>
+      <table class="table table-bordered">
+        <tr>
+          <th>
+            Stock
+          </th>
+          <th>
+            Amount of Stock
+          </th>
+          <th>
+            Price Purchased at (USD)
+          </th>
+          <th>
+            Value Purchased at (USD)
+          </th>
+          <th>
+            Date Purchased
+          </th>
+        </tr>
+          {% for transaction_entry in transaction_history %}
+          <tr>
+            <!--if the first entry in that transaction is not empty-->
+            {% if transaction_entry[0] != '' %}
+              {% for entry in transaction_entry %}
+                <td>
+                  {{entry}}
+                </td>
+                {% endfor %}
+              </tr>
+            {% endif %}
+          {% endfor %}
+
+      </table>
+
+      <br><br><br><br><br>
+
+      <a href="/logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Log Out</a>
 
     </div>
 

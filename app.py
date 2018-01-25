@@ -100,7 +100,8 @@ def account():
         stockVal = transactions.stock_val(transactions.get_id(user))
         totalVal = transactions.total_val(transactions.get_id(user))
         pfp = data_builder.get_pic_num(transactions.get_id(user))
-        return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp, stockVal=stockVal, totalVal = totalVal)
+        transaction_history = data_builder.get_transactions(transactions.get_id(user))
+        return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp, stockVal=stockVal, totalVal = totalVal, transaction_history=transaction_history)
     else:
         return render_template("home.html", message="Please log in to see your account.", warning= True)
 
@@ -135,7 +136,8 @@ def feed():
         #print articles
         return render_template("feed.html", headline=articles[0], headlinet=articles[1], headlineth=articles[2], u1 = urls[0], u2 = urls[1], u3 = urls[2])
     else:
-        return render_template("home.html", message="Please log in to access your feed.", warning=True)
+        flash("Please log in to access your feed.")
+        return redirect('/')
 
 # Status: DONE
 # Routes to leaderboard - displays top ten users based on their totalValue

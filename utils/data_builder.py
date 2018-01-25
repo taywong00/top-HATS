@@ -181,7 +181,7 @@ def get_transactions(user_id):
         transactions=transactions
     else:
         transactions=[['',0,0,0,0]]
-    return holdings
+    return transactions
 
 """
 try:

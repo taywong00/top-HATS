@@ -31,8 +31,8 @@ wow! oo!...
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - We initially decided to add a social media platform as an EXTRA feature, then
-decided to make it a MAIN feature, and then when we didn't have as much time as 
-thought, we took it out completely. That meant that users would not be able to 
+decided to make it a MAIN feature, and then when we didn't have as much time as
+thought, we took it out completely. That meant that users would not be able to
 add friends, either.
 
 LESSONS LEARNED
@@ -248,7 +248,7 @@ Tried to implement form.css, changed home to be the new login, got rid of some "
 samanthaN -- 2018-01-24 02:50:41
 Hashed passwords now being used-- credit: Python Central
 
-taylorW -- 2018-01-24 02:54:44
+taylorW -- 2018-01-24 02:54:54
 Modified app.py for login to home switch, made home and signup more specific, nicer
 
 taylorW -- 2018-01-24 06:01:35
@@ -274,3 +274,6 @@ Hashed passwords functions rewritten; added stockVal and totalVal to account pag
 
 adamA -- 2018-01-24 10:33:12
 Fixed issue with sell rendering a template instead of properly redirecting
+
+taylorW -- 2018-01-24 02:09:23
+Updated design doc, component/site maps, db schema
