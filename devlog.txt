@@ -14,6 +14,8 @@ OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wow we so BOSS bc...
 - We beat KEY errors and HTTP errors
+- We figured out how to stop redirecr from clearing sessions
+- We salted and hashed our own pwords
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,13 +29,17 @@ wow! oo!...
 - How to hash passwords
 - How the stock market works
 - Why people are always yelling on the trading floor
+- How to implement timezones
+- How to run a program on a server
+- How to count iterations in jinja loops
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - We initially decided to add a social media platform as an EXTRA feature, then
-decided to make it a MAIN feature, and then when we didn't have as much time as 
-thought, we took it out completely. That meant that users would not be able to 
-add friends, either.
+decided to make it a MAIN feature, and then when we didn't have as much time as
+thought, we took it out completely. That meant that users would not be able to
+add friends, either.(the ability to do so is still in the code and implementable
+with the current database structure)
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
