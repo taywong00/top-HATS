@@ -22,6 +22,7 @@ UNRESOLVED ISSUES
 blah blah pesky bug...
 - While making transactions, you must click "Buy" only once and then wait. Otherwise,
 another transaction may be made.
+- Issue with being able to implement stylesheet css, attempted changes never showed up on pages and reverted to default
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,6 +53,7 @@ tales of wisdom gained...
 - Time management
 - Productive workspace
 - Don't use outside code if you don't understand its inner workings
+- Don't get the flu and/or stomach flu :(
 
 ||||||||||||||||||||||||||||||||||||||||||
 
