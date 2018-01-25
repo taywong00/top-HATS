@@ -8,13 +8,13 @@ import urllib2, json
 # Retrieve AlphaVantage API key from file
 File = open("av_key.txt", "r")
 key = File.read()
-print "KEY:" + key
+#print "KEY:" + key
 File.close()
 
 # Retrieve News API key from file
 File = open("news_key.txt", "r")
 nkey = File.read()
-print "NKEY:" + nkey
+#print "NKEY:" + nkey
 File.close()
 
 # Information about a stock
