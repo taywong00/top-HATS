@@ -11,7 +11,7 @@ SoftDev Final Project:
 ### STOK
 
 #### Description:
-Welcome to Stok, the stock market simulator that lets you play the stock market game... and more! To begin, create an account. Choose between three difficulty levels, which determine the amount of money you will start with. After that, you're all set to get trading! Make a transaction by entering a stock name and the numbers of shares you'd like to purchase. After that, wait for the market to fluctuate, and decide when to sell your shares, hopefully when you've made a profit. In the meantime, you may head over to our News page, to look at the latest finance news (thanks to the News API). Or, look at the leaderboard, where you can see who's been having a good time on the stock market.
+Welcome to Stok, the stock market simulator that lets you play the stock market game... and more! To begin, create an account and choose your "I am" trait. This will determine your profile picture. After that, you're all set to get trading! We'll give you $100,000 (USD) to start off with. Make a transaction by entering a stock ticker name and the number of shares you'd like to purchase. After that, wait for the market to fluctuate, and decide when to sell your shares, hopefully when you've made a profit. In the meantime, you may head over to our News page, to look at the latest finance news (thanks to the News API). Or, look at the leaderboard, where you can see who's been having a good time on the stock market.
 
 
 ### [Watch our demo here.](https://github.com/taywong00/top-HATS)
