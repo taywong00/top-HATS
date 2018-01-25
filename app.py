@@ -105,6 +105,71 @@ def account():
     else:
         return render_template("home.html", message="Please log in to see your account.", warning= True)
 
+# Status:
+# Routes to Edit Account Info Page - change username/password
+@app.route("/change", methods=['GET', 'POST'])
+def change():
+    if session.get('username'):
+        user = session.get("username")
+        username = request.form["username"]
+        old_pass = request.form["old_pass"] #name
+        new_pass_1 = request.form["new_pass_1"]
+        new_pass_2 = request.form["new_pass_2"]
+        old_name = request.form["old_name"]
+        new_name1 = request.form["new_name1"]
+        new_name2 = request.form["new_name2"]
+        password = request.form["password"]
+
+    #password
+        #success
+        if change_pass(username, old_pass, new_pass_1, new_pass_2) == 1:
+            stocks = data_builder.get_holdings(transactions.get_id(user))
+            #print stocks
+            for stock in stocks:
+                stock.append(transactions.getStockPrice(stock[0]))
+            balance = transactions.get_balance(transactions.get_id(user))
+            stockVal = transactions.stock_val(transactions.get_id(user))
+            totalVal = transactions.total_val(transactions.get_id(user))
+            pfp = data_builder.get_pic_num(transactions.get_id(user))
+            transaction_history = data_builder.get_transactions(transactions.get_id(user))
+
+            return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp, stockVal=stockVal, totalVal = totalVal, transaction_history=transaction_history, message="Password successfully changed.", good=True)
+        #wrong user or pass
+        elif change_pass(username, old_pass, new_pass_1, new_pass_2) == 2:
+            return render_template("change.html", message="Incorrect username or password.", good=False)
+        #pass dont match
+        elif change_pass(username, old_pass, new_pass_1, new_pass_2) == 3:
+            return render_template("change.html", message="New passwords do not match.", good=False)
+        else:
+            return render_template("change.html", message="Change unsuccessful. Please try again.", good=False)
+
+    #username
+        #success
+        if change_name(old_name, new_name1, new_name2, password) == 1:
+            stocks = data_builder.get_holdings(transactions.get_id(user))
+            #print stocks
+            for stock in stocks:
+                stock.append(transactions.getStockPrice(stock[0]))
+            balance = transactions.get_balance(transactions.get_id(user))
+            stockVal = transactions.stock_val(transactions.get_id(user))
+            totalVal = transactions.total_val(transactions.get_id(user))
+            pfp = data_builder.get_pic_num(transactions.get_id(user))
+            transaction_history = data_builder.get_transactions(transactions.get_id(user))
+
+            return render_template("account.html", name = user, balance = balance, stocks = stocks, pfp = pfp, stockVal=stockVal, totalVal = totalVal, transaction_history=transaction_history, message="Password successfully changed.", good=True)
+        #wrong user or pass
+        elif change_name(old_name, new_name1, new_name2, password) == 2:
+            return render_template("change.html", message="Incorrect username or password.", good=False)
+        #user dont match
+        elif change_name(old_name, new_name1, new_name2, password) == 3:
+            return render_template("change.html", message="New usernames do not match.", good=False)
+        else:
+            return render_template("change.html", message="Change unsuccessful. Please try again.", good=False)
+
+    else:
+        return render_template("home.html", message="Please log in to access your account.", good=False)
+
+
 # Route for handling selling transactions
 @app.route("/sell", methods=['GET', 'POST'])
 def sell():
